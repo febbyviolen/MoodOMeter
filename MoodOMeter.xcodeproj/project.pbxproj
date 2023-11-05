@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23B4DEE49584103A7C5CC07B /* Pods_MoodOMeter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C9A153B7896554B98ECDB2C /* Pods_MoodOMeter.framework */; };
 		8033B8322AF74BD10032009A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8033B8312AF74BD10032009A /* AppDelegate.swift */; };
 		8033B8342AF74BD10032009A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8033B8332AF74BD10032009A /* SceneDelegate.swift */; };
 		8033B8362AF74BD10032009A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8033B8352AF74BD10032009A /* ViewController.swift */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C9A153B7896554B98ECDB2C /* Pods_MoodOMeter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoodOMeter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		360800B04041EC904C5FD4D2 /* Pods-MoodOMeter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodOMeter.debug.xcconfig"; path = "Target Support Files/Pods-MoodOMeter/Pods-MoodOMeter.debug.xcconfig"; sourceTree = "<group>"; };
 		8033B82E2AF74BD10032009A /* MoodOMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoodOMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8033B8312AF74BD10032009A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8033B8332AF74BD10032009A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +27,7 @@
 		8033B83A2AF74BD40032009A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8033B83D2AF74BD40032009A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8033B83F2AF74BD40032009A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E222C1098737673EEAF01BF0 /* Pods-MoodOMeter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodOMeter.release.xcconfig"; path = "Target Support Files/Pods-MoodOMeter/Pods-MoodOMeter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23B4DEE49584103A7C5CC07B /* Pods_MoodOMeter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,8 @@
 			children = (
 				8033B8302AF74BD10032009A /* MoodOMeter */,
 				8033B82F2AF74BD10032009A /* Products */,
+				E74B5BF81C96D6EDBDD69054 /* Pods */,
+				F1576EA7EEFFEADEF8D4867E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +74,24 @@
 			path = MoodOMeter;
 			sourceTree = "<group>";
 		};
+		E74B5BF81C96D6EDBDD69054 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				360800B04041EC904C5FD4D2 /* Pods-MoodOMeter.debug.xcconfig */,
+				E222C1098737673EEAF01BF0 /* Pods-MoodOMeter.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F1576EA7EEFFEADEF8D4867E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0C9A153B7896554B98ECDB2C /* Pods_MoodOMeter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8033B8422AF74BD40032009A /* Build configuration list for PBXNativeTarget "MoodOMeter" */;
 			buildPhases = (
+				C119E05E0D750AA9529715AF /* [CP] Check Pods Manifest.lock */,
 				8033B82A2AF74BD10032009A /* Sources */,
 				8033B82B2AF74BD10032009A /* Frameworks */,
 				8033B82C2AF74BD10032009A /* Resources */,
+				361FE7EBEFE2E52097D307A8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		361FE7EBEFE2E52097D307A8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MoodOMeter/Pods-MoodOMeter-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MoodOMeter/Pods-MoodOMeter-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MoodOMeter/Pods-MoodOMeter-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C119E05E0D750AA9529715AF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MoodOMeter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8033B82A2AF74BD10032009A /* Sources */ = {
@@ -287,6 +356,7 @@
 		};
 		8033B8432AF74BD40032009A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 360800B04041EC904C5FD4D2 /* Pods-MoodOMeter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -299,6 +369,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,6 +377,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = febby.MoodOMeter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -314,6 +388,7 @@
 		};
 		8033B8442AF74BD40032009A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E222C1098737673EEAF01BF0 /* Pods-MoodOMeter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -326,6 +401,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -333,6 +409,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = febby.MoodOMeter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
