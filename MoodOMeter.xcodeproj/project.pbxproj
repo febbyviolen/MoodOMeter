@@ -7,27 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		23B4DEE49584103A7C5CC07B /* Pods_MoodOMeter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C9A153B7896554B98ECDB2C /* Pods_MoodOMeter.framework */; };
 		8033B8322AF74BD10032009A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8033B8312AF74BD10032009A /* AppDelegate.swift */; };
 		8033B8342AF74BD10032009A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8033B8332AF74BD10032009A /* SceneDelegate.swift */; };
-		8033B8362AF74BD10032009A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8033B8352AF74BD10032009A /* ViewController.swift */; };
+		8033B8362AF74BD10032009A /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8033B8352AF74BD10032009A /* MainVC.swift */; };
 		8033B8392AF74BD10032009A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8033B8372AF74BD10032009A /* Main.storyboard */; };
 		8033B83B2AF74BD40032009A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8033B83A2AF74BD40032009A /* Assets.xcassets */; };
 		8033B83E2AF74BD40032009A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8033B83C2AF74BD40032009A /* LaunchScreen.storyboard */; };
+		865A72EDD3836173149BD8CD /* Pods_MoodOMeter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F046045062FE3A78FCE025 /* Pods_MoodOMeter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0C9A153B7896554B98ECDB2C /* Pods_MoodOMeter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoodOMeter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		360800B04041EC904C5FD4D2 /* Pods-MoodOMeter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodOMeter.debug.xcconfig"; path = "Target Support Files/Pods-MoodOMeter/Pods-MoodOMeter.debug.xcconfig"; sourceTree = "<group>"; };
 		8033B82E2AF74BD10032009A /* MoodOMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoodOMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8033B8312AF74BD10032009A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8033B8332AF74BD10032009A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8033B8352AF74BD10032009A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8033B8352AF74BD10032009A /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		8033B8382AF74BD10032009A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8033B83A2AF74BD40032009A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8033B83D2AF74BD40032009A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8033B83F2AF74BD40032009A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E222C1098737673EEAF01BF0 /* Pods-MoodOMeter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodOMeter.release.xcconfig"; path = "Target Support Files/Pods-MoodOMeter/Pods-MoodOMeter.release.xcconfig"; sourceTree = "<group>"; };
+		96E633D1AF2356CD09B826D6 /* Pods-MoodOMeter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodOMeter.release.xcconfig"; path = "Target Support Files/Pods-MoodOMeter/Pods-MoodOMeter.release.xcconfig"; sourceTree = "<group>"; };
+		E7F046045062FE3A78FCE025 /* Pods_MoodOMeter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoodOMeter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDF97CE5461F01F426B82A88 /* Pods-MoodOMeter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodOMeter.debug.xcconfig"; path = "Target Support Files/Pods-MoodOMeter/Pods-MoodOMeter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,20 +35,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23B4DEE49584103A7C5CC07B /* Pods_MoodOMeter.framework in Frameworks */,
+				865A72EDD3836173149BD8CD /* Pods_MoodOMeter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05B604316CAA5AD65597027B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FDF97CE5461F01F426B82A88 /* Pods-MoodOMeter.debug.xcconfig */,
+				96E633D1AF2356CD09B826D6 /* Pods-MoodOMeter.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		8033B8252AF74BD10032009A = {
 			isa = PBXGroup;
 			children = (
 				8033B8302AF74BD10032009A /* MoodOMeter */,
 				8033B82F2AF74BD10032009A /* Products */,
-				E74B5BF81C96D6EDBDD69054 /* Pods */,
-				F1576EA7EEFFEADEF8D4867E /* Frameworks */,
+				05B604316CAA5AD65597027B /* Pods */,
+				CA7A0B9C2A8835B6194BF131 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -65,7 +74,7 @@
 			children = (
 				8033B8312AF74BD10032009A /* AppDelegate.swift */,
 				8033B8332AF74BD10032009A /* SceneDelegate.swift */,
-				8033B8352AF74BD10032009A /* ViewController.swift */,
+				805D7D962AF7662E00DC8CFC /* controller */,
 				8033B8372AF74BD10032009A /* Main.storyboard */,
 				8033B83A2AF74BD40032009A /* Assets.xcassets */,
 				8033B83C2AF74BD40032009A /* LaunchScreen.storyboard */,
@@ -74,20 +83,18 @@
 			path = MoodOMeter;
 			sourceTree = "<group>";
 		};
-		E74B5BF81C96D6EDBDD69054 /* Pods */ = {
+		805D7D962AF7662E00DC8CFC /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				360800B04041EC904C5FD4D2 /* Pods-MoodOMeter.debug.xcconfig */,
-				E222C1098737673EEAF01BF0 /* Pods-MoodOMeter.release.xcconfig */,
+				8033B8352AF74BD10032009A /* MainVC.swift */,
 			);
-			name = Pods;
-			path = Pods;
+			path = controller;
 			sourceTree = "<group>";
 		};
-		F1576EA7EEFFEADEF8D4867E /* Frameworks */ = {
+		CA7A0B9C2A8835B6194BF131 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0C9A153B7896554B98ECDB2C /* Pods_MoodOMeter.framework */,
+				E7F046045062FE3A78FCE025 /* Pods_MoodOMeter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -99,11 +106,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8033B8422AF74BD40032009A /* Build configuration list for PBXNativeTarget "MoodOMeter" */;
 			buildPhases = (
-				C119E05E0D750AA9529715AF /* [CP] Check Pods Manifest.lock */,
+				F4B7BE7A45E03F3A56B53DE6 /* [CP] Check Pods Manifest.lock */,
 				8033B82A2AF74BD10032009A /* Sources */,
 				8033B82B2AF74BD10032009A /* Frameworks */,
 				8033B82C2AF74BD10032009A /* Resources */,
-				361FE7EBEFE2E52097D307A8 /* [CP] Embed Pods Frameworks */,
+				D0EDE9ED7DDD053752E4B356 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -161,7 +168,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		361FE7EBEFE2E52097D307A8 /* [CP] Embed Pods Frameworks */ = {
+		D0EDE9ED7DDD053752E4B356 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -178,7 +185,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MoodOMeter/Pods-MoodOMeter-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C119E05E0D750AA9529715AF /* [CP] Check Pods Manifest.lock */ = {
+		F4B7BE7A45E03F3A56B53DE6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -207,7 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8033B8362AF74BD10032009A /* ViewController.swift in Sources */,
+				8033B8362AF74BD10032009A /* MainVC.swift in Sources */,
 				8033B8322AF74BD10032009A /* AppDelegate.swift in Sources */,
 				8033B8342AF74BD10032009A /* SceneDelegate.swift in Sources */,
 			);
@@ -287,7 +294,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -344,7 +351,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -356,12 +363,13 @@
 		};
 		8033B8432AF74BD40032009A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 360800B04041EC904C5FD4D2 /* Pods-MoodOMeter.debug.xcconfig */;
+			baseConfigurationReference = FDF97CE5461F01F426B82A88 /* Pods-MoodOMeter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MoodOMeter/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -388,12 +396,13 @@
 		};
 		8033B8442AF74BD40032009A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E222C1098737673EEAF01BF0 /* Pods-MoodOMeter.release.xcconfig */;
+			baseConfigurationReference = 96E633D1AF2356CD09B826D6 /* Pods-MoodOMeter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MoodOMeter/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
