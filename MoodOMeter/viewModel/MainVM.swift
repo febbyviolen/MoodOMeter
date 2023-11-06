@@ -9,18 +9,17 @@ import Foundation
 import Combine
 
 class MainVM {
+    static let Shared = MainVM()
+
     @Published var calendarData: [String: DiaryModel] = [
-        "2023.11.01" : DiaryModel(sticker: ["cry"], story: "asd", date: "2023.11.01"),
-        "2023.11.03" : DiaryModel(sticker: ["cry"], story: "asd", date: "2023.11.03"),
-        "2023.11.05" : DiaryModel(sticker: ["cry"], story: "asd", date: "2023.11.05"),]
-    @Published var currentYear = Date().toString(format: "yyyy")
-    @Published var currentDate = Date()
+        "2023.11.01" : DiaryModel(sticker: [], story: "asd", date: "2023.11.01"),
+        "2023.11.03" : DiaryModel(sticker: ["cry", "cry", "cry", "cry", "cry"], story: "sdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsd", date: "2023.11.03"),
+        "2023.11.05" : DiaryModel(sticker: ["cry"], story: "", date: "2023.11.05"),]
     
-    var selectedDate: (date: Date, data: DiaryModel?)? = nil
+    var currentYear = Date().toString(format: "yyyy")
+    @Published var selectedDate: (date: Date, data: DiaryModel?)? = nil
     
     private var cancellables = Set<AnyCancellable>()
-    
-    
     
     func fetchCalendarData(for date: Date) {
 //        Firebase.Shared.getDiaryData(date: date)
@@ -36,17 +35,11 @@ class MainVM {
 //                print("MainVM - fetch calendar data success")
 //                self.calendarData[ID] = DiaryModel(sticker: sticker, story: story, date: date)
 //            }.store(in: &cancellables)
-        
     }
     
-    struct Input {
+    func sendData() -> [DiaryModel] {
+        var dataArr = calendarData.map{$0.value}.sorted(by: {$0.date < $1.date})
+        return dataArr
     }
     
-    struct Output {
-        let updateViewPublisher: AnyPublisher<[DiaryModel], Never>
-    }
-    
-//    func transformData(input: Input) -> Output {
-//        return Output(updateViewPublisher: <#T##AnyPublisher<[DiaryModel], Never>#>)
-//    }
 }

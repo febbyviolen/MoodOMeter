@@ -20,7 +20,6 @@ class MainVC: UIViewController {
     @IBOutlet weak var addButton: UIButton?
     @IBOutlet weak var calendar: JTAppleCalendarView!
     
-    private var vm = MainVM()
     private var cancellables = Set<AnyCancellable>()
     
     private let currentDateSubject = CurrentValueSubject<Date, Never>(Date())
@@ -34,8 +33,16 @@ class MainVC: UIViewController {
         observe()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDiaryVC" {
+            if let VC = segue.destination as? DiaryVC {
+                VC.currentDateSubject.send(currentDateSubject.value)
+            }
+        }
+    }
+    
     private func bind() {
-        vm.$calendarData
+        MainVM.Shared.$calendarData
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.calendar.reloadData()
@@ -58,9 +65,9 @@ class MainVC: UIViewController {
             
             //year
             let year = date.toString(format: "yyyy")
-            if year < vm.currentYear {
-                vm.currentYear = year
-                vm.fetchCalendarData(for: date)
+            if year < MainVM.Shared.currentYear {
+                MainVM.Shared.currentYear = year
+                MainVM.Shared.fetchCalendarData(for: date)
             }
             yearLabel.text = year
             
@@ -76,8 +83,8 @@ class MainVC: UIViewController {
     
     //MARK: BUTTON
     @IBAction func addButtonTapped(_ sender: Any) {
-        vm.selectedDate?.0 = Date()
-        vm.selectedDate?.1 = vm.calendarData[Date().toString(format: "yyyy.mm.dd")]
+        MainVM.Shared.selectedDate?.date = Date()
+        MainVM.Shared.selectedDate?.data = MainVM.Shared.calendarData[Date().toString(format: "yyyy.mm.dd")]
         performSegue(withIdentifier: "showSticker", sender: self)
     }
     
@@ -102,7 +109,6 @@ extension MainVC {
     // REASON: library error! if the date is in the first line, the calendar showing last month
     func isMaybeFirstLineOfCalendar(date: Date) -> Date? {
         let dateStr = date.toString(format: "dd")
-        
         if dateStr == "01" || dateStr == "02" || dateStr == "03" || dateStr == "04" || dateStr == "05" || dateStr == "06" {
             let month = date.toString(format: "MM")
             let year = date.toString(format: "yyyy")
@@ -136,7 +142,7 @@ extension MainVC: JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate {
             calendar.scrollToDate(Date(), animateScroll: false)
         }
         
-        vm.fetchCalendarData(for: Date())
+        MainVM.Shared.fetchCalendarData(for: Date())
     }
     
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
@@ -164,8 +170,8 @@ extension MainVC: JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate {
     }
 
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        vm.selectedDate?.0 = cellState.date
-        vm.selectedDate?.1 = vm.calendarData[cellState.date.toString(format: "yyyy.MM.dd")]
+        MainVM.Shared.selectedDate?.0 = cellState.date
+        MainVM.Shared.selectedDate?.1 = MainVM.Shared.calendarData[cellState.date.toString(format: "yyyy.MM.dd")]
         performSegue(withIdentifier: "showSticker", sender: self)
     }
     
@@ -178,11 +184,9 @@ extension MainVC: JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
-        
         if let date = visibleDates.monthDates.first?.date {
             currentDateSubject.send(date)
         }
-        
     }
 }
 
