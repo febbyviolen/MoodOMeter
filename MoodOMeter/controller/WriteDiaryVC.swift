@@ -1,0 +1,205 @@
+//
+//  WriteDiaryVC.swift
+//  MoodOMeter
+//
+//  Created by Ebbyy on 11/7/23.
+//
+
+/*
+ todo:
+ - write to firebase -> VM
+ - delete on firebase -> VM
+ - plus button
+ */
+
+import UIKit
+import Combine
+import CombineCocoa
+import KTCenterFlowLayout
+
+class WriteDiaryVC: UIViewController {
+    
+    @IBOutlet weak var diaryTextField: UITextView!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var addStickerButton: UIButton!
+    
+    private var VM = WriteDiaryVM()
+    private var cancellables = Set<AnyCancellable>()
+    
+    var writtenDataSubject = PassthroughSubject<(data: DiaryModel?, date: Date), Never>()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+        bind()
+        observe()
+        setupCollectionView()
+        keyboardToolBar()
+        diaryTextField.delegate = self
+    }
+    
+    private func bind() {
+        VM.$newDiary
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] data in
+                if data?.sticker.count == 0 || data == nil{
+                    collectionView.isHidden = true
+                } else {
+                    collectionView.isHidden = false
+                }
+                
+                collectionView.reloadData()
+            }
+            .store(in: &cancellables)
+        
+        MainVM.Shared.$selectedDate
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] data in
+                VM.newDiary = data?.data
+                setupInitData(date: data!.date, story: data?.data?.story)
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func observe() {
+        
+        diaryTextField.textPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { text in
+                self.checkDiaryTextUI(text)
+            }
+            .store(in: &cancellables)
+    }
+    
+    //=== BUTTON ===
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        //save to firebase
+    }
+    
+    @IBAction func deleteButtonTapped(_ sender: Any) {
+        //delete on firebase
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    //=== UI ===
+    private func setupInitData(date: Date, story: String?) {
+        dateLabel.text = date.toString(format: "yyyy.MM.dd EEEE")
+        diaryTextField.text = story == "" || story == nil ? "오늘은 어떤 하루였나요?" : story 
+    }
+    
+    private func checkDiaryTextUI(_ text: String?) {
+        if text == "오늘은 어떤 하루였나요?" {
+            diaryTextField.textColor = .lightGray
+        }
+        else {
+            diaryTextField.textColor = UIColor(named: "black")
+        }
+    }
+    
+    //=== TOOLBAR ===
+    private func keyboardToolBar() {
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 50))
+        
+        let addTimeButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "clock"), style: .plain, target: self, action: #selector(addTimeStamp))
+        addTimeButton.tintColor = UIColor(named: "black2")
+        
+        let doneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(didTapDone))
+        doneButton.tintColor = UIColor(named: "black2")
+        
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        
+        toolbar.items = [addTimeButton, flexibleSpace, doneButton]
+        toolbar.sizeToFit()
+        diaryTextField.inputAccessoryView = toolbar
+    }
+    
+    //=== BAR ITEM FUNC ===
+    @objc 
+    private func didTapDone(){
+        diaryTextField.resignFirstResponder()
+    }
+    
+    @objc
+    private func addTimeStamp(){
+        DateFormatter().timeStyle = .short
+        diaryTextField.text += Date().toString(format: "hh:mm")
+        
+    }
+}
+
+extension WriteDiaryVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    private func setupCollectionView() {
+        let layout = KTCenterFlowLayout()
+        collectionView.setCollectionViewLayout(layout, animated: true)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(DiaryCollectionViewCell.self, forCellWithReuseIdentifier: DiaryCollectionViewCell.cellID)
+        setupTapGestureRecognizer()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return VM.newDiary?.sticker.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaryCollectionViewCell.cellID, for: indexPath) as! DiaryCollectionViewCell
+        cell.configForWriteDiaryVC(img: VM.newDiary!.sticker[indexPath.row])
+        
+        cell.deleteStickerPublisher.receive(on: DispatchQueue.main)
+            .sink { [unowned self] _ in
+                VM.newDiary?.sticker.remove(at: indexPath.row)
+                print("tapped \(indexPath.row)")
+            }
+            .store(in: &cell.cancellables)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // Return the desired size for each cell
+        return CGSize(width: 50, height: 50)
+    }
+    
+    private func resetCellStates() {
+        for cell in collectionView.visibleCells {
+            if let imageCell = cell as? DiaryCollectionViewCell {
+                imageCell.resetState()
+            }
+        }
+    }
+    
+    // Add tap gesture recognizer to the collection view
+    private func setupTapGestureRecognizer() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapSticker(_:)))
+        collectionView.addGestureRecognizer(tapGesture)
+    }
+    
+    
+    // Handle the tap gesture on the collection view
+    @objc private func handleTapSticker(_ gestureRecognizer: UITapGestureRecognizer) {
+        // Tapped outside of an image cell, reset the cell states
+        resetCellStates()
+        diaryTextField.resignFirstResponder()
+    }
+    
+}
+
+extension WriteDiaryVC: UITextViewDelegate {
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "오늘은 어떤 하루였나요?" {textView.text = ""}
+        resetCellStates()
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == "" {textView.text = "오늘은 어떤 하루였나요?"}
+        resetCellStates()
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        resetCellStates()
+    }
+    
+}

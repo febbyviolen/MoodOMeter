@@ -6,7 +6,7 @@
 //
 /*
  todo :
- - fix animation
+ 
  */
 
 import UIKit
@@ -16,6 +16,7 @@ import CombineCocoa
 class ReportVC: UIViewController {
     
     @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var chartContainerView: UIView!
     
     @IBOutlet weak var firstChartView: UIView!
     @IBOutlet var secondChartView: UIView!
@@ -54,6 +55,7 @@ class ReportVC: UIViewController {
     let currentDateSubject = CurrentValueSubject<Date, Never>(Date())
     
     override func viewDidLoad() {
+        setupUI()
         observe()
         bind()
     }
@@ -119,6 +121,16 @@ class ReportVC: UIViewController {
                 label[i.offset]?.text = "\(i.element.1)"
             }
         }
+    }
+    
+    private func setupUI() {
+        chartContainerView.addShadow(
+            offset: CGSize(width: 0, height: 0),
+            color: UIColor(named: "black")!,
+            radius: 1,
+            opacity: 0.2)
+        
+        chartContainerView.addCornerRadius(radius: 16)
     }
 }
 

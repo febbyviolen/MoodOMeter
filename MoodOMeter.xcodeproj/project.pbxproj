@@ -31,6 +31,8 @@
 		80BCF5F12AF8CDAB00802B96 /* DairyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF5F02AF8CDAB00802B96 /* DairyVM.swift */; };
 		80BCF5F32AF9470A00802B96 /* ReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF5F22AF9470A00802B96 /* ReportVC.swift */; };
 		80BCF5F52AF94E9E00802B96 /* ReportVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF5F42AF94E9E00802B96 /* ReportVM.swift */; };
+		80BCF5F72AFA337D00802B96 /* WriteDiaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF5F62AFA337D00802B96 /* WriteDiaryVC.swift */; };
+		80BCF5F92AFA35AC00802B96 /* WriteDiaryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF5F82AFA35AC00802B96 /* WriteDiaryVM.swift */; };
 		865A72EDD3836173149BD8CD /* Pods_MoodOMeter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F046045062FE3A78FCE025 /* Pods_MoodOMeter.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +61,8 @@
 		80BCF5F02AF8CDAB00802B96 /* DairyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DairyVM.swift; sourceTree = "<group>"; };
 		80BCF5F22AF9470A00802B96 /* ReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportVC.swift; sourceTree = "<group>"; };
 		80BCF5F42AF94E9E00802B96 /* ReportVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportVM.swift; sourceTree = "<group>"; };
+		80BCF5F62AFA337D00802B96 /* WriteDiaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDiaryVC.swift; sourceTree = "<group>"; };
+		80BCF5F82AFA35AC00802B96 /* WriteDiaryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDiaryVM.swift; sourceTree = "<group>"; };
 		96E633D1AF2356CD09B826D6 /* Pods-MoodOMeter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodOMeter.release.xcconfig"; path = "Target Support Files/Pods-MoodOMeter/Pods-MoodOMeter.release.xcconfig"; sourceTree = "<group>"; };
 		E7F046045062FE3A78FCE025 /* Pods_MoodOMeter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoodOMeter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDF97CE5461F01F426B82A88 /* Pods-MoodOMeter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodOMeter.debug.xcconfig"; path = "Target Support Files/Pods-MoodOMeter/Pods-MoodOMeter.debug.xcconfig"; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 				8033B8352AF74BD10032009A /* MainVC.swift */,
 				80BCF5E72AF8B0AC00802B96 /* DiaryVC.swift */,
 				80BCF5F22AF9470A00802B96 /* ReportVC.swift */,
+				80BCF5F62AFA337D00802B96 /* WriteDiaryVC.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -137,8 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				805D7D972AF777FA00DC8CFC /* CalendarDateView.swift */,
-				80BCF5E32AF8AB6E00802B96 /* DiaryViewCell.swift */,
 				80BCF5EE2AF8BDDD00802B96 /* DiaryCollectionViewCell.swift */,
+				80BCF5E32AF8AB6E00802B96 /* DiaryViewCell.swift */,
 				80BCF5E42AF8AB6E00802B96 /* DiaryViewCell.xib */,
 			);
 			path = view;
@@ -171,6 +176,7 @@
 				805D7D9D2AF7796000DC8CFC /* MainVM.swift */,
 				80BCF5F02AF8CDAB00802B96 /* DairyVM.swift */,
 				80BCF5F42AF94E9E00802B96 /* ReportVM.swift */,
+				80BCF5F82AFA35AC00802B96 /* WriteDiaryVM.swift */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -308,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8033B8362AF74BD10032009A /* MainVC.swift in Sources */,
+				80BCF5F72AFA337D00802B96 /* WriteDiaryVC.swift in Sources */,
 				80BCF5F32AF9470A00802B96 /* ReportVC.swift in Sources */,
 				805D7DAC2AF77C5700DC8CFC /* String+Extension.swift in Sources */,
 				805D7D9E2AF7796000DC8CFC /* MainVM.swift in Sources */,
@@ -318,6 +325,7 @@
 				80BCF5E82AF8B0AC00802B96 /* DiaryVC.swift in Sources */,
 				805D7DA82AF77AF100DC8CFC /* subscription.swift in Sources */,
 				805D7DAE2AF77D3500DC8CFC /* Date+Extension.swift in Sources */,
+				80BCF5F92AFA35AC00802B96 /* WriteDiaryVM.swift in Sources */,
 				80BCF5E52AF8AB6E00802B96 /* DiaryViewCell.swift in Sources */,
 				8033B8322AF74BD10032009A /* AppDelegate.swift in Sources */,
 				805D7D982AF777FA00DC8CFC /* CalendarDateView.swift in Sources */,

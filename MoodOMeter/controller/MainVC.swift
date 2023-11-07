@@ -34,9 +34,9 @@ class MainVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDiaryVC" {
-            if let VC = segue.destination as? DiaryVC {
-                VC.currentDateSubject.send(currentDateSubject.value)
+        if segue.identifier == "showWriteDiaryVC" {
+            if let VC = segue.destination as? WriteDiaryVC {
+                VC.writtenDataSubject.send((MainVM.Shared.selectedDate?.data, MainVM.Shared.selectedDate!.date))
             }
         }
     }
@@ -83,9 +83,11 @@ class MainVC: UIViewController {
     
     //MARK: BUTTON
     @IBAction func addButtonTapped(_ sender: Any) {
-        MainVM.Shared.selectedDate?.date = Date()
-        MainVM.Shared.selectedDate?.data = MainVM.Shared.calendarData[Date().toString(format: "yyyy.mm.dd")]
-        performSegue(withIdentifier: "showSticker", sender: self)
+        MainVM.Shared.selectedDate = (Date(), nil)
+        //test
+        MainVM.Shared.selectedDate?.data = DiaryModel(sticker: ["cry","cry"], story: "asdasdasdasdasd", date: "2023.02.11")
+//        MainVM.Shared.selectedDate?.data = MainVM.Shared.calendarData[Date().toString(format: "yyyy.mm.dd")]
+        performSegue(withIdentifier: "showWriteDiaryVC", sender: self)
     }
     
     @IBAction 
