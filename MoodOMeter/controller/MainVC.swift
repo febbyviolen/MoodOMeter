@@ -65,7 +65,7 @@ class MainVC: UIViewController {
             
             //year
             let year = date.toString(format: "yyyy")
-            if year < MainVM.Shared.currentYear {
+            if year != MainVM.Shared.currentYear {
                 MainVM.Shared.currentYear = year
                 MainVM.Shared.fetchCalendarData(for: date)
             }

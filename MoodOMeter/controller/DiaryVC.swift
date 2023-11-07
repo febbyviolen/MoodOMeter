@@ -28,6 +28,7 @@ class DiaryVC: UIViewController {
         VM.$thisMonthData
             .receive(on: DispatchQueue.main)
             .sink { _ in
+                print("dairyVC - this month data bind")
                 self.tableView?.reloadData()
             }
             .store(in: &cancellables)
@@ -35,8 +36,17 @@ class DiaryVC: UIViewController {
     
     private func observe() {
         currentDateSubject.sink { [unowned self] date in
+            print("dairyVC - currentdatesubject observe")
             dateLabel?.text = date.toString(format: "yyyy.MM")
+            
+            //year
+            let year = date.toString(format: "yyyy")
+            if year != VM.currentYear {
+                VM.currentYear = year
+                VM.fetchCalendarData(for: date)
+            }                  
             VM.getThisMonthData(date: date.toString(format: "yyyy.MM"))
+           
         }
         .store(in: &cancellables)
     }

@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.Thread 1: 
         
         UINavigationBar.appearance().tintColor = UIColor(named: "black2")
+        UINavigationBar.appearance().topItem?.backButtonDisplayMode = .minimal
     
         return true
     }

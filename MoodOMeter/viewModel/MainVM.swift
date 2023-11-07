@@ -37,9 +37,6 @@ class MainVM {
 //            }.store(in: &cancellables)
     }
     
-    func sendData() -> [DiaryModel] {
-        var dataArr = calendarData.map{$0.value}.sorted(by: {$0.date < $1.date})
-        return dataArr
-    }
+    
     
 }
