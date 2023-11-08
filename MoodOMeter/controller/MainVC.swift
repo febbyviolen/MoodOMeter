@@ -21,8 +21,9 @@ class MainVC: UIViewController {
     @IBOutlet weak var calendar: JTAppleCalendarView!
     
     private var cancellables = Set<AnyCancellable>()
-    
     private let currentDateSubject = CurrentValueSubject<Date, Never>(Date())
+    
+    var addTodayButtonPressed = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,8 @@ class MainVC: UIViewController {
         if segue.identifier == "showWriteDiaryVC" {
             if let VC = segue.destination as? WriteDiaryVC {
                 VC.writtenDataSubject.send((MainVM.Shared.selectedDate?.data, MainVM.Shared.selectedDate!.date))
+                VC.addTodayButtonPressed = addTodayButtonPressed
+                addTodayButtonPressed = false
             }
         }
     }
@@ -65,9 +68,11 @@ class MainVC: UIViewController {
             
             //year
             let year = date.toString(format: "yyyy")
-            if year != MainVM.Shared.currentYear {
+            if year < MainVM.Shared.currentYear {
                 MainVM.Shared.currentYear = year
-                MainVM.Shared.fetchCalendarData(for: date)
+                if !MainVM.Shared.inTheData.contains(year){
+//                    MainVM.Shared.fetchCalendarData(for: date)
+                }
             }
             yearLabel.text = year
             
@@ -81,12 +86,13 @@ class MainVC: UIViewController {
         .store(in: &cancellables)
     }
     
-    //MARK: BUTTON
+    //=== BUTTON ===
     @IBAction func addButtonTapped(_ sender: Any) {
         MainVM.Shared.selectedDate = (Date(), nil)
+//        MainVM.Shared.selectedDate?.data = MainVM.Shared.calendarData[Date().toString(format: "yyyy.mm.dd")]
         //test
         MainVM.Shared.selectedDate?.data = DiaryModel(sticker: ["cry","cry"], story: "asdasdasdasdasd", date: "2023.02.11")
-//        MainVM.Shared.selectedDate?.data = MainVM.Shared.calendarData[Date().toString(format: "yyyy.mm.dd")]
+        addTodayButtonPressed = true
         performSegue(withIdentifier: "showWriteDiaryVC", sender: self)
     }
     
@@ -144,7 +150,6 @@ extension MainVC: JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate {
             calendar.scrollToDate(Date(), animateScroll: false)
         }
         
-        MainVM.Shared.fetchCalendarData(for: Date())
     }
     
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
@@ -172,9 +177,10 @@ extension MainVC: JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate {
     }
 
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        MainVM.Shared.selectedDate = (Date(), nil)
         MainVM.Shared.selectedDate?.0 = cellState.date
         MainVM.Shared.selectedDate?.1 = MainVM.Shared.calendarData[cellState.date.toString(format: "yyyy.MM.dd")]
-        performSegue(withIdentifier: "showSticker", sender: self)
+        performSegue(withIdentifier: "showWriteDiaryVC", sender: self)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, shouldSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) -> Bool {

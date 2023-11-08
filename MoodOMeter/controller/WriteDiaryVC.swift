@@ -10,6 +10,7 @@
  - write to firebase -> VM
  - delete on firebase -> VM
  - plus button
+ - back button check changes 
  */
 
 import UIKit
@@ -25,31 +26,49 @@ class WriteDiaryVC: UIViewController {
     @IBOutlet weak var addStickerButton: UIButton!
     
     private var VM = WriteDiaryVM()
-    private var cancellables = Set<AnyCancellable>()
     
+    private var cancellables = Set<AnyCancellable>()
     var writtenDataSubject = PassthroughSubject<(data: DiaryModel?, date: Date), Never>()
+    var addTodayButtonPressed = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
+        if addTodayButtonPressed {
+            self.performSegue(withIdentifier: "showStickerVC", sender: self);
+            addTodayButtonPressed = false
+        }
+        
         bind()
         observe()
         setupCollectionView()
         keyboardToolBar()
+        
         diaryTextField.delegate = self
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showStickerVC" {
+            if let VC = segue.destination as? StickerVC {
+                VC.writeDiaryVM = VM
+            }
+        }
     }
     
     private func bind() {
         VM.$newDiary
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] data in
+                addStickerButton.isHidden = false
+                collectionView.isHidden = false
+                
                 if data?.sticker.count == 0 || data == nil{
                     collectionView.isHidden = true
+                } else if data?.sticker.count == 5 {
+                    addStickerButton.isHidden = true
                 } else {
                     collectionView.isHidden = false
                 }
-                
                 collectionView.reloadData()
             }
             .store(in: &cancellables)
@@ -61,19 +80,30 @@ class WriteDiaryVC: UIViewController {
                 setupInitData(date: data!.date, story: data?.data?.story)
             }
             .store(in: &cancellables)
+        
     }
     
     private func observe() {
-        
         diaryTextField.textPublisher
             .receive(on: DispatchQueue.main)
-            .sink { text in
+            .sink { [unowned self] text in
                 self.checkDiaryTextUI(text)
+            }
+            .store(in: &cancellables)
+        
+        VM.$newAddedSticker
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] sticker in
+                VM.addNewStickerToData(sticker, date: MainVM.Shared.selectedDate!.date.toString(format: "yyyy.MM.dd"))
             }
             .store(in: &cancellables)
     }
     
     //=== BUTTON ===
+    @IBAction func addStickerButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "showStickerVC", sender: self)
+    }
+    
     @IBAction func saveButtonTapped(_ sender: Any) {
         //save to firebase
     }

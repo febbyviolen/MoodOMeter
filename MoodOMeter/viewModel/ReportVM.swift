@@ -20,38 +20,19 @@ class ReportVM {
     private var cancellables = Set<AnyCancellable>()
     
     init() {
-        fetchCalendarData(for: Date())
+        observe()
     }
     
-    func fetchCalendarData(for date: Date) {
-//        Firebase.Shared.getDiaryData(date: date)
-//            .receive(on: DispatchQueue.main)
-//            .sink { completion in
-//                switch completion {
-//                case .finished:
-//                    break
-//                case .failure(let error):
-//                    print("MainVM - fetch calendar data failed : \(error)")
-//                }
-//            } receiveValue: { (sticker, story, date, ID) in
-//                print("MainVM - fetch calendar data success")
-//                var dict = [String: DiaryModel]()
-//                dict[ID] = DiaryModel(sticker: sticker, story: story, date: date)
-//                self.getAndTransformData(dict)
-//            }.store(in: &cancellables)
-        if date.toString(format: "yyyy") == "2023" {
-            getAndTransformData([
-                "2023.11.01" : DiaryModel(sticker: [], story: "asd", date: "2023.11.01"),
-                "2023.11.03" : DiaryModel(sticker: ["cry", "cry", "cry", "cry", "cry"], story: "sdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsd", date: "2023.11.03"),
-                "2023.11.05" : DiaryModel(sticker: ["cry"], story: "", date: "2023.11.05"),])
-        } else {
-            getAndTransformData([
-                "2024.01.01" : DiaryModel(sticker: [], story: "asd", date: "2024.01.01"),
-                "2024.01.03" : DiaryModel(sticker: ["cry", "cry", "cry", "cry", "cry"], story: "sdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsd", date: "2024.01.03"),
-                "2023.11.05" : DiaryModel(sticker: ["cry"], story: "", date: "2024.01.05"),])
-        }
+    private func observe() {
+        MainVM.Shared.$calendarData
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] data in
+                getAndTransformData(data)
+                print("get the data")
+            }
+            .store(in: &cancellables)
     }
-    
+  
     func getAndTransformData(_ dict: [String: DiaryModel]) {
         let dataArr = dict.map{$0.value}.sorted(by: {$0.date < $1.date})
         reportData = dataArr

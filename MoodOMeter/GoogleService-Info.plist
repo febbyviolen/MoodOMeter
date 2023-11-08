@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>887036799210-g9avqddbc7dgsl9du5d3ti3dvqfu03c6.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.887036799210-g9avqddbc7dgsl9du5d3ti3dvqfu03c6</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAmtdMWjuGK5-06inxixFS_ykI59g5VClc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>887036799210</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>febby.Moody</string>
+	<key>PROJECT_ID</key>
+	<string>moody-77969</string>
+	<key>STORAGE_BUCKET</key>
+	<string>moody-77969.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:887036799210:ios:d9938ca299a935a8880f93</string>
+	<key>ADMOB_APP_ID</key>
+	<string>ca-app-pub-2267001621089435~8673030779</string>
+</dict>
+</plist>

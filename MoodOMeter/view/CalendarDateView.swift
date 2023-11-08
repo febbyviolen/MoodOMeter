@@ -35,10 +35,11 @@ class CalendarDateView: JTAppleCell {
     
     private func handleDateColor(cellState: CellState) {
         if cellState.day == .sunday {
-            dateLabel.textColor = .red
+            dateLabel.textColor = UIColor(named: "red")
         } else {
             dateLabel.textColor = UIColor(named: "black")
         }
+        dateLabel.font = UIFont.systemFont(ofSize: 10, weight: .semibold)
 
         if cellState.date > Date() {
             dateLabel.textColor = .gray

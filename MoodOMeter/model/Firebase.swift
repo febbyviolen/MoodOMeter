@@ -17,7 +17,8 @@
 //    let userDefault = UserDefaults.standard
 //    
 //    var userID: String {
-//        return userDefault.string(forKey: "userID") ?? ""
+////        return userDefault.string(forKey: "userID") ?? ""
+//        return "pnRPQP5emOZX225drvaILvrmh7R2"
 //    }
 //    
 //    var userDocRef: DocumentReference {
@@ -72,7 +73,6 @@
 //                    promise(.failure(error))
 //                } else {
 //                    for document in document!.documents {
-//                        print("getDiaryData - successed getting data")
 //                        //                    print("\(document.documentID) => \(document.data())")
 //                        let data = document.data()
 //                        let ID = document.documentID // (ex: 2023.06.01)
@@ -83,6 +83,7 @@
 //                        }
 //                        
 //                    }
+//                    print("getDiaryData - successed getting data")
 //                }
 //            }
 //        }.eraseToAnyPublisher()

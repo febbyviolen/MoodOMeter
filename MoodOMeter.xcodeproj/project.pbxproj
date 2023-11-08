@@ -33,6 +33,14 @@
 		80BCF5F52AF94E9E00802B96 /* ReportVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF5F42AF94E9E00802B96 /* ReportVM.swift */; };
 		80BCF5F72AFA337D00802B96 /* WriteDiaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF5F62AFA337D00802B96 /* WriteDiaryVC.swift */; };
 		80BCF5F92AFA35AC00802B96 /* WriteDiaryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF5F82AFA35AC00802B96 /* WriteDiaryVM.swift */; };
+		80BCF5FB2AFA887200802B96 /* user defaults.md in Resources */ = {isa = PBXBuildFile; fileRef = 80BCF5FA2AFA887100802B96 /* user defaults.md */; };
+		80BCF5FD2AFA8A7000802B96 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80BCF5FC2AFA8A7000802B96 /* GoogleService-Info.plist */; };
+		80BCF5FF2AFA99B500802B96 /* StickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF5FE2AFA99B400802B96 /* StickerVC.swift */; };
+		80BCF6032AFAA2A500802B96 /* PlainSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF6022AFAA2A500802B96 /* PlainSegmentedControl.swift */; };
+		80BCF6052AFAA2C700802B96 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF6042AFAA2C700802B96 /* UIImage+Extension.swift */; };
+		80BCF6072AFAA43700802B96 /* StickerVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF6062AFAA43700802B96 /* StickerVCCell.swift */; };
+		80BCF60B2AFB703700802B96 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF60A2AFB703600802B96 /* UINavigationController+Extension.swift */; };
+		80BCF60D2AFB96E400802B96 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF60C2AFB96E400802B96 /* SettingVC.swift */; };
 		865A72EDD3836173149BD8CD /* Pods_MoodOMeter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F046045062FE3A78FCE025 /* Pods_MoodOMeter.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +71,14 @@
 		80BCF5F42AF94E9E00802B96 /* ReportVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportVM.swift; sourceTree = "<group>"; };
 		80BCF5F62AFA337D00802B96 /* WriteDiaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDiaryVC.swift; sourceTree = "<group>"; };
 		80BCF5F82AFA35AC00802B96 /* WriteDiaryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDiaryVM.swift; sourceTree = "<group>"; };
+		80BCF5FA2AFA887100802B96 /* user defaults.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "user defaults.md"; sourceTree = "<group>"; };
+		80BCF5FC2AFA8A7000802B96 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		80BCF5FE2AFA99B400802B96 /* StickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerVC.swift; sourceTree = "<group>"; };
+		80BCF6022AFAA2A500802B96 /* PlainSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainSegmentedControl.swift; sourceTree = "<group>"; };
+		80BCF6042AFAA2C700802B96 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		80BCF6062AFAA43700802B96 /* StickerVCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerVCCell.swift; sourceTree = "<group>"; };
+		80BCF60A2AFB703600802B96 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
+		80BCF60C2AFB96E400802B96 /* SettingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		96E633D1AF2356CD09B826D6 /* Pods-MoodOMeter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodOMeter.release.xcconfig"; path = "Target Support Files/Pods-MoodOMeter/Pods-MoodOMeter.release.xcconfig"; sourceTree = "<group>"; };
 		E7F046045062FE3A78FCE025 /* Pods_MoodOMeter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoodOMeter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDF97CE5461F01F426B82A88 /* Pods-MoodOMeter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodOMeter.debug.xcconfig"; path = "Target Support Files/Pods-MoodOMeter/Pods-MoodOMeter.debug.xcconfig"; sourceTree = "<group>"; };
@@ -112,14 +128,16 @@
 		8033B8302AF74BD10032009A /* MoodOMeter */ = {
 			isa = PBXGroup;
 			children = (
+				80BCF5FA2AFA887100802B96 /* user defaults.md */,
 				8033B8312AF74BD10032009A /* AppDelegate.swift */,
 				8033B8332AF74BD10032009A /* SceneDelegate.swift */,
+				80BCF6122AFB97DE00802B96 /* factory */,
 				805D7D9C2AF7792900DC8CFC /* extension */,
 				805D7DA22AF77AD300DC8CFC /* model */,
 				805D7DAF2AF7854B00DC8CFC /* viewModel */,
 				805D7D992AF7780500DC8CFC /* view */,
 				805D7D962AF7662E00DC8CFC /* controller */,
-				8033B8372AF74BD10032009A /* Main.storyboard */,
+				80BCF5FC2AFA8A7000802B96 /* GoogleService-Info.plist */,
 				8033B83A2AF74BD40032009A /* Assets.xcassets */,
 				8033B83C2AF74BD40032009A /* LaunchScreen.storyboard */,
 				8033B83F2AF74BD40032009A /* Info.plist */,
@@ -134,6 +152,8 @@
 				80BCF5E72AF8B0AC00802B96 /* DiaryVC.swift */,
 				80BCF5F22AF9470A00802B96 /* ReportVC.swift */,
 				80BCF5F62AFA337D00802B96 /* WriteDiaryVC.swift */,
+				80BCF5FE2AFA99B400802B96 /* StickerVC.swift */,
+				80BCF60C2AFB96E400802B96 /* SettingVC.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -141,10 +161,13 @@
 		805D7D992AF7780500DC8CFC /* view */ = {
 			isa = PBXGroup;
 			children = (
+				8033B8372AF74BD10032009A /* Main.storyboard */,
 				805D7D972AF777FA00DC8CFC /* CalendarDateView.swift */,
 				80BCF5EE2AF8BDDD00802B96 /* DiaryCollectionViewCell.swift */,
 				80BCF5E32AF8AB6E00802B96 /* DiaryViewCell.swift */,
 				80BCF5E42AF8AB6E00802B96 /* DiaryViewCell.xib */,
+				80BCF6062AFAA43700802B96 /* StickerVCCell.swift */,
+				80BCF6022AFAA2A500802B96 /* PlainSegmentedControl.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -155,6 +178,8 @@
 				805D7D9A2AF778F100DC8CFC /* UIView+Extension.swift */,
 				805D7DAB2AF77C5700DC8CFC /* String+Extension.swift */,
 				805D7DAD2AF77D3500DC8CFC /* Date+Extension.swift */,
+				80BCF6042AFAA2C700802B96 /* UIImage+Extension.swift */,
+				80BCF60A2AFB703600802B96 /* UINavigationController+Extension.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -179,6 +204,13 @@
 				80BCF5F82AFA35AC00802B96 /* WriteDiaryVM.swift */,
 			);
 			path = viewModel;
+			sourceTree = "<group>";
+		};
+		80BCF6122AFB97DE00802B96 /* factory */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = factory;
 			sourceTree = "<group>";
 		};
 		CA7A0B9C2A8835B6194BF131 /* Frameworks */ = {
@@ -257,10 +289,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80BCF5FB2AFA887200802B96 /* user defaults.md in Resources */,
 				8033B83E2AF74BD40032009A /* LaunchScreen.storyboard in Resources */,
 				8033B83B2AF74BD40032009A /* Assets.xcassets in Resources */,
 				80BCF5E62AF8AB6E00802B96 /* DiaryViewCell.xib in Resources */,
 				8033B8392AF74BD10032009A /* Main.storyboard in Resources */,
+				80BCF5FD2AFA8A7000802B96 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,12 +350,18 @@
 				8033B8362AF74BD10032009A /* MainVC.swift in Sources */,
 				80BCF5F72AFA337D00802B96 /* WriteDiaryVC.swift in Sources */,
 				80BCF5F32AF9470A00802B96 /* ReportVC.swift in Sources */,
+				80BCF60D2AFB96E400802B96 /* SettingVC.swift in Sources */,
+				80BCF6052AFAA2C700802B96 /* UIImage+Extension.swift in Sources */,
 				805D7DAC2AF77C5700DC8CFC /* String+Extension.swift in Sources */,
+				80BCF60B2AFB703700802B96 /* UINavigationController+Extension.swift in Sources */,
 				805D7D9E2AF7796000DC8CFC /* MainVM.swift in Sources */,
 				80BCF5F52AF94E9E00802B96 /* ReportVM.swift in Sources */,
+				80BCF6032AFAA2A500802B96 /* PlainSegmentedControl.swift in Sources */,
 				805D7DA62AF77AEB00DC8CFC /* MainStickers.swift in Sources */,
+				80BCF5FF2AFA99B500802B96 /* StickerVC.swift in Sources */,
 				80BCF5F12AF8CDAB00802B96 /* DairyVM.swift in Sources */,
 				80BCF5EF2AF8BDDD00802B96 /* DiaryCollectionViewCell.swift in Sources */,
+				80BCF6072AFAA43700802B96 /* StickerVCCell.swift in Sources */,
 				80BCF5E82AF8B0AC00802B96 /* DiaryVC.swift in Sources */,
 				805D7DA82AF77AF100DC8CFC /* subscription.swift in Sources */,
 				805D7DAE2AF77D3500DC8CFC /* Date+Extension.swift in Sources */,
@@ -485,6 +525,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HK9U3ZG9M5;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MoodOMeter/Info.plist;
@@ -499,7 +540,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = febby.MoodOMeter;
+				PRODUCT_BUNDLE_IDENTIFIER = febby.Moody;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -518,6 +559,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HK9U3ZG9M5;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MoodOMeter/Info.plist;
@@ -532,7 +574,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = febby.MoodOMeter;
+				PRODUCT_BUNDLE_IDENTIFIER = febby.Moody;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

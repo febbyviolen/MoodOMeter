@@ -11,31 +11,41 @@ import Combine
 class MainVM {
     static let Shared = MainVM()
 
-    @Published var calendarData: [String: DiaryModel] = [
-        "2023.11.01" : DiaryModel(sticker: [], story: "asd", date: "2023.11.01"),
-        "2023.11.03" : DiaryModel(sticker: ["cry", "cry", "cry", "cry", "cry"], story: "sdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsd", date: "2023.11.03"),
-        "2023.11.05" : DiaryModel(sticker: ["cry"], story: "", date: "2023.11.05"),]
-    
-    var currentYear = Date().toString(format: "yyyy")
+    @Published var calendarData: [String: DiaryModel] = [:]
     @Published var selectedDate: (date: Date, data: DiaryModel?)? = nil
+    
+    var inTheData = [Date().toString(format: "yyyy")]
+    var currentYear = Date().toString(format: "yyyy")
     
     private var cancellables = Set<AnyCancellable>()
     
-    func fetchCalendarData(for date: Date) {
+    //testData
+    let testData = [
+        "2022.12.02" : DiaryModel(sticker: ["happy", "cry"], story: "neh", date: "2022.12.02"),
+        "2023.01.20" : DiaryModel(sticker: ["happy", "cry", "happy", "happy", "happy"], story: "nehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehneh", date: "2023.01.20"),
+        "2023.11.22" : DiaryModel(sticker: ["happy"], story: "", date: "2023.11.22"),
+    ]
+    
+    init() {
+        calendarData = testData
+//        fetchCalendarData(for: Date())
+    }
+//    
+//    func fetchCalendarData(for date: Date) {
 //        Firebase.Shared.getDiaryData(date: date)
 //            .receive(on: DispatchQueue.main)
 //            .sink { completion in
 //                switch completion {
 //                case .finished:
+////                    print("MainVM - fetch calendar data success")
 //                    break
 //                case .failure(let error):
 //                    print("MainVM - fetch calendar data failed : \(error)")
 //                }
 //            } receiveValue: { (sticker, story, date, ID) in
-//                print("MainVM - fetch calendar data success")
 //                self.calendarData[ID] = DiaryModel(sticker: sticker, story: story, date: date)
 //            }.store(in: &cancellables)
-    }
+//    }
     
     
     
