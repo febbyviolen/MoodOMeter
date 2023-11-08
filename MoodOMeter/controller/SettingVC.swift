@@ -30,13 +30,9 @@ class SettingVC: UIViewController {
     let userdefault = UserDefaults.standard
     let appStoreID = "6452397746"
     
-    var activityIndicatorView: NVActivityIndicatorView! = nil
+    var activityIndicatorView = IndicatorViewFactory.build()
     
-    var showTimeFormatter : DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
-        return formatter
-    }
+    private let VM = SettingVM()
     
     var time: Date?
     
@@ -47,16 +43,8 @@ class SettingVC: UIViewController {
         setupUI()
         setupFunc()
         
-        UNUserNotificationCenter.current().getNotificationSettings { settings in
-            DispatchQueue.main.async {
-                // Update the switch based on notification authorization status
-                self.alarmSwitch.isOn = settings.authorizationStatus == .authorized
-                if self.alarmSwitch.isOn {
-                    self.alarmClockView.isHidden = false
-                    self.setupTime()
-                }
-            }
-        }
+        setupAlarm()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,43 +55,8 @@ class SettingVC: UIViewController {
 //            }
 //        }
     }
-    
-    @IBAction func backButton(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    @IBAction func alarmSwitch(_ sender: Any) {
-        if alarmSwitch.isOn {
-            // Check notification authorization status
-            UNUserNotificationCenter.current().getNotificationSettings { settings in
-                DispatchQueue.main.async {
-                    if settings.authorizationStatus == .authorized {
-                        // Update user defaults with the new hour and minute values
-                        self.userdefault.set(22, forKey: "alarmTime")
-                        self.userdefault.set(0, forKey: "alarmMinute")
-                        
-                        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-                        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
-                        self.userdefault.set("true", forKey: "alarmSetting")
-                        self.alarmClockView.isHidden = false
-                        
-                        self.setNotification()
-                    } else {
-                        // Notifications not allowed, show alert and turn off switch
-                        guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
-                        UIApplication.shared.open(settingsURL)
-                        self.alarmSwitch.isOn = false
-                    }
-                }
-            }
-        } else {
-            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-            UNUserNotificationCenter.current().removeAllDeliveredNotifications()
-            userdefault.set("false", forKey: "alarmSetting")
-            alarmClockView.isHidden = true
-            timeClockLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showTimePicker)))
-        }
-    }
+
+
     
 }
 
@@ -111,7 +64,7 @@ extension SettingVC {
     private func setupFunc(){
         passwordView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showLockSettings)))
         languageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showLanguageSettings)))
-//        googleAuthView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(googleAuth)))
+        googleAuthView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(googleAuth)))
         rateAppView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(rateApp)))
         buySubscribeBackground.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showSubscription)))
         deleteAccountView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(deleteAccount)))
@@ -159,119 +112,102 @@ extension SettingVC {
 //        self.present(alert, animated: true)
     }
                                                     
-    private func setupTime() {
-        let timeString = "22:00"
-        time = showTimeFormatter.date(from: timeString)
-        timeClockLabel.text = showTimeFormatter.string(from: time!)
-        timeClockLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showTimePicker)))
-    }
+
     
     private func setupUI(){
         buySubscribeBackground.layer.cornerRadius = 10
         buySubscribeLable.text = "\(String(format: NSLocalizedString("subscription.title", comment: ""))) "
-        
-        let screenWidth = UIScreen.main.bounds.width
-        let screenHeight = UIScreen.main.bounds.height
-        let center = CGPoint(x: screenWidth/2, y: screenHeight/2)
-        
-        let frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        let type = NVActivityIndicatorType.ballPulse
-        let color = UIColor(named: "black")
-        let padding: CGFloat = 0
-        
-        activityIndicatorView = NVActivityIndicatorView(frame: frame, type: type, color: color, padding: padding)
-        
-        activityIndicatorView.center = center
         self.view.addSubview(activityIndicatorView)
-        
+    }
+
+
+    
+}
+
+//MARK: ALARM
+extension SettingVC {
+    @objc 
+    private func showTimePicker() {
+        performSegue(withIdentifier: "showDatePicker", sender: self)
     }
     
-    //MARK NOTIFICATION SETTINGS
-    private func setNotification() {
-        // Create notification content
-        let content = UNMutableNotificationContent()
-        content.title = String(format: NSLocalizedString("무디", comment: ""))
-        content.body = String(format: NSLocalizedString("오늘 하루도 기록해보세요!", comment: ""))
-        content.sound = UNNotificationSound.default
-        
-        // Create date components for 10 PM
-        var dateComponents = DateComponents()
-        dateComponents.hour = userdefault.integer(forKey: "alarmTime") == 0 ? 22 : userdefault.integer(forKey: "alarmTime")
-        dateComponents.minute = userdefault.integer(forKey: "alarmMinute") == 0 ? 00 : userdefault.integer(forKey: "alarmMinute")
-        
-        // Create trigger for a daily recurring notification at 10 PM
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        
-        // Create the request
-        let request = UNNotificationRequest(identifier: "addDiaryNotification", content: content, trigger: trigger)
-        
-        // Schedule the notification
-        UNUserNotificationCenter.current().add(request) { error in
-            if let _ = error {
-                // Handle error in notification scheduling
-            } else {
-                // Notification scheduled successfully
+    private func setupAlarm() {
+        timeClockLabel.addGestureRecognizer(UITapGestureRecognizer(
+            target: self,
+            action: #selector(showTimePicker)))
+        if userdefault.string(forKey: "alarmSetting") == nil {checkInitNotificationAuth()}
+        else if userdefault.string(forKey: "alarmSetting") == "true" {setupAlarmOnState()}
+    }
+    
+    private func setupAlarmOnState() {
+        alarmSwitch.isOn = true
+        alarmClockView.isHidden = false
+        timeClockLabel.text = VM.getAlarmSettedTime()
+    }
+    
+    @IBAction
+    func alarmSwitch(_ sender: Any) {
+        if alarmSwitch.isOn {
+            // Check notification authorization status
+            UNUserNotificationCenter.current().getNotificationSettings { settings in
+                DispatchQueue.main.async {
+                    if settings.authorizationStatus == .authorized {
+                        print("alarmswitch - is On and authorized")
+                        // Update user defaults with the new hour and minute values
+                        self.userdefault.set(22, forKey: "alarmTime")
+                        self.userdefault.set(00, forKey: "alarmMinute")
+                        
+                        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+                        self.userdefault.set("true", forKey: "alarmSetting")
+                        self.alarmClockView.isHidden = false
+                        self.timeClockLabel.text = "22:00"
+                        self.VM.createNotification()
+                        
+                    } else {
+                        // Notifications not allowed, show alert and turn off switch
+                        guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
+                        UIApplication.shared.open(settingsURL)
+                        self.alarmSwitch.isOn = false
+                    }
+                }
             }
+        } else {
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+            UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+            userdefault.set("false", forKey: "alarmSetting")
+            alarmClockView.isHidden = true
+//            timeClockLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showTimePicker)))
         }
     }
     
-    func updateNotificationHours(newHour: Int, newMinute: Int) {
-        // Get the current list of notification requests
-        UNUserNotificationCenter.current().getPendingNotificationRequests { notificationRequests in
-            // Iterate over the notification requests
-            for request in notificationRequests {
-                // Check if the request has a trigger of type UNCalendarNotificationTrigger
-                if let trigger = request.trigger as? UNCalendarNotificationTrigger {
-                    // Delete the current notification request
-                    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["addDiaryNotification"])
-                    
-                    // Get the date components from the current trigger
-                    var dateComponents = trigger.dateComponents
-                    
-                    // Update the hour component to the new hour value
-                    dateComponents.hour = newHour
-                    dateComponents.minute = newMinute
-                    
-                    // Create a new trigger with the updated date components
-                    let updatedTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: trigger.repeats)
-                    
-                    // Create a new notification request with the updated trigger
-                    let updatedRequest = UNNotificationRequest(identifier: "addDiaryNotification", content: request.content, trigger: updatedTrigger)
-                    
-                    // Schedule the updated notification request
-                    UNUserNotificationCenter.current().add(updatedRequest) { error in
-                        if let _ = error {
-                            // Handle error in notification scheduling
-//                            print("Error updating notification request: \(error)")
-                        } else {
-                            // Notification updated successfully
-//                            print("Notification updated successfully")
-                        }
-                    }
+    private func checkInitNotificationAuth() {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            DispatchQueue.main.async {
+                // Update the switch based on notification authorization status
+                self.alarmSwitch.isOn = settings.authorizationStatus == .authorized
+                if self.alarmSwitch.isOn {
+                    self.alarmSwitch.setOn(true, animated: true)
+                    self.alarmSwitch.sendActions(for: .valueChanged)
                 }
             }
         }
     }
-
-    @objc private func showTimePicker() {
-        performSegue(withIdentifier: "showDatePicker", sender: self)
-    }
-    
 }
 
 //MARK: GOOGLE SETTINGS
-//extension SettingVC {
+extension SettingVC {
 //    private func application(_ app: UIApplication,
 //                             open url: URL,
 //                             options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
 //        return GIDSignIn.sharedInstance.handle(url)
 //    }
 //    
-//    @objc private func googleAuth() {
+    @objc private func googleAuth() {
 //        performSegue(withIdentifier: "showConnectGoogle", sender: self)
 //        
-//    }
-//}
+    }
+}
 
 
 //MARK: RATE OUR APP SETTINGS

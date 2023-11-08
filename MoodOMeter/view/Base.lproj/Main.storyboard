@@ -1130,10 +1130,11 @@
                                                                                     </label>
                                                                                 </subviews>
                                                                             </stackView>
-                                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wvz-WL-RvD">
-                                                                                <rect key="frame" x="319" y="12.666666666666671" width="51" height="25"/>
+                                                                            <switch opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Wvz-WL-RvD">
+                                                                                <rect key="frame" x="319" y="10" width="51" height="30"/>
+                                                                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="height" constant="25" id="muC-zK-lAl"/>
+                                                                                    <constraint firstAttribute="height" constant="30" id="muC-zK-lAl"/>
                                                                                 </constraints>
                                                                                 <color key="tintColor" red="0.76470588240000004" green="0.69411764710000001" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <color key="onTintColor" red="0.76470588240000004" green="0.69411764710000001" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1160,7 +1161,7 @@
                                                                         <rect key="frame" x="15" y="0.0" width="368" height="50"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="NQ1-wh-0Ib">
-                                                                                <rect key="frame" x="0.0" y="14.999999999999998" width="98.666666666666671" height="20.333333333333329"/>
+                                                                                <rect key="frame" x="0.0" y="14.999999999999998" width="91.333333333333329" height="20.333333333333329"/>
                                                                                 <subviews>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="j1z-Cs-IX4">
                                                                                         <rect key="frame" x="0.0" y="0.99999999999999822" width="20.333333333333332" height="19"/>
@@ -1169,8 +1170,8 @@
                                                                                         </constraints>
                                                                                     </imageView>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알림 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CmP-Fo-MkB">
-                                                                                        <rect key="frame" x="35.333333333333329" y="0.0" width="63.333333333333329" height="20.333333333333332"/>
-                                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                        <rect key="frame" x="35.333333333333329" y="0.0" width="56" height="20.333333333333332"/>
+                                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
@@ -1497,6 +1498,7 @@
                     <connections>
                         <outlet property="alarmClockView" destination="GTX-Uv-4wp" id="Msi-MI-zdH"/>
                         <outlet property="alarmSwitch" destination="Wvz-WL-RvD" id="VIp-Z6-vc2"/>
+                        <outlet property="alarmSwitchView" destination="sPr-bT-GFX" id="VUg-zS-DhS"/>
                         <outlet property="buySubscribeBackground" destination="4yH-Jn-Lx5" id="uty-ya-UxC"/>
                         <outlet property="buySubscribeLable" destination="Gb2-Ch-Lqp" id="7ut-rN-SAp"/>
                         <outlet property="deleteAccountLabel" destination="UqV-xd-nDU" id="6Vd-fL-N5C"/>
@@ -1510,7 +1512,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P5F-Un-aG5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1962" y="732"/>
+            <point key="canvasLocation" x="1961.8320610687022" y="731.69014084507046"/>
         </scene>
     </scenes>
     <resources>
