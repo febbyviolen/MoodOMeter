@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Combine
 
 class SettingVM {
+    
+    @Published var alarmTimeChanged: (hour: Int, minute: Int)?
     
     let userdefault = UserDefaults.standard
     
@@ -21,7 +24,7 @@ class SettingVM {
     }
     
     func setAlarmHour(to hour: Int) {
-        userdefault.set(hour, forKey: "alarmMinute")
+        userdefault.set(hour, forKey: "alarmTime")
     }
     
     func setAlarmMinute(to minute: Int) {
@@ -29,8 +32,8 @@ class SettingVM {
     }
     
     func getAlarmSettedTime() -> String {
-        let hour = String(getAlarmHour()) == "0" ? "00" : String(getAlarmHour())
-        let minute = String(getAlarmMinute()) == "0" ? "00" : String(getAlarmMinute())
+        let hour = getAlarmHour().toStringTimeFormat()
+        let minute = getAlarmMinute().toStringTimeFormat()
         return hour + ":" + minute
     }
     
@@ -63,6 +66,7 @@ class SettingVM {
     }
     
     func updateNotificationHours(newHour: Int, newMinute: Int) {
+        print("SettingVM - notification hours updated \(newHour) \(newMinute)")
         // Get the current list of notification requests
         UNUserNotificationCenter.current().getPendingNotificationRequests { notificationRequests in
             // Iterate over the notification requests

@@ -19,6 +19,7 @@ class DiaryVM {
     init() {
         print("dairyVM - init()")
 //        self.fetchCalendarData(for: Date())
+        getAndTransformData(MainVM.Shared.calendarData)
         observe()
     }
     
@@ -32,13 +33,9 @@ class DiaryVM {
             .store(in: &cancellables)
     }
     
-    func fetchCalendarData(for date: Date) {
-        print("dairyVM - fetch calendar data")
-        
-    }
-    
     func getAndTransformData(_ dict: [String: DiaryModel]) {
         print("dairyVM - get and transform data")
+        diaryData.removeAll()
         let dataArr = dict.map{$0.value}.sorted(by: {$0.date < $1.date})
         diaryData = dataArr
     }

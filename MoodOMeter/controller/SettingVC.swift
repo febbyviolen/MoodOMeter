@@ -7,9 +7,10 @@
 
 import UIKit
 import NVActivityIndicatorView
+import Combine
+import CombineCocoa
 //import FirebaseAuth
 //import FirebaseCore
-//import GoogleSignIn
 //import StoreKit
 
 class SettingVC: UIViewController {
@@ -31,10 +32,9 @@ class SettingVC: UIViewController {
     let appStoreID = "6452397746"
     
     var activityIndicatorView = IndicatorViewFactory.build()
+    private var cancellables = Set<AnyCancellable>()
     
     private let VM = SettingVM()
-    
-    var time: Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,21 +43,32 @@ class SettingVC: UIViewController {
         setupUI()
         setupFunc()
         
-        setupAlarm()
+        bind()
         
+        setupAlarm()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "showDatePicker" {
-//            if let VC = segue.destination as? DatePickerViewController {
-//                VC.time = time!
-//                VC.delegate = self
-//            }
-//        }
+        if segue.identifier == "showDatePickerVC" {
+            if let VC = segue.destination as? DatePickerVC {
+                VC.VM = VM
+            }
+        }
     }
-
-
     
+    private func bind() {
+        VM.$alarmTimeChanged
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] time in
+                if time != nil {
+                    VM.updateNotificationHours(newHour: time!.hour, newMinute: time!.minute)
+                    VM.setAlarmHour(to: time!.hour)
+                    VM.setAlarmMinute(to: time!.minute)
+                    timeClockLabel.text = VM.getAlarmSettedTime()
+                }
+            }
+            .store(in: &cancellables)
+    }
 }
 
 extension SettingVC {
@@ -71,48 +82,16 @@ extension SettingVC {
     }
     
     @objc private func showLanguageSettings() {
-        performSegue(withIdentifier: "showLanguageSettings", sender: self)
+        performSegue(withIdentifier: "showLanguageVC", sender: self)
     }
     
     @objc private func showLockSettings() {
-        performSegue(withIdentifier: "showLockSettings", sender: self)
+        performSegue(withIdentifier: "showPasswordSettingVC", sender: self)
     }
    
     @objc private func showSubscription() {
-        performSegue(withIdentifier: "showSubscriptionScreen", sender: self)
+        performSegue(withIdentifier: "showSubscriptionVC", sender: self)
     }
-    
-    @objc private func deleteAccount() {
-//        let alert = UIAlertController(title: String(format: NSLocalizedString("deleteaccount.title", comment: "")), message: String(format: NSLocalizedString("deleteaccount.message", comment: "")), preferredStyle: .alert)
-//        
-//        let yesaction = UIAlertAction(title: String(format: NSLocalizedString("네", comment: "")), style: .default) { _ in
-//            let userr = Auth.auth().currentUser
-//            userr?.delete { error in
-//                if let error = error {
-//                    let alert = UIAlertController(title: String(format: NSLocalizedString("실패했습니다", comment: "")), message: "", preferredStyle: .alert)
-//                    let action = UIAlertAction(title: String(format: NSLocalizedString("네", comment: "")), style: .default, handler: nil)
-//                    alert.addAction(action)
-//                    
-//                    self.present(alert, animated: true)
-//                } else {
-//                    self.fb.deleteUser(user: userr?.uid ?? "", date: Date())
-//                    self.userdefault.set(nil, forKey: "userID")
-//                    self.userdefault.set(nil, forKey: "userEmail")
-//                    self.userdefault.set("false", forKey: "premiumPass")
-//                    self.navigationController?.popViewController(animated: true)
-//                    self.navigationController?.popViewController(animated: true)
-//                }
-//            }
-//        }
-        
-//        let noaction = UIAlertAction(title: String(format: NSLocalizedString("취소", comment: "")), style: .default)
-//        
-//        alert.addAction(noaction)
-//        alert.addAction(yesaction)
-//        self.present(alert, animated: true)
-    }
-                                                    
-
     
     private func setupUI(){
         buySubscribeBackground.layer.cornerRadius = 10
@@ -120,15 +99,13 @@ extension SettingVC {
         self.view.addSubview(activityIndicatorView)
     }
 
-
-    
 }
 
 //MARK: ALARM
 extension SettingVC {
     @objc 
     private func showTimePicker() {
-        performSegue(withIdentifier: "showDatePicker", sender: self)
+        performSegue(withIdentifier: "showDatePickerVC", sender: self)
     }
     
     private func setupAlarm() {
@@ -177,7 +154,6 @@ extension SettingVC {
             UNUserNotificationCenter.current().removeAllDeliveredNotifications()
             userdefault.set("false", forKey: "alarmSetting")
             alarmClockView.isHidden = true
-//            timeClockLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showTimePicker)))
         }
     }
     
@@ -204,8 +180,41 @@ extension SettingVC {
 //    }
 //    
     @objc private func googleAuth() {
-//        performSegue(withIdentifier: "showConnectGoogle", sender: self)
-//        
+        performSegue(withIdentifier: "showConnectToSNSVC", sender: self)
+//
+    }
+}
+
+//MARK: DELETE ACCOUNT
+extension SettingVC {
+    @objc private func deleteAccount() {
+        let alert = UIAlertController(title: String(format: NSLocalizedString("deleteaccount.title", comment: "")), message: String(format: NSLocalizedString("deleteaccount.message", comment: "")), preferredStyle: .alert)
+
+        let yesaction = UIAlertAction(title: String(format: NSLocalizedString("네", comment: "")), style: .default) { _ in
+//            let userr = Auth.auth().currentUser
+//            userr?.delete { error in
+//                if let error = error {
+//                    let alert = UIAlertController(title: String(format: NSLocalizedString("실패했습니다", comment: "")), message: "", preferredStyle: .alert)
+//                    let action = UIAlertAction(title: String(format: NSLocalizedString("네", comment: "")), style: .default, handler: nil)
+//                    alert.addAction(action)
+//
+//                    self.present(alert, animated: true)
+//                } else {
+//                    self.fb.deleteUser(user: userr?.uid ?? "", date: Date())
+//                    self.userdefault.set(nil, forKey: "userID")
+//                    self.userdefault.set(nil, forKey: "userEmail")
+//                    self.userdefault.set("false", forKey: "premiumPass")
+//                    self.navigationController?.popViewController(animated: true)
+//                    self.navigationController?.popViewController(animated: true)
+//                }
+//            }
+        }
+        
+        let noaction = UIAlertAction(title: String(format: NSLocalizedString("취소", comment: "")), style: .default)
+
+        alert.addAction(noaction)
+        alert.addAction(yesaction)
+        self.present(alert, animated: true)
     }
 }
 

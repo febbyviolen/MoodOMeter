@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '14.0'
 
 target 'MoodOMeter' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -16,7 +16,7 @@ target 'MoodOMeter' do
 
 	pod 'JTAppleCalendar', '~> 7.1'
 	pod 'KTCenterFlowLayout'
-	#pod 'GoogleSignIn'
+	pod 'GoogleSignIn'
 	pod 'NVActivityIndicatorView'
 	#pod 'Google-Mobile-Ads-SDK'
 

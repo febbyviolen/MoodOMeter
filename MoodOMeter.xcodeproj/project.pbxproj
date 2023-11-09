@@ -43,6 +43,19 @@
 		80BCF60D2AFB96E400802B96 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF60C2AFB96E400802B96 /* SettingVC.swift */; };
 		80BCF6162AFB9AEF00802B96 /* IndicatorViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF6152AFB9AEF00802B96 /* IndicatorViewFactory.swift */; };
 		80BCF6182AFBA5C700802B96 /* SettingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF6172AFBA5C700802B96 /* SettingVM.swift */; };
+		80BCF61B2AFBB78400802B96 /* DatePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF61A2AFBB78400802B96 /* DatePickerVC.swift */; };
+		80BCF61D2AFBBD3800802B96 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF61C2AFBBD3800802B96 /* Int+Extension.swift */; };
+		80BCF61F2AFBCB8500802B96 /* PasswordSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF61E2AFBCB8500802B96 /* PasswordSettingVC.swift */; };
+		80BCF6222AFBDA4000802B96 /* PasswordViewSettingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF6212AFBDA4000802B96 /* PasswordViewSettingVM.swift */; };
+		80BCF6242AFBDED000802B96 /* PasswordPadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF6232AFBDED000802B96 /* PasswordPadVC.swift */; };
+		80BCF6262AFBF7C800802B96 /* LanguageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF6252AFBF7C800802B96 /* LanguageVC.swift */; };
+		80BCF6292AFCA77000802B96 /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF6282AFCA77000802B96 /* LanguageManager.swift */; };
+		80BCF62B2AFCA7BC00802B96 /* LanguageVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF62A2AFCA7BC00802B96 /* LanguageVM.swift */; };
+		80BCF62D2AFCAE1600802B96 /* SubscriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF62C2AFCAE1500802B96 /* SubscriptionVC.swift */; };
+		80BCF62F2AFCB06300802B96 /* SubscriptionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF62E2AFCB06300802B96 /* SubscriptionVM.swift */; };
+		80BCF6312AFCD50200802B96 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80BCF6302AFCD50100802B96 /* StoreKit.framework */; };
+		80BCF6332AFCE65000802B96 /* ConnectToSNSVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF6322AFCE65000802B96 /* ConnectToSNSVC.swift */; };
+		80BCF6352AFCE9AE00802B96 /* ConnectToSNSVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF6342AFCE9AE00802B96 /* ConnectToSNSVM.swift */; };
 		865A72EDD3836173149BD8CD /* Pods_MoodOMeter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F046045062FE3A78FCE025 /* Pods_MoodOMeter.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +96,19 @@
 		80BCF60C2AFB96E400802B96 /* SettingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		80BCF6152AFB9AEF00802B96 /* IndicatorViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorViewFactory.swift; sourceTree = "<group>"; };
 		80BCF6172AFBA5C700802B96 /* SettingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVM.swift; sourceTree = "<group>"; };
+		80BCF61A2AFBB78400802B96 /* DatePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerVC.swift; sourceTree = "<group>"; };
+		80BCF61C2AFBBD3800802B96 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
+		80BCF61E2AFBCB8500802B96 /* PasswordSettingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordSettingVC.swift; sourceTree = "<group>"; };
+		80BCF6212AFBDA4000802B96 /* PasswordViewSettingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewSettingVM.swift; sourceTree = "<group>"; };
+		80BCF6232AFBDED000802B96 /* PasswordPadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordPadVC.swift; sourceTree = "<group>"; };
+		80BCF6252AFBF7C800802B96 /* LanguageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageVC.swift; sourceTree = "<group>"; };
+		80BCF6282AFCA77000802B96 /* LanguageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
+		80BCF62A2AFCA7BC00802B96 /* LanguageVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageVM.swift; sourceTree = "<group>"; };
+		80BCF62C2AFCAE1500802B96 /* SubscriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionVC.swift; sourceTree = "<group>"; };
+		80BCF62E2AFCB06300802B96 /* SubscriptionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionVM.swift; sourceTree = "<group>"; };
+		80BCF6302AFCD50100802B96 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		80BCF6322AFCE65000802B96 /* ConnectToSNSVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectToSNSVC.swift; sourceTree = "<group>"; };
+		80BCF6342AFCE9AE00802B96 /* ConnectToSNSVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectToSNSVM.swift; sourceTree = "<group>"; };
 		96E633D1AF2356CD09B826D6 /* Pods-MoodOMeter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodOMeter.release.xcconfig"; path = "Target Support Files/Pods-MoodOMeter/Pods-MoodOMeter.release.xcconfig"; sourceTree = "<group>"; };
 		E7F046045062FE3A78FCE025 /* Pods_MoodOMeter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoodOMeter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDF97CE5461F01F426B82A88 /* Pods-MoodOMeter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodOMeter.debug.xcconfig"; path = "Target Support Files/Pods-MoodOMeter/Pods-MoodOMeter.debug.xcconfig"; sourceTree = "<group>"; };
@@ -96,6 +122,7 @@
 				80BCF5ED2AF8BBBE00802B96 /* SnapKit in Frameworks */,
 				805D7DA12AF77A3300DC8CFC /* CombineCocoa in Frameworks */,
 				865A72EDD3836173149BD8CD /* Pods_MoodOMeter.framework in Frameworks */,
+				80BCF6312AFCD50200802B96 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +162,7 @@
 				80BCF5FA2AFA887100802B96 /* user defaults.md */,
 				8033B8312AF74BD10032009A /* AppDelegate.swift */,
 				8033B8332AF74BD10032009A /* SceneDelegate.swift */,
+				80BCF6272AFCA76300802B96 /* util */,
 				80BCF6122AFB97DE00802B96 /* factory */,
 				805D7D9C2AF7792900DC8CFC /* extension */,
 				805D7DA22AF77AD300DC8CFC /* model */,
@@ -158,6 +186,7 @@
 				80BCF5F62AFA337D00802B96 /* WriteDiaryVC.swift */,
 				80BCF5FE2AFA99B400802B96 /* StickerVC.swift */,
 				80BCF60C2AFB96E400802B96 /* SettingVC.swift */,
+				80BCF6192AFBB76D00802B96 /* setting */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -181,6 +210,7 @@
 			children = (
 				805D7D9A2AF778F100DC8CFC /* UIView+Extension.swift */,
 				805D7DAB2AF77C5700DC8CFC /* String+Extension.swift */,
+				80BCF61C2AFBBD3800802B96 /* Int+Extension.swift */,
 				805D7DAD2AF77D3500DC8CFC /* Date+Extension.swift */,
 				80BCF6042AFAA2C700802B96 /* UIImage+Extension.swift */,
 				80BCF60A2AFB703600802B96 /* UINavigationController+Extension.swift */,
@@ -207,6 +237,7 @@
 				80BCF5F42AF94E9E00802B96 /* ReportVM.swift */,
 				80BCF5F82AFA35AC00802B96 /* WriteDiaryVM.swift */,
 				80BCF6172AFBA5C700802B96 /* SettingVM.swift */,
+				80BCF6202AFBDA2B00802B96 /* setting */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -219,9 +250,42 @@
 			path = factory;
 			sourceTree = "<group>";
 		};
+		80BCF6192AFBB76D00802B96 /* setting */ = {
+			isa = PBXGroup;
+			children = (
+				80BCF6232AFBDED000802B96 /* PasswordPadVC.swift */,
+				80BCF61A2AFBB78400802B96 /* DatePickerVC.swift */,
+				80BCF61E2AFBCB8500802B96 /* PasswordSettingVC.swift */,
+				80BCF6252AFBF7C800802B96 /* LanguageVC.swift */,
+				80BCF62C2AFCAE1500802B96 /* SubscriptionVC.swift */,
+				80BCF6322AFCE65000802B96 /* ConnectToSNSVC.swift */,
+			);
+			path = setting;
+			sourceTree = "<group>";
+		};
+		80BCF6202AFBDA2B00802B96 /* setting */ = {
+			isa = PBXGroup;
+			children = (
+				80BCF6212AFBDA4000802B96 /* PasswordViewSettingVM.swift */,
+				80BCF62A2AFCA7BC00802B96 /* LanguageVM.swift */,
+				80BCF62E2AFCB06300802B96 /* SubscriptionVM.swift */,
+				80BCF6342AFCE9AE00802B96 /* ConnectToSNSVM.swift */,
+			);
+			path = setting;
+			sourceTree = "<group>";
+		};
+		80BCF6272AFCA76300802B96 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				80BCF6282AFCA77000802B96 /* LanguageManager.swift */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
 		CA7A0B9C2A8835B6194BF131 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				80BCF6302AFCD50100802B96 /* StoreKit.framework */,
 				E7F046045062FE3A78FCE025 /* Pods_MoodOMeter.framework */,
 			);
 			name = Frameworks;
@@ -355,29 +419,41 @@
 			files = (
 				8033B8362AF74BD10032009A /* MainVC.swift in Sources */,
 				80BCF5F72AFA337D00802B96 /* WriteDiaryVC.swift in Sources */,
+				80BCF62B2AFCA7BC00802B96 /* LanguageVM.swift in Sources */,
 				80BCF5F32AF9470A00802B96 /* ReportVC.swift in Sources */,
 				80BCF60D2AFB96E400802B96 /* SettingVC.swift in Sources */,
+				80BCF6332AFCE65000802B96 /* ConnectToSNSVC.swift in Sources */,
 				80BCF6052AFAA2C700802B96 /* UIImage+Extension.swift in Sources */,
+				80BCF6222AFBDA4000802B96 /* PasswordViewSettingVM.swift in Sources */,
 				805D7DAC2AF77C5700DC8CFC /* String+Extension.swift in Sources */,
 				80BCF60B2AFB703700802B96 /* UINavigationController+Extension.swift in Sources */,
+				80BCF61B2AFBB78400802B96 /* DatePickerVC.swift in Sources */,
 				805D7D9E2AF7796000DC8CFC /* MainVM.swift in Sources */,
 				80BCF5F52AF94E9E00802B96 /* ReportVM.swift in Sources */,
 				80BCF6032AFAA2A500802B96 /* PlainSegmentedControl.swift in Sources */,
 				805D7DA62AF77AEB00DC8CFC /* MainStickers.swift in Sources */,
 				80BCF6182AFBA5C700802B96 /* SettingVM.swift in Sources */,
+				80BCF62F2AFCB06300802B96 /* SubscriptionVM.swift in Sources */,
+				80BCF6242AFBDED000802B96 /* PasswordPadVC.swift in Sources */,
 				80BCF5FF2AFA99B500802B96 /* StickerVC.swift in Sources */,
 				80BCF5F12AF8CDAB00802B96 /* DairyVM.swift in Sources */,
+				80BCF61D2AFBBD3800802B96 /* Int+Extension.swift in Sources */,
 				80BCF6162AFB9AEF00802B96 /* IndicatorViewFactory.swift in Sources */,
 				80BCF5EF2AF8BDDD00802B96 /* DiaryCollectionViewCell.swift in Sources */,
+				80BCF6262AFBF7C800802B96 /* LanguageVC.swift in Sources */,
 				80BCF6072AFAA43700802B96 /* StickerVCCell.swift in Sources */,
+				80BCF61F2AFBCB8500802B96 /* PasswordSettingVC.swift in Sources */,
 				80BCF5E82AF8B0AC00802B96 /* DiaryVC.swift in Sources */,
 				805D7DA82AF77AF100DC8CFC /* subscription.swift in Sources */,
 				805D7DAE2AF77D3500DC8CFC /* Date+Extension.swift in Sources */,
 				80BCF5F92AFA35AC00802B96 /* WriteDiaryVM.swift in Sources */,
 				80BCF5E52AF8AB6E00802B96 /* DiaryViewCell.swift in Sources */,
 				8033B8322AF74BD10032009A /* AppDelegate.swift in Sources */,
+				80BCF6292AFCA77000802B96 /* LanguageManager.swift in Sources */,
 				805D7D982AF777FA00DC8CFC /* CalendarDateView.swift in Sources */,
 				805D7D9B2AF778F100DC8CFC /* UIView+Extension.swift in Sources */,
+				80BCF6352AFCE9AE00802B96 /* ConnectToSNSVM.swift in Sources */,
+				80BCF62D2AFCAE1600802B96 /* SubscriptionVC.swift in Sources */,
 				8033B8342AF74BD10032009A /* SceneDelegate.swift in Sources */,
 				805D7DAA2AF77B3000DC8CFC /* Firebase.swift in Sources */,
 				805D7DA42AF77AE400DC8CFC /* DiaryModel.swift in Sources */,

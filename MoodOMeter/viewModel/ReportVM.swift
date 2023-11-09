@@ -20,6 +20,7 @@ class ReportVM {
     private var cancellables = Set<AnyCancellable>()
     
     init() {
+        getAndTransformData(MainVM.Shared.calendarData)
         observe()
     }
     
@@ -34,6 +35,7 @@ class ReportVM {
     }
   
     func getAndTransformData(_ dict: [String: DiaryModel]) {
+        reportData.removeAll()
         let dataArr = dict.map{$0.value}.sorted(by: {$0.date < $1.date})
         reportData = dataArr
     }
