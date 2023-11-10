@@ -28,7 +28,7 @@ class DiaryVC: UIViewController {
         VM.$thisMonthData
             .receive(on: DispatchQueue.main)
             .sink { _ in
-                print("dairyVC - diaryData bind")
+                print("dairyVC - this month data bind")
                 self.tableView?.reloadData()
             }
             .store(in: &cancellables)
@@ -86,11 +86,7 @@ extension DiaryVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        MainVM.Shared.selectedDate = (Date(), nil)
-        MainVM.Shared.selectedDate?.date = VM.thisMonthData[indexPath.row].date.toDate(format: "yyyy.MM.dd")!
-        MainVM.Shared.selectedDate?.data = VM.thisMonthData[indexPath.row]
-        performSegue(withIdentifier: "showWriteDiaryVC", sender: self)
-        
+        <#code#>
     }
     
 }

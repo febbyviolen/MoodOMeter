@@ -31,19 +31,11 @@ class DiaryVM {
                 print("get the data")
             }
             .store(in: &cancellables)
-        
-        $diaryData
-            .receive(on: DispatchQueue.main)
-            .sink { _ in
-                print("dairyVM - this month data bind")
-                self.getThisMonthData(date: MainVM.Shared.selectedDate!.date.toString(format: "yyyy.MM.dd"))
-            }
-            .store(in: &cancellables)
-        
     }
     
     func getAndTransformData(_ dict: [String: DiaryModel]) {
         print("dairyVM - get and transform data")
+        diaryData.removeAll()
         let dataArr = dict.map{$0.value}.sorted(by: {$0.date < $1.date})
         diaryData = dataArr
     }

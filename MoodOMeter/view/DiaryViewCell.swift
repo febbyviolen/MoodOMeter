@@ -81,7 +81,7 @@ class DiaryViewCell: UITableViewCell{
 
     func configure(data: DiaryModel) {
         dateLabel.textColor = UIColor(named: "black")
-        dateLabel?.text = data.date.suffix(5).lowercased()
+        dateLabel?.text = data.date.suffix(7).lowercased()
         
         item = data.sticker
         
