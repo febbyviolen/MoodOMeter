@@ -85,4 +85,8 @@ extension DiaryVC: UITableViewDelegate, UITableViewDataSource {
         return UITableView.automaticDimension
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        <#code#>
+    }
+    
 }

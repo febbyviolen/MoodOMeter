@@ -62,7 +62,7 @@ class Firebase {
     
     //MARK: EDITING DIARY DATA
     //get data for mainVC
-    func getDiaryData(date: Date) -> AnyPublisher<([String], String, String, String), Error> {
+    func getDiaryData(date: Date) -> AnyPublisher<([String: DiaryModel]), Error> {
         let year = date.toString(format: "yyyy")
         let docRef = userDocRef.collection(year)
         
@@ -72,6 +72,7 @@ class Firebase {
                     print("getDiaryData - error getting data: \(error)")
                     promise(.failure(error))
                 } else {
+                    var dict = [String: DiaryModel]()
                     for document in document!.documents {
                         //                    print("\(document.documentID) => \(document.data())")
                         let data = document.data()
@@ -79,17 +80,17 @@ class Firebase {
                         if let sticker = data["sticker"] as? [String],
                            let story = data["story"] as? String,
                            let date = data["date"] as? String {
-                            promise(.success((sticker, story, date, ID)))
+                           dict[ID] = DiaryModel(sticker: sticker, story: story, date: date)
                         }
-                        
                     }
+                    promise(.success(dict))
                     print("getDiaryData - successed getting data")
                 }
             }
         }.eraseToAnyPublisher()
     }
     
-    func addDiary(date: Date, sticker: [String], story: String) {
+    func addDiary(date: Date, sticker: [String], story: String, completion: @escaping () -> Void) {
         let year = date.toString(format: "yyyy")
         let month = date.toString(format: "MM")
         let day = date.toString(format: "dd")
@@ -107,6 +108,8 @@ class Firebase {
                 print("addDiary - error adding data: \(error)")
             } else {
                 print("addDiary - success adding data")
+                MainVM.Shared.fetchCalendarData(for: date)
+                completion()
             }
         }
     }

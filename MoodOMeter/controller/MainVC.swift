@@ -109,9 +109,11 @@ class MainVC: UIViewController {
     //=== BUTTON ===
     @IBAction func addButtonTapped(_ sender: Any) {
         MainVM.Shared.selectedDate = (Date(), nil)
-        MainVM.Shared.selectedDate?.data = MainVM.Shared.calendarData[Date().toString(format: "yyyy.mm.dd")]
-        //test
-//        MainVM.Shared.selectedDate?.data = DiaryModel(sticker: ["cry","cry"], story: "asdasdasdasdasd", date: "2023.02.11")
+        MainVM.Shared.selectedDate?.data = MainVM.Shared.calendarData[Date().toString(format: "yyyy.MM.dd")]
+        
+        print("addButtonTapped with data = ")
+        print(MainVM.Shared.selectedDate?.data)
+        
         addTodayButtonPressed = true
         performSegue(withIdentifier: "showWriteDiaryVC", sender: self)
     }

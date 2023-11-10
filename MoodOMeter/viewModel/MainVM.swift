@@ -40,8 +40,8 @@ class MainVM {
                 case .failure(let error):
                     print("MainVM - fetch calendar data failed : \(error)")
                 }
-            } receiveValue: { (sticker, story, date, ID) in
-                self.calendarData[ID] = DiaryModel(sticker: sticker, story: story, date: date)
+            } receiveValue: { (data) in
+                self.calendarData = data
             }.store(in: &cancellables)
     }
     
