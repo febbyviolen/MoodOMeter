@@ -173,11 +173,7 @@ extension SettingVC {
 
 //MARK: GOOGLE SETTINGS
 extension SettingVC {
-//    private func application(_ app: UIApplication,
-//                             open url: URL,
-//                             options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-//        return GIDSignIn.sharedInstance.handle(url)
-//    }
+
 //    
     @objc private func googleAuth() {
         performSegue(withIdentifier: "showConnectToSNSVC", sender: self)

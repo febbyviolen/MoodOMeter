@@ -117,18 +117,8 @@ class SubscriptionVC: UIViewController, SKPaymentTransactionObserver, SKProducts
                 switch $0.transactionState {
                 case.purchased:
                     print("purchased")
-                    self.VM.purchased = "false"
-                    self.userDefault.set("true", forKey: "premiumPass")
-                    
-//                    self.userDefault.set("true", forKey: "needSendToServer")
-//                    if let url = Bundle.main.appStoreReceiptURL,
-//                       let data = try? Data(contentsOf: url) {
-//                        let receiptBase64 = data.base64EncodedString()
-                        // Send to server
-//                        self.fb.saveSubscriptionInfo(premiumID: receiptBase64, completion: {
-//                            self.userDefault.set("false", forKey: "needSendToServer")
-//                        })
-//                    }
+                    self.VM.purchased = "true"
+                    self.VM.preventInterupttedReceipt()
                     
                     queue.finishTransaction($0)
                     break
@@ -145,16 +135,7 @@ class SubscriptionVC: UIViewController, SKPaymentTransactionObserver, SKProducts
                 case .restored:
                     print("restored")
                     self.VM.purchased = "true"
-                    self.userDefault.set("true", forKey: "needSendToServer")
-                    
-//                    if let url = Bundle.main.appStoreReceiptURL,
-//                       let data = try? Data(contentsOf: url) {
-//                        let receiptBase64 = data.base64EncodedString()
-                        // Send to server
-//                        self.fb.saveSubscriptionInfo(premiumID: receiptBase64, completion: {
-//                            self.userDefault.set("false", forKey: "needSendToServer")
-//                        })
-//                    }
+                    self.VM.preventInterupttedReceipt()
                     
                     queue.finishTransaction($0)
                 default:

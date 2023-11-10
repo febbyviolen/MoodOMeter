@@ -174,8 +174,7 @@ extension PasswordPadVC {
             navigationController?.popViewController(animated: true)
         } else {
             if password == userdefaults.string(forKey: "password") {
-//                delegate.passData(controller: self)
-                
+                MainVM.Shared.appIsLocked = false
                 self.navigationController?.navigationBar.isHidden = false
                 navigationController?.popViewController(animated: true)
             } else {

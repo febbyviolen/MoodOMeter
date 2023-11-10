@@ -23,4 +23,16 @@ class SubscriptionVM {
     func setPremiumPass(to bool: String) {
         userDefault.set(bool, forKey: "premiumPass")
     }
+    
+    func preventInterupttedReceipt() {
+        self.userDefault.set("true", forKey: "needSendToServer")
+        if let url = Bundle.main.appStoreReceiptURL,
+           let data = try? Data(contentsOf: url) {
+            let receiptBase64 = data.base64EncodedString()
+//                         Send to server
+            Firebase.Shared.saveSubscriptionInfo(premiumID: receiptBase64, completion: {
+                self.userDefault.set("false", forKey: "needSendToServer")
+            })
+        }
+    }
 }

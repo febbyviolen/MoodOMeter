@@ -22,6 +22,7 @@ class MainVC: UIViewController {
     
     private var cancellables = Set<AnyCancellable>()
     private let currentDateSubject = CurrentValueSubject<Date, Never>(Date())
+    private var VM = MainVM.Shared
     
     var addTodayButtonPressed = false
     
@@ -29,9 +30,18 @@ class MainVC: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        VM.setupUser()
+        VM.setNotification()
+        
+        VM.checkInterruptedReceipt()
+        
         calendarSetup()
         bind()
         observe()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+//        VM.fetchCalendarData(for: VM.selectedDate!.date)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -47,8 +57,18 @@ class MainVC: UIViewController {
     private func bind() {
         MainVM.Shared.$calendarData
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
+            .sink { [weak self] data in
+                print("calendar data \(data)")
                 self?.calendar.reloadData()
+            }
+            .store(in: &cancellables)
+        
+        MainVM.Shared.$appIsLocked
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] bool in
+                if bool {
+                    performSegue(withIdentifier: "showPasswordPadVC", sender: self)
+                }
             }
             .store(in: &cancellables)
         
@@ -89,9 +109,9 @@ class MainVC: UIViewController {
     //=== BUTTON ===
     @IBAction func addButtonTapped(_ sender: Any) {
         MainVM.Shared.selectedDate = (Date(), nil)
-//        MainVM.Shared.selectedDate?.data = MainVM.Shared.calendarData[Date().toString(format: "yyyy.mm.dd")]
+        MainVM.Shared.selectedDate?.data = MainVM.Shared.calendarData[Date().toString(format: "yyyy.mm.dd")]
         //test
-        MainVM.Shared.selectedDate?.data = DiaryModel(sticker: ["cry","cry"], story: "asdasdasdasdasd", date: "2023.02.11")
+//        MainVM.Shared.selectedDate?.data = DiaryModel(sticker: ["cry","cry"], story: "asdasdasdasdasd", date: "2023.02.11")
         addTodayButtonPressed = true
         performSegue(withIdentifier: "showWriteDiaryVC", sender: self)
     }
@@ -109,6 +129,7 @@ class MainVC: UIViewController {
     @IBAction func nextMonthTapped(_ sender: Any) {
         currentDateSubject.send(currentDateSubject.value.addMonth(by: 1) ?? Date())
     }
+
 }
 
 //MARK: CALENDAR'S FUNCTIONS

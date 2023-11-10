@@ -55,6 +55,13 @@ class WriteDiaryVC: UIViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        print("WriteDiaryVC - asking if they want to save the diary ")
+        if VM.newDiary != MainVM.Shared.selectedDate?.data {
+            //저장하시겠습니까?????
+        }
+    }
+    
     private func bind() {
         VM.$newDiary
             .receive(on: DispatchQueue.main)
@@ -105,12 +112,30 @@ class WriteDiaryVC: UIViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        //save to firebase
+        //if there is no new item
+        if VM.newDiary?.sticker.count == 0 {
+            if VM.newDiary?.story == "" || VM.newDiary?.story == "오늘은 어떤 하루였나요?" {
+                Firebase.Shared.deleteDiary(date: MainVM.Shared.selectedDate!.date)
+            }
+        } else { //save to firebase
+            var newStory: String?
+            if let story = VM.newDiary?.story,
+               story != "오늘은 어떤 하루였나요?" {
+                newStory = story
+            }
+            Firebase.Shared.addDiary(date: MainVM.Shared.selectedDate!.date, sticker: VM.newDiary?.sticker ?? [], story: newStory ?? "")
+        }
     }
     
     @IBAction func deleteButtonTapped(_ sender: Any) {
         //delete on firebase
-        self.navigationController?.popViewController(animated: true)
+        //give alert!!!!
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            Firebase.Shared.deleteDiary(date: MainVM.Shared.selectedDate!.date)
+            self.navigationController?.popViewController(animated: true)
+        }
+        let alert = UIAlertFactory.buildYesNoAlert(title: "다이어리 삭제하시겠습니까?", message: "삭제된 다이어리는 뒤찾을 수 없어요!", okAction: okAction, noAction: UIAlertAction(title: "Cancel", style: .default))
+        present(alert, animated: true)
     }
     
     //=== UI ===

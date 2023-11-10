@@ -6,8 +6,8 @@
 //
 
 import UIKit
-//import FirebaseCore
-//import FirebaseFirestore
+import FirebaseCore
+import FirebaseFirestore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = UIColor(named: "black2")
         UINavigationBar.appearance().topItem?.backButtonDisplayMode = .minimal
         
-//        FirebaseApp.configure()
+        FirebaseApp.configure()
     
         return true
     }

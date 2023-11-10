@@ -44,7 +44,7 @@ class DiaryVC: UIViewController {
             if year < VM.currentYear {
                 VM.currentYear = year
                 if !MainVM.Shared.inTheData.contains(year){
-//                    MainVM.Shared.fetchCalendarData(for: date)
+                    MainVM.Shared.fetchCalendarData(for: date)
                 }
             }
             VM.getThisMonthData(date: date.toString(format: "yyyy.MM"))

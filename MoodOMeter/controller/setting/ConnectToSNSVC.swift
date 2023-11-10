@@ -6,9 +6,9 @@
 //
 
 import UIKit
-//import FirebaseAuth
-//import FirebaseCore
-//import GoogleSignIn
+import FirebaseAuth
+import FirebaseCore
+import GoogleSignIn
 import NVActivityIndicatorView
 import AuthenticationServices
 import Combine
@@ -119,118 +119,93 @@ class ConnectToSNSVC: UIViewController, UIGestureRecognizerDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     
+    private func application(_ app: UIApplication,
+                             open url: URL,
+                             options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance.handle(url)
+    }
+    
     
     @IBAction func googleStartConnectingButton(_ sender: Any) {
-//        if firstRule && secondRule {
-//            
-//            guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-//            
-//            // Create Google Sign In configuration object.
-//            let config = GIDConfiguration(clientID: clientID)
-//            GIDSignIn.sharedInstance.configuration = config
-//            
-//            activityIndicatorView.startAnimating()
-//            // Start the sign in flow!
-//            GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
-//                guard error == nil else {
-//                    // ...
-//                    print("Google sign-in error: \(error!.localizedDescription)")
-//                    
-//                    self.activityIndicatorView.stopAnimating()
-//                    
-//                    return
-//                }
-//                
-//                guard let user = result?.user,
-//                      let idToken = user.idToken?.tokenString
-//                else {
-//                    // ...
-//                    return
-//                }
-//                
-//                //alert
-//                checkIfGoogleAccountExists(idToken: idToken, completion: { str, uid in
-//                    
-//                    self.activityIndicatorView.stopAnimating()
-//                    if str != "false" {
-//                        // Create a new UIAlertController
-//                        let alertController = UIAlertController(title: "", message: String(format: NSLocalizedString("merge_data_message", comment: "")), preferredStyle: .alert)
-//
-//                        // Add actions
-//                        let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
-//                            self.fb.transferUserData(idToken: uid) {
-//                                self.fb.deleteUser(user: self.userDefault.string(forKey: "userID")!, date: Date())
-//                                self.userDefault.set(uid, forKey: "userID")
-//                                self.userDefault.set(user.profile?.email, forKey: "userEmail")
-//                                self.navigationController?.popViewController(animated: true)
-//                            }
-//                        }
-//                        
-//                        yesAction.setValue(UIColor(named: "black"), forKey: "titleTextColor")
-//                        
-//                        let noAction = UIAlertAction(title: "No", style: .default) { _ in
-//                            self.fb.transferUserDataNoMerge(idToken: uid) {
-//                                self.fb.deleteUser(user: self.userDefault.string(forKey: "userID")!, date: Date())
-//                                self.userDefault.set(uid, forKey: "userID")
-//                                self.userDefault.set(user.profile?.email, forKey: "userEmail")
-//                                self.navigationController?.popViewController(animated: true)
-//                            }
-//                        }
-//                        
-//                        noAction.setValue(UIColor(named: "black"), forKey: "titleTextColor")
-//                        
-//                        alertController.addAction(noAction)
-//                        alertController.addAction(yesAction)
-//
-//                        // Present the alert controller
-//                        self.present(alertController, animated: true, completion: nil)
-//                    } else {
-//                        //if there is no google account exists
-//                        self.fb.transferUserDataNoMerge(idToken: uid) {
-//                            self.fb.deleteUser(user: self.userDefault.string(forKey: "userID")!, date: Date())
-//                            self.userDefault.set(uid, forKey: "userID")
-//                            self.userDefault.set(user.profile?.email, forKey: "userEmail")
-//                            self.navigationController?.popViewController(animated: true)
-//                        }
-//                    }
-//                })
-//            }
+        if firstRule && secondRule {
+            
+            guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+            
+            // Create Google Sign In configuration object.
+            let config = GIDConfiguration(clientID: clientID)
+            GIDSignIn.sharedInstance.configuration = config
+            
+            activityIndicatorView.startAnimating()
+            // Start the sign in flow!
+            GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
+                guard error == nil else {
+                    // ...
+                    print("Google sign-in error: \(error!.localizedDescription)")
+                    
+                    self.activityIndicatorView.stopAnimating()
+                    
+                    return
+                }
+                
+                guard let user = result?.user,
+                      let idToken = user.idToken?.tokenString
+                else {
+                    print("Google connect - error to get user and ID token")
+                    return
+                }
+                
+                //alert
+                VM.checkIfGoogleAccountExists(idToken: idToken, completion: { str, uid in
+                    self.activityIndicatorView.stopAnimating()
+                    if str != "false" {
+                        // Create a new UIAlertController
+                        let alertController = UIAlertController(title: "", message: String(format: NSLocalizedString("merge_data_message", comment: "")), preferredStyle: .alert)
+                        
+                        // Add actions
+                        let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
+                            self.VM.transferUserData(merge: true, uid: uid, userEmail: user.profile?.email) {
+                                self.navigationController?.popViewController(animated: true)
+                            }
+                        }
+                        
+                        yesAction.setValue(UIColor(named: "black"), forKey: "titleTextColor")
+                        
+                        let noAction = UIAlertAction(title: "No", style: .default) { _ in
+                            self.VM.transferUserData(merge: false, uid: uid, userEmail: user.profile?.email) {
+                                self.navigationController?.popViewController(animated: true)
+                            }
+                        }
+                        
+                        noAction.setValue(UIColor(named: "black"), forKey: "titleTextColor")
+                        
+                        alertController.addAction(noAction)
+                        alertController.addAction(yesAction)
+                        
+                        // Present the alert controller
+                        self.present(alertController, animated: true, completion: nil)
+                    } else {
+                        //if there is no google account exists
+                        self.VM.transferUserData(merge: false, uid: uid, userEmail: user.profile?.email) {
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    }
+                })
+            }
         }
-        
-        func checkIfGoogleAccountExists(idToken: String, completion: @escaping (String, String) -> Void) {
-//            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: "")
-//            
-//            Auth.auth().signIn(with: credential) { (authResult, error) in
-//                if let error = error {
-//                    print("Firebase authentication error: \(error.localizedDescription)")
-//                    completion("false", "")
-//                    return
-//                }
-//                
-//                // Successfully signed in with Google
-//                if authResult?.additionalUserInfo?.isNewUser == true {
-//                    // Google account is not registered with Firebase
-//                    completion("false", authResult!.user.uid)
-//                } else {
-//                    // Google account is already registered with Firebase
-//                    completion("true", authResult!.user.uid)
-//                }
-//            }
-//        }
     }
     
     @IBAction func appleStartConnectingButton(_ sender: Any) {
-//        if firstRule && secondRule {
-//            let provider = ASAuthorizationAppleIDProvider()
-//            let request = provider.createRequest()
-//            request.requestedScopes = [.email, .fullName]
-//            
-//            let controller = ASAuthorizationController(authorizationRequests: [request])
-//            
-//            controller.delegate = self
-//            controller.presentationContextProvider = self
-//            controller.performRequests()
-//        }
+        if firstRule && secondRule {
+            let provider = ASAuthorizationAppleIDProvider()
+            let request = provider.createRequest()
+            request.requestedScopes = [.email, .fullName]
+            
+            let controller = ASAuthorizationController(authorizationRequests: [request])
+            
+            controller.delegate = self
+            controller.presentationContextProvider = self
+            controller.performRequests()
+        }
     }
 }
 
@@ -241,94 +216,66 @@ extension ConnectToSNSVC: ASAuthorizationControllerDelegate {
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-//        //if success
-//        switch authorization.credential {
-//        case let credentials as ASAuthorizationAppleIDCredential:
-//            //get credentials data here
-//            
-//            self.activityIndicatorView.startAnimating()
-//            guard let appleIDToken = credentials.identityToken else {
-//                print("Unable to fetch identity token")
-//                return
-//            }
-//            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
-//                print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
-//                return
-//            }
-//            let nonce = userDefault.string(forKey: "userID")!
-//            
-//            let userCredential = OAuthProvider.appleCredential(withIDToken: idTokenString, rawNonce: nonce, fullName: credentials.fullName)
-//            
-//            isRegisteredUser(credential: userCredential) { str, uid in
-//                
-//                self.activityIndicatorView.stopAnimating()
-//                if str != "false" {
-//                    // Create a new UIAlertController
-//                    let alertController = UIAlertController(title: "", message: String(format: NSLocalizedString("merge_data_message", comment: "")), preferredStyle: .alert)
-//
-//                    // Add actions
-//                    let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
-//                        self.fb.transferUserData(idToken: uid) {
-//                            self.fb.deleteUser(user: self.userDefault.string(forKey: "userID")!, date: Date())
-//                            self.userDefault.set(uid, forKey: "userID")
-//                            self.userDefault.set(credentials.email ?? credentials.fullName?.givenName ?? "apple", forKey: "userEmail")
-//                            self.navigationController?.popViewController(animated: true)
-//                        }
-//                    }
-//                    
-//                    yesAction.setValue(UIColor(named: "black"), forKey: "titleTextColor")
-//                    
-//                    let noAction = UIAlertAction(title: "No", style: .default) { _ in
-//                        self.fb.transferUserDataNoMerge(idToken: uid) {
-//                            self.fb.deleteUser(user: self.userDefault.string(forKey: "userID")!, date: Date())
-//                            self.userDefault.set(uid, forKey: "userID")
-//                            self.userDefault.set(credentials.email ?? credentials.fullName?.givenName ?? "apple", forKey: "userEmail")
-//                            self.navigationController?.popViewController(animated: true)
-//                        }
-//                    }
-//                    
-//                    noAction.setValue(UIColor(named: "black"), forKey: "titleTextColor")
-//                    
-//                    alertController.addAction(noAction)
-//                    alertController.addAction(yesAction)
-//
-//                    // Present the alert controller
-//                    self.present(alertController, animated: true, completion: nil)
-//                } else {
-//                    //if there is no google account exists
-//                    self.fb.transferUserDataNoMerge(idToken: uid) {
-//                        self.fb.deleteUser(user: self.userDefault.string(forKey: "userID")!, date: Date())
-//                        self.userDefault.set(uid, forKey: "userID")
-//                        self.userDefault.set(credentials.email ?? credentials.fullName?.givenName ?? "apple", forKey: "userEmail")
-//                        self.navigationController?.popViewController(animated: true)
-//                    }
-//                }
-//            }
-//            
-//            break
-//        default:
-//            break
-//        }
+        //if success
+        switch authorization.credential {
+        case let credentials as ASAuthorizationAppleIDCredential:
+            //get credentials data here
+            
+            self.activityIndicatorView.startAnimating()
+            guard let appleIDToken = credentials.identityToken else {
+                print("Unable to fetch identity token")
+                return
+            }
+            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+                print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
+                return
+            }
+            let nonce = userDefault.string(forKey: "userID")!
+            
+            let userCredential = OAuthProvider.appleCredential(withIDToken: idTokenString, rawNonce: nonce, fullName: credentials.fullName)
+            
+            VM.isRegisteredUser(credential: userCredential) { str, uid in
+                self.activityIndicatorView.stopAnimating()
+                if str != "false" {
+                    // Create a new UIAlertController
+                    let alertController = UIAlertController(title: "", message: String(format: NSLocalizedString("merge_data_message", comment: "")), preferredStyle: .alert)
+
+                    // Add actions
+                    let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
+                        self.VM.transferUserData(merge: true, uid: uid, userEmail: credentials.email ?? credentials.fullName?.givenName ?? "apple") {
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    }
+                    
+                    yesAction.setValue(UIColor(named: "black"), forKey: "titleTextColor")
+                    
+                    let noAction = UIAlertAction(title: "No", style: .default) { _ in
+                        self.VM.transferUserData(merge: false, uid: uid, userEmail: credentials.email ?? credentials.fullName?.givenName ?? "apple") {
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    }
+                    
+                    noAction.setValue(UIColor(named: "black"), forKey: "titleTextColor")
+                    
+                    alertController.addAction(noAction)
+                    alertController.addAction(yesAction)
+
+                    // Present the alert controller
+                    self.present(alertController, animated: true, completion: nil)
+                } else {
+                    //if there is no google account exists
+                    self.VM.transferUserData(merge: false, uid: uid, userEmail: credentials.email ?? credentials.fullName?.givenName ?? "apple") {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
+            }
+            break
+        default:
+            break
+        }
     }
     
-//    private func isRegisteredUser(credential: OAuthCredential, completion: @escaping (String, String) -> Void) {
-//        Auth.auth().signIn(with: credential) { (authResult, error) in
-//            if let error = error {
-//                print("Firebase authentication error: \(error.localizedDescription)")
-//                completion("false", "" )
-//                return
-//            }
-//            
-//            // Successfully signed in with Apple
-//            if authResult?.additionalUserInfo?.isNewUser == true {
-//                completion("false", authResult!.user.uid)
-//            } else {
-//                completion("true", authResult!.user.uid)
-//            }
-//        }
-//        
-//    }
-    
+  
 }
 
 extension ConnectToSNSVC: ASAuthorizationControllerPresentationContextProviding {

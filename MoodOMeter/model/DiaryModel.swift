@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DiaryModel {
+struct DiaryModel: Equatable {
     var sticker: [String]
     var story: String
     var date: String
