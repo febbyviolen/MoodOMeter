@@ -128,6 +128,7 @@ class Firebase {
                 print("deleteDiary - error deleting data: \(error)")
             } else {
                 print("deleteDiary - success deleting data ")
+                MainVM.Shared.fetchCalendarData(for: date)
             }
         }
     }

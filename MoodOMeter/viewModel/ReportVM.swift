@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 class ReportVM {
-    typealias MoodGraph = (name: String, age: Int)
+    typealias MoodGraph = (name: String, num: Int)
     
     @Published var reportData = [DiaryModel]()
     @Published var thisMonthMoodData: [MoodGraph] = []
@@ -29,7 +29,8 @@ class ReportVM {
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] data in
                 getAndTransformData(data)
-                print("get the data")
+                print("ReportVM - observe calendar data")
+
             }
             .store(in: &cancellables)
     }
@@ -41,9 +42,12 @@ class ReportVM {
     }
     
     func getThisMonthData(date: String) {
-        thisMonthData.removeAll()
-        thisMonthMoodData.removeAll()
+//        thisMonthData.removeAll()
+//        thisMonthMoodData.removeAll()
+        print("ReportVM - get This Month Data")
         thisMonthData = reportData.filter{$0.date.contains(date)}
+        
+        print("thisMonthData: \(thisMonthData)")
         
         var dict = [String: Int]()
         for i in thisMonthData {
@@ -53,9 +57,11 @@ class ReportVM {
         }
         
         let sortedGraphData = sortGraphData(data: dict)
+        var graphData = [MoodGraph]()
         for (i,j) in zip(sortedGraphData.0, sortedGraphData.1) {
-            thisMonthMoodData.append((i,j))
+            graphData.append((i,j))
         }
+        thisMonthMoodData = graphData
         
     }
     
