@@ -25,6 +25,10 @@ class ReportVC: UIViewController {
     @IBOutlet var fifthChartView: UIView!
     
     @IBOutlet weak var firstChartHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var secondChartheightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var thirdChartheightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var fifthChartHeightContraintt: NSLayoutConstraint!
+    @IBOutlet weak var fourthChartheightConstraint: NSLayoutConstraint!
     
     @IBOutlet var firstChartImage: UIImageView!
     @IBOutlet var secondChartImage: UIImageView!
@@ -50,6 +54,8 @@ class ReportVC: UIViewController {
     @IBOutlet var fourthMoodRankView: UIView!
     @IBOutlet var fifthMoodRankView: UIView!
     
+    @IBOutlet weak var noDataView: UIView!
+    
     private var VM = ReportVM()
     private var cancellables = Set<AnyCancellable>()
     let currentDateSubject = CurrentValueSubject<Date, Never>(Date())
@@ -70,7 +76,7 @@ class ReportVC: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] data in
                 //can't hide all cs xcode screaming
-                firstMoodRankView.isHidden = true
+                print("ReportVC - thisMonthMoodData bind")
                 setupChart(data)
             }
             .store(in: &cancellables)
@@ -78,6 +84,7 @@ class ReportVC: UIViewController {
     
     private func observe() {
         currentDateSubject.sink { [unowned self] date in
+            print("ReportVC - currentDateSubject observe")
             dateLabel?.text = date.toString(format: "yyyy.MM")
             
             //year
@@ -85,7 +92,7 @@ class ReportVC: UIViewController {
             if year < VM.currentYear {
                 VM.currentYear = year
                 if !MainVM.Shared.inTheData.contains(year){
-//                    MainVM.Shared.fetchCalendarData(for: date)
+                    MainVM.Shared.fetchCalendarData(for: date)
                 }
             }
             
@@ -106,33 +113,57 @@ class ReportVC: UIViewController {
     }
     
     private func setupChart(_ data: [(String, Int)]) {
+        print("setupChart : \(data)")
         let chart = [firstChartImage, secondChartImage, thirdChartImage, fourthChartImage, fifthChartImage]
         let table = [firstMoodRankImage, secondMoodRankImage, thirdMoodRankImage, fourthMoodRankImage, fifthMoodRankImage]
         let label = [firstMoodRankLabel, secondMoodRankLabel, thirdMoodRankLabel, fourthMoodRankLabel, fifthMoodRankLabel]
         let view = [firstMoodRankView, secondMoodRankView, thirdMoodRankView, fourthMoodRankView, fifthMoodRankView]
+        let chartView = [firstChartView, secondChartView, thirdChartView, fourthChartView, fifthChartView]
+        
+        if data.count == 0 {
+            showNoData()
+        } else {
+            showThereIsData()
+            chart.forEach({$0?.isHidden = true})
+            view.forEach {$0?.isHidden = true}
+            chartView.forEach{$0?.isHidden = true}
+        }
         
         for i in data.enumerated() {
             if i.offset == 5 {break}
             else {
-                chart[i.offset]?.image = UIImage(named: i.element.0)
                 chart[i.offset]?.isHidden = false
+                chart[i.offset]?.image = UIImage(named: i.element.0)
                 
                 table[i.offset]?.image = UIImage(named: i.element.0)
                 
                 view[i.offset]?.isHidden = false
                 label[i.offset]?.text = "\(i.element.1)"
+                
+                chartView[i.offset]?.isHidden = false
             }
         }
     }
     
+    private func showNoData() {
+        noDataView.isHidden = false
+        chartContainerView.isHidden = true
+    }
+    
+    private func showThereIsData() {
+        noDataView.isHidden = true
+        chartContainerView.isHidden = false
+    }
+    
     private func setupUI() {
-        chartContainerView.addShadow(
-            offset: CGSize(width: 0, height: 0),
-            color: UIColor(named: "black")!,
-            radius: 1,
-            opacity: 0.2)
-        
-        chartContainerView.addCornerRadius(radius: 16)
+        [chartContainerView, noDataView].forEach({
+            $0.addShadow(
+                offset: CGSize(width: 0, height: 0),
+                color: UIColor(named: "black")!,
+                radius: 1,
+                opacity: 0.2)
+            $0.addCornerRadius(radius: 16)
+        })
     }
 }
 
@@ -141,6 +172,10 @@ extension ReportVC {
     private func animationChart() {
         UIView.animate(withDuration: 1.0) {
             self.firstChartHeightConstraint.constant = 100
+            self.secondChartheightConstraint.constant = 85
+            self.thirdChartheightConstraint.constant = 70
+            self.fifthChartHeightContraintt.constant = 55
+            self.fourthChartheightConstraint.constant = 40
             self.view.layoutIfNeeded()
         }
     }

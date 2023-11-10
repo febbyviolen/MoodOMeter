@@ -12,7 +12,6 @@
 		8033B8362AF74BD10032009A /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8033B8352AF74BD10032009A /* MainVC.swift */; };
 		8033B8392AF74BD10032009A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8033B8372AF74BD10032009A /* Main.storyboard */; };
 		8033B83B2AF74BD40032009A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8033B83A2AF74BD40032009A /* Assets.xcassets */; };
-		8033B83E2AF74BD40032009A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8033B83C2AF74BD40032009A /* LaunchScreen.storyboard */; };
 		805D7D982AF777FA00DC8CFC /* CalendarDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D7D972AF777FA00DC8CFC /* CalendarDateView.swift */; };
 		805D7D9B2AF778F100DC8CFC /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D7D9A2AF778F100DC8CFC /* UIView+Extension.swift */; };
 		805D7D9E2AF7796000DC8CFC /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D7D9D2AF7796000DC8CFC /* MainVM.swift */; };
@@ -66,9 +65,7 @@
 		8033B8312AF74BD10032009A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8033B8332AF74BD10032009A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8033B8352AF74BD10032009A /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
-		8033B8382AF74BD10032009A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8033B83A2AF74BD40032009A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8033B83D2AF74BD40032009A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8033B83F2AF74BD40032009A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		805D7D972AF777FA00DC8CFC /* CalendarDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateView.swift; sourceTree = "<group>"; };
 		805D7D9A2AF778F100DC8CFC /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -114,6 +111,9 @@
 		80CE65742AFD2B78007F4550 /* MoodOMeter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoodOMeter.entitlements; sourceTree = "<group>"; };
 		80CE65752AFDE518007F4550 /* UIAlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertFactory.swift; sourceTree = "<group>"; };
 		80CE65772AFDE76E007F4550 /* UIAlertAction+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertAction+Extension.swift"; sourceTree = "<group>"; };
+		80CE657A2AFE3B8D007F4550 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
+		80CE657E2AFE3C94007F4550 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ko; path = ko.lproj/Main.storyboard; sourceTree = "<group>"; };
+		80CE657F2AFE3CE4007F4550 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		96E633D1AF2356CD09B826D6 /* Pods-MoodOMeter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodOMeter.release.xcconfig"; path = "Target Support Files/Pods-MoodOMeter/Pods-MoodOMeter.release.xcconfig"; sourceTree = "<group>"; };
 		E7F046045062FE3A78FCE025 /* Pods_MoodOMeter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoodOMeter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDF97CE5461F01F426B82A88 /* Pods-MoodOMeter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodOMeter.debug.xcconfig"; path = "Target Support Files/Pods-MoodOMeter/Pods-MoodOMeter.debug.xcconfig"; sourceTree = "<group>"; };
@@ -177,7 +177,6 @@
 				805D7D962AF7662E00DC8CFC /* controller */,
 				80BCF5FC2AFA8A7000802B96 /* GoogleService-Info.plist */,
 				8033B83A2AF74BD40032009A /* Assets.xcassets */,
-				8033B83C2AF74BD40032009A /* LaunchScreen.storyboard */,
 				8033B83F2AF74BD40032009A /* Info.plist */,
 			);
 			path = MoodOMeter;
@@ -342,11 +341,12 @@
 			};
 			buildConfigurationList = 8033B8292AF74BD10032009A /* Build configuration list for PBXProject "MoodOMeter" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
+				ko,
 				Base,
+				en,
 			);
 			mainGroup = 8033B8252AF74BD10032009A;
 			packageReferences = (
@@ -368,7 +368,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				80BCF5FB2AFA887200802B96 /* user defaults.md in Resources */,
-				8033B83E2AF74BD40032009A /* LaunchScreen.storyboard in Resources */,
 				8033B83B2AF74BD40032009A /* Assets.xcassets in Resources */,
 				80BCF5E62AF8AB6E00802B96 /* DiaryViewCell.xib in Resources */,
 				8033B8392AF74BD10032009A /* Main.storyboard in Resources */,
@@ -476,17 +475,11 @@
 		8033B8372AF74BD10032009A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8033B8382AF74BD10032009A /* Base */,
+				80CE657A2AFE3B8D007F4550 /* ko */,
+				80CE657E2AFE3C94007F4550 /* ko */,
+				80CE657F2AFE3CE4007F4550 /* en */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		8033B83C2AF74BD40032009A /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8033B83D2AF74BD40032009A /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -497,6 +490,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -560,6 +554,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
