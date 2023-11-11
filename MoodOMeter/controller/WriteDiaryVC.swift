@@ -39,12 +39,16 @@ class WriteDiaryVC: UIViewController {
             addTodayButtonPressed = false
         }
         
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
+        navigationItem.leftBarButtonItem = backButton
+        
         bind()
         observe()
         setupCollectionView()
         keyboardToolBar()
         
         diaryTextField.delegate = self
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -55,10 +59,36 @@ class WriteDiaryVC: UIViewController {
         }
     }
     
+    @objc func backButtonTapped() {
+        print("WriteDiaryVC - asking if they want to save the diary ")
+        VM.addNewStoryToData(diaryTextField.text, date: MainVM.Shared.selectedDate!.date.toString(format: "yyyy.MM.dd"))
+        if VM.newDiary != MainVM.Shared.selectedDate?.data {
+            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                self.VM.saveToFirebase{
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+            let alert = UIAlertFactory.buildYesNoAlert(
+                title: "변경 사항 저장하시겠습니까?".localised,
+                message: "",
+                okAction: okAction,
+                noAction: UIAlertAction(
+                    title: "취소".localised,
+                    style: .default) {_ in
+                        self.navigationController?.popViewController(animated: true)})
+            
+            present(alert, animated: true)
+        }
+        else {
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    
     private func bind() {
         VM.$newDiary
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] data in
+                print("WriteDiaryVC - newDiary bind called: \(data)")
                 addStickerButton.isHidden = false
                 collectionView.isHidden = false
                 
@@ -69,6 +99,7 @@ class WriteDiaryVC: UIViewController {
                 } else {
                     collectionView.isHidden = false
                 }
+                
                 collectionView.reloadData()
             }
             .store(in: &cancellables)
@@ -77,7 +108,8 @@ class WriteDiaryVC: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] data in
                 VM.newDiary = data?.data
-                setupInitData(date: data!.date, story: data?.data?.story)
+                setupInitData(date: data!.date,
+                              story: data?.data?.story)
             }
             .store(in: &cancellables)
         
@@ -94,7 +126,8 @@ class WriteDiaryVC: UIViewController {
         VM.$newAddedSticker
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] sticker in
-                VM.addNewStickerToData(sticker, date: MainVM.Shared.selectedDate!.date.toString(format: "yyyy.MM.dd"))
+                VM.addNewStickerToData(sticker,
+                                       date: MainVM.Shared.selectedDate!.date.toString(format: "yyyy.MM.dd"))
             }
             .store(in: &cancellables)
     }
@@ -105,22 +138,44 @@ class WriteDiaryVC: UIViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        //save to firebase
+        //if there is no new item
+        if VM.newDiary?.sticker.count == 0 || VM.newDiary == nil {
+            if VM.newDiary?.story == "" || VM.newDiary?.story == "오늘은 어떤 하루였나요?".localised {
+                Firebase.Shared.deleteDiary(date: MainVM.Shared.selectedDate!.date)
+            }
+        } else { //save to firebase
+            VM.saveToFirebase{
+                let alert = UIAlertFactory.buildOneAlert(title: "저장 완료했습니다".localised, message: "", okAction: UIAlertAction(title: "OK", style: .default))
+                self.present(alert, animated: true)
+            }
+        }
     }
+    
+
     
     @IBAction func deleteButtonTapped(_ sender: Any) {
         //delete on firebase
-        self.navigationController?.popViewController(animated: true)
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            Firebase.Shared.deleteDiary(date: MainVM.Shared.selectedDate!.date)
+            MainVM.Shared.selectedDate = (Date(), nil)
+            self.navigationController?.popViewController(animated: true)
+        }
+        let alert = UIAlertFactory.buildYesNoAlert(
+            title: "다이어리 삭제하시겠습니까?".localised,
+            message: "삭제된 다이어리는 뒤찾을 수 없어요!".localised,
+            okAction: okAction,
+            noAction: UIAlertAction(title: "취소".localised, style: .default))
+        present(alert, animated: true)
     }
     
     //=== UI ===
-    private func setupInitData(date: Date, story: String?) {
+    private func  setupInitData(date: Date, story: String?) {
         dateLabel.text = date.toString(format: "yyyy.MM.dd EEEE")
-        diaryTextField.text = story == "" || story == nil ? "오늘은 어떤 하루였나요?" : story 
+        diaryTextField.text = story == "" || story == nil ? "오늘은 어떤 하루였나요?".localised : story
     }
     
     private func checkDiaryTextUI(_ text: String?) {
-        if text == "오늘은 어떤 하루였나요?" {
+        if text == "오늘은 어떤 하루였나요?".localised {
             diaryTextField.textColor = .lightGray
         }
         else {
@@ -135,7 +190,7 @@ class WriteDiaryVC: UIViewController {
         let addTimeButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "clock"), style: .plain, target: self, action: #selector(addTimeStamp))
         addTimeButton.tintColor = UIColor(named: "black2")
         
-        let doneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(didTapDone))
+        let doneButton = UIBarButtonItem(title: "완료".localised, style: .done, target: self, action: #selector(didTapDone))
         doneButton.tintColor = UIColor(named: "black2")
         
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
@@ -219,12 +274,15 @@ extension WriteDiaryVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
 extension WriteDiaryVC: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "오늘은 어떤 하루였나요?" {textView.text = ""}
+        if textView.text == "오늘은 어떤 하루였나요?".localised {textView.text = ""}
         resetCellStates()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text == "" {textView.text = "오늘은 어떤 하루였나요?"}
+        if textView.text == "" {textView.text = "오늘은 어떤 하루였나요?".localised}
+        else if textView.text != "오늘은 어떤 하루였나요?".localised && textView.text != "" {
+            VM.addNewStoryToData(textView.text, date: MainVM.Shared.selectedDate!.date.toString(format: "yyyy.MM.dd"))
+        }
         resetCellStates()
     }
     

@@ -17,21 +17,34 @@ class MainVC: UIViewController {
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var nextMonthButton: UIButton!
     @IBOutlet weak var lastMonthButton: UIButton!
-    @IBOutlet weak var addButton: UIButton?
+//    @IBOutlet weak var addButton: UIButton?
     @IBOutlet weak var calendar: JTAppleCalendarView!
     
     private var cancellables = Set<AnyCancellable>()
     private let currentDateSubject = CurrentValueSubject<Date, Never>(Date())
+    private var VM = MainVM.Shared
     
     var addTodayButtonPressed = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        VM.checkIsPasscodeActivated()
+        VM.setupUser()
+        VM.setNotification()
         
+        VM.checkInterruptedReceipt()
+        
+        currentDateSubject.send(VM.selectedDate?.date ?? Date())
+        setupUI()
         calendarSetup()
         bind()
         observe()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("MainVC - viewWillAppear called")
+        currentDateSubject.send(VM.selectedDate?.date ?? Date())
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -47,8 +60,18 @@ class MainVC: UIViewController {
     private func bind() {
         MainVM.Shared.$calendarData
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
+            .sink { [weak self] data in
+                print("calendar data \(data)")
                 self?.calendar.reloadData()
+            }
+            .store(in: &cancellables)
+        
+        MainVM.Shared.$appIsLocked
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] bool in
+                if bool {
+                    performSegue(withIdentifier: "showPasswordPadVC", sender: self)
+                }
             }
             .store(in: &cancellables)
         
@@ -68,11 +91,11 @@ class MainVC: UIViewController {
             
             //year
             let year = date.toString(format: "yyyy")
-            if year < MainVM.Shared.currentYear {
+            if year != MainVM.Shared.currentYear {
                 MainVM.Shared.currentYear = year
-                if !MainVM.Shared.inTheData.contains(year){
-//                    MainVM.Shared.fetchCalendarData(for: date)
-                }
+//                if !MainVM.Shared.inTheData.contains(year){
+                    MainVM.Shared.fetchCalendarData(for: date)
+//                }
             }
             yearLabel.text = year
             
@@ -89,9 +112,11 @@ class MainVC: UIViewController {
     //=== BUTTON ===
     @IBAction func addButtonTapped(_ sender: Any) {
         MainVM.Shared.selectedDate = (Date(), nil)
-//        MainVM.Shared.selectedDate?.data = MainVM.Shared.calendarData[Date().toString(format: "yyyy.mm.dd")]
-        //test
-        MainVM.Shared.selectedDate?.data = DiaryModel(sticker: ["cry","cry"], story: "asdasdasdasdasd", date: "2023.02.11")
+        MainVM.Shared.selectedDate?.data = MainVM.Shared.calendarData[Date().toString(format: "yyyy.MM.dd")]
+        
+        print("addButtonTapped with data = ")
+        print(MainVM.Shared.selectedDate?.data)
+        
         addTodayButtonPressed = true
         performSegue(withIdentifier: "showWriteDiaryVC", sender: self)
     }
@@ -109,6 +134,14 @@ class MainVC: UIViewController {
     @IBAction func nextMonthTapped(_ sender: Any) {
         currentDateSubject.send(currentDateSubject.value.addMonth(by: 1) ?? Date())
     }
+    
+    private func setupUI() {
+        let str = NSAttributedString(string: "오늘".localised, attributes: [
+            .font: UIFont.systemFont(ofSize: 10)
+        ])
+        todayButton.setAttributedTitle(str, for: .normal)
+    }
+
 }
 
 //MARK: CALENDAR'S FUNCTIONS

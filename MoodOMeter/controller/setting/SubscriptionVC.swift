@@ -18,7 +18,6 @@ class SubscriptionVC: UIViewController, SKPaymentTransactionObserver, SKProducts
     @IBOutlet weak var fourthView: UIView!
     @IBOutlet weak var secondVIew: UIView!
     @IBOutlet weak var firstView: UIView!
-    @IBOutlet weak var retrieveLabel: UIButton! //actually its a button
     @IBOutlet weak var explanationLabel: UILabel!
     @IBOutlet weak var fourthBenefitSubLabel: UILabel!
     @IBOutlet weak var fourthLabel: UILabel!
@@ -27,10 +26,9 @@ class SubscriptionVC: UIViewController, SKPaymentTransactionObserver, SKProducts
     @IBOutlet weak var firstBenefitLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var introLabel: UILabel!
+    @IBOutlet weak var retrieveButton: UIButton!
     
-//    let font = Font()
-//    let fb = Firebase()
+    
     private var model : SKProduct!
     private let userDefault = UserDefaults.standard
     private var activityIndicatorView: NVActivityIndicatorView! = IndicatorViewFactory.build()
@@ -46,9 +44,11 @@ class SubscriptionVC: UIViewController, SKPaymentTransactionObserver, SKProducts
     override func viewDidLoad() {
         super.viewDidLoad()
         //transaction observer
-        SKPaymentQueue.default().add(self)
-        fetchProducts()
         setupUI()
+        
+        SKPaymentQueue.default().add(self)
+        activityIndicatorView.startAnimating()
+        fetchProducts()
         bind()
     }
     
@@ -58,11 +58,11 @@ class SubscriptionVC: UIViewController, SKPaymentTransactionObserver, SKProducts
             .sink { [unowned self] purchased in
                 if purchased == "true" {
                     buyButton.isHidden = true
-                    retrieveLabel.isHidden = true
+                    retrieveButton.isHidden = true
                     VM.setPremiumPass(to: "true")
                 } else {
                     buyButton.isHidden = false
-                    retrieveLabel.isHidden = false
+                    retrieveButton.isHidden = false
                     VM.setPremiumPass(to: "false")
                 }
             }
@@ -117,18 +117,8 @@ class SubscriptionVC: UIViewController, SKPaymentTransactionObserver, SKProducts
                 switch $0.transactionState {
                 case.purchased:
                     print("purchased")
-                    self.VM.purchased = "false"
-                    self.userDefault.set("true", forKey: "premiumPass")
-                    
-//                    self.userDefault.set("true", forKey: "needSendToServer")
-//                    if let url = Bundle.main.appStoreReceiptURL,
-//                       let data = try? Data(contentsOf: url) {
-//                        let receiptBase64 = data.base64EncodedString()
-                        // Send to server
-//                        self.fb.saveSubscriptionInfo(premiumID: receiptBase64, completion: {
-//                            self.userDefault.set("false", forKey: "needSendToServer")
-//                        })
-//                    }
+                    self.VM.purchased = "true"
+                    self.VM.preventInterupttedReceipt()
                     
                     queue.finishTransaction($0)
                     break
@@ -136,25 +126,20 @@ class SubscriptionVC: UIViewController, SKPaymentTransactionObserver, SKProducts
                     print("failed")
                     self.VM.purchased = "false"
                     
-                    let alert = UIAlertController(title: String(format: NSLocalizedString("실패했습니다", comment: "")), message: "", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: String(NSLocalizedString("네", comment: "")), style: .default, handler: nil)
-                    alert.addAction(okAction)
+                    let alert = UIAlertFactory.buildOneAlert(
+                        title: "실패했습니다".localised, 
+                        message: "",
+                        okAction: UIAlertAction(title: "네".localised,
+                                                style: .default,
+                                                handler: nil))
+                  
                     present(alert, animated: true)
                     
                     queue.finishTransaction($0)
                 case .restored:
                     print("restored")
                     self.VM.purchased = "true"
-                    self.userDefault.set("true", forKey: "needSendToServer")
-                    
-//                    if let url = Bundle.main.appStoreReceiptURL,
-//                       let data = try? Data(contentsOf: url) {
-//                        let receiptBase64 = data.base64EncodedString()
-                        // Send to server
-//                        self.fb.saveSubscriptionInfo(premiumID: receiptBase64, completion: {
-//                            self.userDefault.set("false", forKey: "needSendToServer")
-//                        })
-//                    }
+                    self.VM.preventInterupttedReceipt()
                     
                     queue.finishTransaction($0)
                 default:
@@ -174,6 +159,7 @@ class SubscriptionVC: UIViewController, SKPaymentTransactionObserver, SKProducts
 extension SubscriptionVC {
     private func setupPriceInfo() {
         priceLabel.text = "\(model.priceLocale.currencySymbol ?? "₩")\(model.price)"
+        activityIndicatorView.stopAnimating()
     }
     
     private func setupUI() {
@@ -181,6 +167,12 @@ extension SubscriptionVC {
             $0?.addCornerRadius(radius: 16)
         }
         self.view.addSubview(activityIndicatorView)
+        
+        let str = NSAttributedString(string: "retrieve.premium".localised, attributes: [
+            .font: UIFont.systemFont(ofSize: 12)
+        ])
+        
+        retrieveButton.setAttributedTitle(str, for: .normal)
     }
     
 }

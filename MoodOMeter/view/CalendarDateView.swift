@@ -12,7 +12,6 @@ import UIKit
 class CalendarDateView: JTAppleCell {
     static let cellID = "CalendarDateView"
     let dataDateFormat = "yyyy.MM.dd"
-    let vm = MainVM()
     
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var stickerImage: UIImageView!
@@ -49,15 +48,15 @@ class CalendarDateView: JTAppleCell {
     
     private func handleEvents(cellState: CellState) {
         let dateString = cellState.date.toString(format: dataDateFormat)
-        if vm.calendarData[dateString] == nil {
+        if MainVM.Shared.calendarData[dateString] == nil {
             stickerImage.isHidden = true
             dateLabel.isHidden = false
         } else {
-            if !(vm.calendarData[dateString]?.sticker.isEmpty)! {
-                stickerImage.image = UIImage(named: (vm.calendarData[dateString]?.sticker.first)!)
+            if !(MainVM.Shared.calendarData[dateString]?.sticker.isEmpty)! {
+                stickerImage.image = UIImage(named: (MainVM.Shared.calendarData[dateString]?.sticker.first)!)
                 stickerImage.isHidden = false
             } else {
-                stickerImage.isHidden = false
+                stickerImage.isHidden = true
             }
         }
     }

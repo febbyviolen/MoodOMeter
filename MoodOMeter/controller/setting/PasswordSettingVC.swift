@@ -108,18 +108,19 @@ extension PasswordSettingVC {
 
             // Check if Face ID is available on the device
             if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-                let reason = String(format: NSLocalizedString("Face ID를 사용하여 인증해주세요", comment: ""))
+                let reason = "Face ID를 사용하여 인증해주세요".localised
 
                 context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, error in
                     DispatchQueue.main.async {
                         guard success, error == nil else {
                             // Face ID authentication failed
                             let alertController = UIAlertController(
-                                title: String(format: NSLocalizedString("faceId.localizedAuthenticationFailed", comment: "")), message: "",
+                                title: "faceId.localizedAuthenticationFailed".localised,
+                                message: "",
                                 preferredStyle: .alert)
                             
                             let cancelAction = UIAlertAction(
-                                title: String(format: NSLocalizedString("네", comment: "")),
+                                title: "네".localised,
                                 style: .default
                             ) { _ in
                                 self.bioSwitch.isOn = false
@@ -139,12 +140,12 @@ extension PasswordSettingVC {
                 // Face ID not available on the device or not configured
                 // Handle the error accordingly
                 let alertController = UIAlertController(
-                    title: String(format: NSLocalizedString("biometricAuthentication.notAvailable", comment: "")),
+                    title: "biometricAuthentication.notAvailable".localised,
                     message: "",
                     preferredStyle: .alert)
                
                 let cancelAction = UIAlertAction(
-                    title: String(format: NSLocalizedString("네", comment: "")),
+                    title: "네".localised,
                     style: .default,
                     handler: { _ in
                         self.bioSwitch.setOn(false, animated: true)

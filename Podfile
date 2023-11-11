@@ -7,12 +7,12 @@ target 'MoodOMeter' do
 
   # Pods for MoodOMeter
 	# Add the Firebase pod for Google Analytics
-	#pod 'FirebaseAnalytics'
+	pod 'FirebaseAnalytics'
 
 	# Add the pods for any other Firebase products you want to use in your app
 	# For example, to use Firebase Authentication and Cloud Firestore
-	#pod 'FirebaseAuth'
-	#pod 'FirebaseFirestore'
+	pod 'FirebaseAuth'
+	pod 'FirebaseFirestore'
 
 	pod 'JTAppleCalendar', '~> 7.1'
 	pod 'KTCenterFlowLayout'
