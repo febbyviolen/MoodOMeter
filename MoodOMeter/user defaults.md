@@ -3,6 +3,7 @@
 ## key: description 
 - userID : USERID 
 - userEmail : google account email
+- connectedSNS: google or apple 
 
 - alarmSetting : on or off
 - alarmTime : notification time -> hour 

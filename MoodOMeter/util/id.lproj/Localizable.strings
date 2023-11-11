@@ -65,5 +65,5 @@
 "삭제된 다이어리는 뒤찾을 수 없어요!" = "Diari yang dihapus tidak bisa dipulihkan";
 
 //Account
-"connectAccount.firstRule" = "계정을 연결하면 데이터가 동기화되고 백업 기능이 제공됨을 이해하였습니다.";
-"connectAccount.secondRule" = "데이터 병합 시 기존 계정의 중복된 항목은 덮어쓰여질 수 있다는 사실을 이해하였습니다.";
+"connectAccount.firstRule" = "Saya memahami bahwa menyambungkan akun akan menyinkronkan data dan mengaktifkan fitur pencadangan data.";
+"connectAccount.secondRule" = "Saya memahami bahwa data duplikat di akun yang ada dapat terhapus saat menggabungkan data";

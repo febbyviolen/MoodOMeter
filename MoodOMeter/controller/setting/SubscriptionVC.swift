@@ -18,7 +18,6 @@ class SubscriptionVC: UIViewController, SKPaymentTransactionObserver, SKProducts
     @IBOutlet weak var fourthView: UIView!
     @IBOutlet weak var secondVIew: UIView!
     @IBOutlet weak var firstView: UIView!
-    @IBOutlet weak var retrieveLabel: UIButton! //actually its a button
     @IBOutlet weak var explanationLabel: UILabel!
     @IBOutlet weak var fourthBenefitSubLabel: UILabel!
     @IBOutlet weak var fourthLabel: UILabel!
@@ -27,10 +26,9 @@ class SubscriptionVC: UIViewController, SKPaymentTransactionObserver, SKProducts
     @IBOutlet weak var firstBenefitLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var introLabel: UILabel!
+    @IBOutlet weak var retrieveButton: UIButton!
     
-//    let font = Font()
-//    let fb = Firebase()
+    
     private var model : SKProduct!
     private let userDefault = UserDefaults.standard
     private var activityIndicatorView: NVActivityIndicatorView! = IndicatorViewFactory.build()
@@ -60,11 +58,11 @@ class SubscriptionVC: UIViewController, SKPaymentTransactionObserver, SKProducts
             .sink { [unowned self] purchased in
                 if purchased == "true" {
                     buyButton.isHidden = true
-                    retrieveLabel.isHidden = true
+                    retrieveButton.isHidden = true
                     VM.setPremiumPass(to: "true")
                 } else {
                     buyButton.isHidden = false
-                    retrieveLabel.isHidden = false
+                    retrieveButton.isHidden = false
                     VM.setPremiumPass(to: "false")
                 }
             }
@@ -169,6 +167,12 @@ extension SubscriptionVC {
             $0?.addCornerRadius(radius: 16)
         }
         self.view.addSubview(activityIndicatorView)
+        
+        let str = NSAttributedString(string: "retrieve.premium".localised, attributes: [
+            .font: UIFont.systemFont(ofSize: 12)
+        ])
+        
+        retrieveButton.setAttributedTitle(str, for: .normal)
     }
     
 }

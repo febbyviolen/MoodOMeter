@@ -202,7 +202,7 @@
 "W8c-X0-oHb.configuration.title" = "OK";
 
 /* Class = "UIButton"; normalTitle = " "; ObjectID = "W8c-X0-oHb"; */
-"W8c-X0-oHb.normalTitle" = " ";
+"W8c-X0-oHb.normalTitle" = "OK";
 
 /* Class = "UITextView"; text = "오늘은 어떤 하루였나요?"; ObjectID = "Wrb-Rs-qLF"; */
 "Wrb-Rs-qLF.text" = "How's your day?";
@@ -241,7 +241,7 @@
 "aiM-qx-ONM.configuration.title" = "Cancel";
 
 /* Class = "UIButton"; normalTitle = " "; ObjectID = "aiM-qx-ONM"; */
-"aiM-qx-ONM.normalTitle" = " ";
+"aiM-qx-ONM.normalTitle" = "Cancel";
 
 /* Class = "UILabel"; text = "오늘은 어떤 하루였나요?"; ObjectID = "bxf-kj-bbO"; */
 "bxf-kj-bbO.text" = "How's your day?";
@@ -313,7 +313,7 @@
 "iaA-tJ-1uO.configuration.title" = "Disconnect account";
 
 /* Class = "UIButton"; normalTitle = " "; ObjectID = "iaA-tJ-1uO"; */
-"iaA-tJ-1uO.normalTitle" = " ";
+"iaA-tJ-1uO.normalTitle" = "Disconnect account";
 
 /* Class = "UIButton"; configuration.title = "프리미엄 패스 구매"; ObjectID = "ivj-R9-BPs"; */
 "ivj-R9-BPs.configuration.title" = "Purchase Premium pass";
@@ -408,9 +408,11 @@
 /* Class = "UILabel"; text = "더 많은 기능을 기대해주세요!"; ObjectID = "yrH-lS-W5d"; */
 "yrH-lS-W5d.text" = "Please look forward to more features!";
 
-//Report VC
+//Diary VC
 "jhc-rm-Egy.text" = "No data to be shown";
 
+//Report VC
+"vU9-R5-o0g.text" = "No data to be shown";
 
 //Main VC
 

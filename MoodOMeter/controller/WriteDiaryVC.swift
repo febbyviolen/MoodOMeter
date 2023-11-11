@@ -68,7 +68,6 @@ class WriteDiaryVC: UIViewController {
                     self.navigationController?.popViewController(animated: true)
                 }
             }
-            
             let alert = UIAlertFactory.buildYesNoAlert(
                 title: "변경 사항 저장하시겠습니까?".localised,
                 message: "",
@@ -76,7 +75,7 @@ class WriteDiaryVC: UIViewController {
                 noAction: UIAlertAction(
                     title: "취소".localised,
                     style: .default) {_ in
-                self.navigationController?.popViewController(animated: true)})
+                        self.navigationController?.popViewController(animated: true)})
             
             present(alert, animated: true)
         }
@@ -109,7 +108,7 @@ class WriteDiaryVC: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] data in
                 VM.newDiary = data?.data
-                setupInitData(date: data!.date, 
+                setupInitData(date: data!.date,
                               story: data?.data?.story)
             }
             .store(in: &cancellables)
@@ -127,7 +126,7 @@ class WriteDiaryVC: UIViewController {
         VM.$newAddedSticker
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] sticker in
-                VM.addNewStickerToData(sticker, 
+                VM.addNewStickerToData(sticker,
                                        date: MainVM.Shared.selectedDate!.date.toString(format: "yyyy.MM.dd"))
             }
             .store(in: &cancellables)
@@ -140,10 +139,9 @@ class WriteDiaryVC: UIViewController {
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         //if there is no new item
-        if VM.newDiary?.sticker.count == 0 {
+        if VM.newDiary?.sticker.count == 0 || VM.newDiary == nil {
             if VM.newDiary?.story == "" || VM.newDiary?.story == "오늘은 어떤 하루였나요?".localised {
                 Firebase.Shared.deleteDiary(date: MainVM.Shared.selectedDate!.date)
-                
             }
         } else { //save to firebase
             VM.saveToFirebase{
