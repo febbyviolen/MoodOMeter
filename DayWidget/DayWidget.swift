@@ -7,48 +7,74 @@
 
 import WidgetKit
 import SwiftUI
+import Intents
 
 struct Provider: TimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), emoji: "😀")
-    }
-
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), emoji: "😀")
+    func getSnapshot(in context: Context, completion: @escaping (DayEntry) -> Void) {
+        let entry = DayEntry(date: Date(), img: "happy")
         completion(entry)
     }
-
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
+    
+    func getTimeline(in context: Context, completion: @escaping (Timeline<DayEntry>) -> Void) {
+        var entries: [DayEntry] = []
+        
+        let userDefaults = UserDefaults(suiteName: "group.febby.moody.widgetcache")
+        var img = userDefaults?.value(forKey: "img") as? String ?? ""
+        var date = userDefaults?.value(forKey: "date") as? Date ?? Date()
+        
         let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, emoji: "😀")
+        for dayOffSet in 0...1 {
+            let entryDate = Calendar.current.date(byAdding: .day, value: dayOffSet ,to: currentDate)!
+            let startOfDate = Calendar.current.startOfDay(for: entryDate)
+            
+            if startOfDate > date {
+                userDefaults?.set("", forKey: "img")
+                img = userDefaults?.value(forKey: "img") as? String ?? ""
+                userDefaults?.set(startOfDate, forKey: "date")
+            }
+            
+            userDefaults?.set(startOfDate, forKey: "date")
+            let entry = DayEntry(date: startOfDate,
+                                 img: img)
             entries.append(entry)
         }
 
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
+    
+    func placeholder(in context: Context) -> DayEntry {
+        DayEntry(date: Date(), img: "")
+    }
 }
 
-struct SimpleEntry: TimelineEntry {
+struct DayEntry: TimelineEntry {
     let date: Date
-    let emoji: String
+    let img: String
 }
 
+//MARK: UI
 struct DayWidgetEntryView : View {
-    var entry: Provider.Entry
+    var entry: DayEntry
 
     var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Emoji:")
-            Text(entry.emoji)
+        
+        ZStack{
+            ContainerRelativeShape()
+                .fill(.white)
+            
+            VStack{
+                Text(String(format: NSLocalizedString("today.title", comment: "")))
+                    .font(.body)
+                    .foregroundColor(.black)
+                    .bold()
+                
+                Image(entry.img)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(minWidth: 30, idealWidth: 60, minHeight: 30, idealHeight: 60)
+            }
+            .padding()
         }
     }
 }
@@ -57,24 +83,18 @@ struct DayWidget: Widget {
     let kind: String = "DayWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            if #available(iOS 17.0, *) {
-                DayWidgetEntryView(entry: entry)
-                    .containerBackground(.fill.tertiary, for: .widget)
-            } else {
-                DayWidgetEntryView(entry: entry)
-                    .padding()
-                    .background()
-            }
-        }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        StaticConfiguration(kind: kind, provider: Provider(), content: { entry in
+            DayWidgetEntryView(entry: entry)
+        })
+        .configurationDisplayName(String(format: NSLocalizedString("오늘", comment: "")))
+        .description(String(format: NSLocalizedString("widget.today.message", comment: "")))
+        .supportedFamilies([.systemSmall])
     }
 }
 
-#Preview(as: .systemSmall) {
-    DayWidget()
-} timeline: {
-    SimpleEntry(date: .now, emoji: "😀")
-    SimpleEntry(date: .now, emoji: "🤩")
+struct DayWidget_Previews: PreviewProvider {
+    static var previews: some View {
+        DayWidgetEntryView(entry: DayEntry(date: Date(), img: ""))
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
+    }
 }
