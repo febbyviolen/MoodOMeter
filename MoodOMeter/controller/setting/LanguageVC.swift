@@ -29,7 +29,6 @@ class LanguageVC: UIViewController {
         // Do any additional setup after loading the view.
         
         bind()
-        
         [koreaContainer, englishContainer, bahasaContainer].forEach {
             $0?.addShadow(offset: CGSize(width: 0, height: 0),
                                    color: UIColor(named: "black")!,
@@ -81,11 +80,11 @@ class LanguageVC: UIViewController {
             self.englishButton.setImage(UIImage(systemName: "circlebadge"), for: .normal)
             self.bahasaButton.setImage(UIImage(systemName: "circlebadge"), for: .normal)
         switch languageCode {
-        case "kor" :
+        case _ where languageCode!.contains("ko") :
             KoreanButton.setImage(UIImage(systemName: "circle.inset.filled"), for: .normal)
-        case "en":
+        case _ where languageCode!.contains("en"):
             englishButton.setImage(UIImage(systemName: "circle.inset.filled"), for: .normal)
-        case "id":
+        case _ where languageCode!.contains("id"):
             bahasaButton.setImage(UIImage(systemName: "circle.inset.filled"), for: .normal)
         default :
             self.KoreanButton.setImage(UIImage(systemName: "circle.inset.filled"), for: .normal)
@@ -95,15 +94,12 @@ class LanguageVC: UIViewController {
     }
     
     private func showNeedToRestartAppAlert() {
-        let alertController = UIAlertController(title: String(format: NSLocalizedString("language.restartInstruction", comment: "")), message: String(format: NSLocalizedString("language.restartMessage", comment: "")), preferredStyle: .alert)
         let okAction = UIAlertAction(title: NSLocalizedString("language.restart", comment: ""), style: .default, handler: { _ in
             self.restartApplication()
         })
-        let cancel = UIAlertAction(title: NSLocalizedString("language.later", comment: ""), style: .default, handler: nil)
-        alertController.addAction(okAction)
-        alertController.addAction(cancel)
+        let alert = UIAlertFactory.buildYesNoAlert(title: String(format: NSLocalizedString("language.restartInstruction", comment: "")), message: String(format: NSLocalizedString("language.restartMessage", comment: "")), okAction: okAction, noAction: UIAlertAction(title: NSLocalizedString("language.later", comment: ""), style: .default, handler: nil))
         
-        self.present(alertController, animated: true)
+        self.present(alert, animated: true)
     }
     
     private func restartApplication() {

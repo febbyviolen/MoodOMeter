@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
-        print(LanguageManager.shared.getAppLanguage())
+        print("App language: \(LanguageManager.shared.getAppLanguage())")
     
         return true
     }

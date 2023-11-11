@@ -61,6 +61,7 @@ class WriteDiaryVC: UIViewController {
     
     @objc func backButtonTapped() {
         print("WriteDiaryVC - asking if they want to save the diary ")
+        VM.addNewStoryToData(diaryTextField.text, date: MainVM.Shared.selectedDate!.date.toString(format: "yyyy.MM.dd"))
         if VM.newDiary != MainVM.Shared.selectedDate?.data {
             let okAction = UIAlertAction(title: "OK", style: .default) { _ in
                 self.VM.saveToFirebase{

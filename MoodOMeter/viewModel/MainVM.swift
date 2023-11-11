@@ -112,6 +112,7 @@ class MainVM {
                                 //                            print("error")
                             } else {
                                 //                            print("not error")
+                                self.userDefault.set("true", forKey: "alarmSetting")
                             }
                         }
                     } else {

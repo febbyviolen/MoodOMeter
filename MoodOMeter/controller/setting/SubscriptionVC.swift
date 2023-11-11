@@ -46,9 +46,11 @@ class SubscriptionVC: UIViewController, SKPaymentTransactionObserver, SKProducts
     override func viewDidLoad() {
         super.viewDidLoad()
         //transaction observer
-        SKPaymentQueue.default().add(self)
-        fetchProducts()
         setupUI()
+        
+        SKPaymentQueue.default().add(self)
+        activityIndicatorView.startAnimating()
+        fetchProducts()
         bind()
     }
     
@@ -155,6 +157,7 @@ class SubscriptionVC: UIViewController, SKPaymentTransactionObserver, SKProducts
 extension SubscriptionVC {
     private func setupPriceInfo() {
         priceLabel.text = "\(model.priceLocale.currencySymbol ?? "₩")\(model.price)"
+        activityIndicatorView.stopAnimating()
     }
     
     private func setupUI() {

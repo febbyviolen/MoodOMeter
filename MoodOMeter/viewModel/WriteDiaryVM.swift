@@ -24,7 +24,9 @@ class WriteDiaryVM {
     
     func addNewStoryToData(_ new: String?, date: String) {
         print("WriteDiaryVM - story added to newDiary")
-        if new != nil {
+        if new != "" &&
+            new != "오늘은 어떤 하루였나요?" &&
+            new != nil {
             if newDiary != nil {
                 newDiary?.story = new!
             } else {

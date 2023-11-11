@@ -35,12 +35,14 @@ class MainVC: UIViewController {
         
         VM.checkInterruptedReceipt()
         
+        currentDateSubject.send(VM.selectedDate?.date ?? Date())
         calendarSetup()
         bind()
         observe()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("MainVC - viewWillAppear called")
         currentDateSubject.send(VM.selectedDate?.date ?? Date())
     }
     
