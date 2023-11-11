@@ -9,6 +9,7 @@ import UIKit
 import NVActivityIndicatorView
 import Combine
 import CombineCocoa
+import FirebaseAuth
 //import FirebaseAuth
 //import FirebaseCore
 //import StoreKit
@@ -95,8 +96,6 @@ extension SettingVC {
     
     private func setupUI(){
         buySubscribeBackground.layer.cornerRadius = 10
-        buySubscribeLable.text = "\(String(format: NSLocalizedString("subscription.title", comment: ""))) "
-        self.view.addSubview(activityIndicatorView)
     }
 
 }
@@ -173,11 +172,8 @@ extension SettingVC {
 
 //MARK: GOOGLE SETTINGS
 extension SettingVC {
-
-//    
     @objc private func googleAuth() {
         performSegue(withIdentifier: "showConnectToSNSVC", sender: self)
-//
     }
 }
 
@@ -187,23 +183,22 @@ extension SettingVC {
         let alert = UIAlertController(title: String(format: NSLocalizedString("deleteaccount.title", comment: "")), message: String(format: NSLocalizedString("deleteaccount.message", comment: "")), preferredStyle: .alert)
 
         let yesaction = UIAlertAction(title: String(format: NSLocalizedString("네", comment: "")), style: .default) { _ in
-//            let userr = Auth.auth().currentUser
-//            userr?.delete { error in
-//                if let error = error {
-//                    let alert = UIAlertController(title: String(format: NSLocalizedString("실패했습니다", comment: "")), message: "", preferredStyle: .alert)
-//                    let action = UIAlertAction(title: String(format: NSLocalizedString("네", comment: "")), style: .default, handler: nil)
-//                    alert.addAction(action)
-//
-//                    self.present(alert, animated: true)
-//                } else {
-//                    self.fb.deleteUser(user: userr?.uid ?? "", date: Date())
-//                    self.userdefault.set(nil, forKey: "userID")
-//                    self.userdefault.set(nil, forKey: "userEmail")
-//                    self.userdefault.set("false", forKey: "premiumPass")
-//                    self.navigationController?.popViewController(animated: true)
-//                    self.navigationController?.popViewController(animated: true)
-//                }
-//            }
+            let userr = Auth.auth().currentUser
+            userr?.delete { error in
+                if let error = error {
+                    let alert = UIAlertController(title: String(format: NSLocalizedString("실패했습니다", comment: "")), message: "", preferredStyle: .alert)
+                    let action = UIAlertAction(title: String(format: NSLocalizedString("네", comment: "")), style: .default, handler: nil)
+                    alert.addAction(action)
+
+                    self.present(alert, animated: true)
+                } else {
+                    Firebase.Shared.deleteUser(user: userr?.uid ?? "" , date: Date())
+                    self.userdefault.set(nil, forKey: "userID")
+                    self.userdefault.set(nil, forKey: "userEmail")
+                    self.userdefault.set("false", forKey: "premiumPass")
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
         }
         
         let noaction = UIAlertAction(title: String(format: NSLocalizedString("취소", comment: "")), style: .default)

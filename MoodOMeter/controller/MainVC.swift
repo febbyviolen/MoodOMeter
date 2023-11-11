@@ -29,7 +29,7 @@ class MainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        VM.checkIsPasscodeActivated()
         VM.setupUser()
         VM.setNotification()
         
@@ -38,10 +38,6 @@ class MainVC: UIViewController {
         calendarSetup()
         bind()
         observe()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-//        VM.fetchCalendarData(for: VM.selectedDate!.date)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -88,11 +84,11 @@ class MainVC: UIViewController {
             
             //year
             let year = date.toString(format: "yyyy")
-            if year < MainVM.Shared.currentYear {
+            if year != MainVM.Shared.currentYear {
                 MainVM.Shared.currentYear = year
-                if !MainVM.Shared.inTheData.contains(year){
-//                    MainVM.Shared.fetchCalendarData(for: date)
-                }
+//                if !MainVM.Shared.inTheData.contains(year){
+                    MainVM.Shared.fetchCalendarData(for: date)
+//                }
             }
             yearLabel.text = year
             

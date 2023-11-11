@@ -14,4 +14,8 @@ class LanguageManager {
         UserDefaults.standard.set([languageCode], forKey: "AppleLanguages")
         UserDefaults.standard.synchronize()
     }
+    
+    func getAppLanguage() -> String? {
+        return UserDefaults.standard.array(forKey: "AppleLanguages")?.first as? String
+    }
 }

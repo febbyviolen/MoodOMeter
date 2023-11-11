@@ -16,7 +16,6 @@ class MainVM {
     @Published var selectedDate: (date: Date, data: DiaryModel?)? = (Date(), nil)
     @Published var appIsLocked = false
     
-    var inTheData = [Date().toString(format: "yyyy")]
     var currentYear = Date().toString(format: "yyyy")
     private var userDefault = UserDefaults.standard
     

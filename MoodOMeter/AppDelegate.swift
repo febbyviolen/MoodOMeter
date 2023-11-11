@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().topItem?.backButtonDisplayMode = .minimal
         
         FirebaseApp.configure()
+        
+        print(LanguageManager.shared.getAppLanguage())
     
         return true
     }
