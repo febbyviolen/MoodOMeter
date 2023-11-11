@@ -8,7 +8,7 @@
 import UIKit
 import LocalAuthentication
 
-class PasswordPadVC: UIViewController {
+class PasswordPadVC: UIViewController, UIGestureRecognizerDelegate {
   
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -49,10 +49,18 @@ class PasswordPadVC: UIViewController {
             }
         }
         
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        
         self.navigationController?.navigationBar.isHidden = true
         setupUI()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
+    // === BUTTON ===
     @objc private func closeScreen() {
         VM?.passwordNum = VM?.passwordNum
         self.navigationController?.navigationBar.isHidden = false
@@ -175,7 +183,6 @@ extension PasswordPadVC {
         } else {
             if password == userdefaults.string(forKey: "password") {
                 MainVM.Shared.appIsLocked = false
-                self.navigationController?.navigationBar.isHidden = false
                 navigationController?.popViewController(animated: true)
             } else {
                 password = ""

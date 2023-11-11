@@ -58,7 +58,6 @@ class ReportVC: UIViewController {
     
     private var VM = ReportVM()
     private var cancellables = Set<AnyCancellable>()
-    let currentDateSubject = CurrentValueSubject<Date, Never>(Date())
     
     override func viewDidLoad() {
         setupUI()
@@ -83,13 +82,13 @@ class ReportVC: UIViewController {
     }
     
     private func observe() {
-        currentDateSubject.sink { [unowned self] date in
+        VM.currentDateSubject.sink { [unowned self] date in
             dateLabel?.text = date.toString(format: "yyyy.MM")
             
             //year
             let year = date.toString(format: "yyyy")
-            if year != VM.currentYear {
-                VM.currentYear = year
+            if year != MainVM.Shared.currentYear {
+                MainVM.Shared.currentYear = year
 //                if !MainVM.Shared.inTheData.contains(year){
                     MainVM.Shared.fetchCalendarData(for: date)
 //                }
@@ -104,11 +103,11 @@ class ReportVC: UIViewController {
     }
     
     @IBAction func lastMonthTapped(_ sender: Any) {
-        currentDateSubject.send(currentDateSubject.value.decreaseMonth(by: 1) ?? Date())
+        VM.currentDateSubject.send(VM.currentDateSubject.value.decreaseMonth(by: 1) ?? Date())
     }
     
     @IBAction func nextMonthTapped(_ sender: Any) {
-        currentDateSubject.send(currentDateSubject.value.addMonth(by: 1) ?? Date())
+        VM.currentDateSubject.send(VM.currentDateSubject.value.addMonth(by: 1) ?? Date())
     }
     
     private func setupChart(_ data: [(String, Int)]) {

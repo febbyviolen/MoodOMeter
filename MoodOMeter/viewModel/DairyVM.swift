@@ -12,9 +12,9 @@ class DiaryVM {
     @Published var diaryData = [DiaryModel]()
     @Published var thisMonthData = [DiaryModel]()
     
-    var currentYear = Date().toString(format: "yyyy")
-    
     private var cancellables = Set<AnyCancellable>()
+    
+    let currentDateSubject = CurrentValueSubject<Date, Never>(Date())
     
     init() {
         print("dairyVM - init()")
@@ -28,15 +28,15 @@ class DiaryVM {
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] data in
                 getAndTransformData(data)
-                print("get the data")
+                print("DiaryVM - get the data")
             }
             .store(in: &cancellables)
         
         $diaryData
             .receive(on: DispatchQueue.main)
             .sink { _ in
-                print("dairyVM - this month data bind")
-                self.getThisMonthData(date: MainVM.Shared.selectedDate!.date.toString(format: "yyyy.MM.dd"))
+                print("dairyVM - this diaryData bind")
+                self.getThisMonthData(date: self.currentDateSubject.value.toString(format: "yyyy.MM"))
             }
             .store(in: &cancellables)
     }
@@ -48,8 +48,8 @@ class DiaryVM {
     }
     
     func getThisMonthData(date: String) {
-        print("dairyVM - get this month data")
-        thisMonthData.removeAll()
+        print("dairyVM - get this month data : \(date)")
+//        thisMonthData.removeAll()
         thisMonthData = diaryData.filter{$0.date.contains(date)}
     }
     

@@ -14,10 +14,10 @@ class ReportVM {
     @Published var reportData = [DiaryModel]()
     @Published var thisMonthMoodData: [MoodGraph] = []
     
-    var thisMonthData = [DiaryModel]()
-    var currentYear = Date().toString(format: "yyyy")
-    
+    var thisMonthData = [DiaryModel]()    
     private var cancellables = Set<AnyCancellable>()
+    
+    let currentDateSubject = CurrentValueSubject<Date, Never>(Date())
     
     init() {
         getAndTransformData(MainVM.Shared.calendarData)
@@ -31,6 +31,14 @@ class ReportVM {
                 getAndTransformData(data)
                 print("ReportVM - observe calendar data")
 
+            }
+            .store(in: &cancellables)
+        
+        $reportData
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                print("dairyVM - this diaryData bind")
+                self.getThisMonthData(date: self.currentDateSubject.value.toString(format: "yyyy.MM"))
             }
             .store(in: &cancellables)
     }

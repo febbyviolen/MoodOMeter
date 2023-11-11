@@ -16,7 +16,6 @@ class DiaryVC: UIViewController {
     
     let VM = DiaryVM()
     private var cancellables = Set<AnyCancellable>()
-    let currentDateSubject = CurrentValueSubject<Date, Never>(Date())
     
     override func viewDidLoad() {
         bind()
@@ -27,22 +26,23 @@ class DiaryVC: UIViewController {
     private func bind() {
         VM.$thisMonthData
             .receive(on: DispatchQueue.main)
-            .sink { _ in
-                print("dairyVC - diaryData bind")
+            .sink { data in
+                print("dairyVC - thisMonthData bind")
+                print("\(data)")
                 self.tableView?.reloadData()
             }
             .store(in: &cancellables)
     }
     
     private func observe() {
-        currentDateSubject.sink { [unowned self] date in
+        VM.currentDateSubject.sink { [unowned self] date in
             print("dairyVC - currentdatesubject observe")
             dateLabel?.text = date.toString(format: "yyyy.MM")
             
             //year
             let year = date.toString(format: "yyyy")
-            if year != VM.currentYear {
-                VM.currentYear = year
+            if year != MainVM.Shared.currentYear {
+                MainVM.Shared.currentYear = year
 //                if !MainVM.Shared.inTheData.contains(year){
                     MainVM.Shared.fetchCalendarData(for: date)
 //                }
@@ -54,11 +54,11 @@ class DiaryVC: UIViewController {
     }
     
     @IBAction func lastMonthTapped(_ sender: Any) {
-        currentDateSubject.send(currentDateSubject.value.decreaseMonth(by: 1) ?? Date())
+        VM.currentDateSubject.send(VM.currentDateSubject.value.decreaseMonth(by: 1) ?? Date())
     }
     
     @IBAction func nextMonthTapped(_ sender: Any) {
-        currentDateSubject.send(currentDateSubject.value.addMonth(by: 1) ?? Date())
+        VM.currentDateSubject.send(VM.currentDateSubject.value.addMonth(by: 1) ?? Date())
     }
 }
 
