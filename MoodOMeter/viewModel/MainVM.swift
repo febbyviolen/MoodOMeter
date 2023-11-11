@@ -22,11 +22,11 @@ class MainVM {
     private var cancellables = Set<AnyCancellable>()
     
     //testData
-    let testData = [
-        "2022.12.02" : DiaryModel(sticker: ["happy", "cry"], story: "neh", date: "2022.12.02"),
-        "2023.01.20" : DiaryModel(sticker: ["happy", "cry", "happy", "happy", "happy"], story: "nehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehneh", date: "2023.01.20"),
-        "2023.11.22" : DiaryModel(sticker: ["happy"], story: "", date: "2023.11.22"),
-    ]
+//    let testData = [
+//        "2022.12.02" : DiaryModel(sticker: ["happy", "cry"], story: "neh", date: "2022.12.02"),
+//        "2023.01.20" : DiaryModel(sticker: ["happy", "cry", "happy", "happy", "happy"], story: "nehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehneh", date: "2023.01.20"),
+//        "2023.11.22" : DiaryModel(sticker: ["happy"], story: "", date: "2023.11.22"),
+//    ]
     
     func fetchCalendarData(for date: Date) {
         Firebase.Shared.getDiaryData(date: date)

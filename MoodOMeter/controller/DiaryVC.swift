@@ -13,6 +13,7 @@ class DiaryVC: UIViewController {
     
     @IBOutlet var tableView: UITableView?
     @IBOutlet var dateLabel: UILabel?
+    @IBOutlet var noData: UIView?
     
     let VM = DiaryVM()
     private var cancellables = Set<AnyCancellable>()
@@ -21,6 +22,7 @@ class DiaryVC: UIViewController {
         bind()
         observe()
         setupTableView()
+        setupUI()
     }
     
     private func bind() {
@@ -28,7 +30,8 @@ class DiaryVC: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { data in
                 print("dairyVC - thisMonthData bind")
-                print("\(data)")
+                self.noData?.isHidden = data.count == 0 ? false : true
+                self.tableView?.isHidden = data.count == 0 ? true : false
                 self.tableView?.reloadData()
             }
             .store(in: &cancellables)
@@ -43,12 +46,12 @@ class DiaryVC: UIViewController {
             let year = date.toString(format: "yyyy")
             if year != MainVM.Shared.currentYear {
                 MainVM.Shared.currentYear = year
-//                if !MainVM.Shared.inTheData.contains(year){
-                    MainVM.Shared.fetchCalendarData(for: date)
-//                }
+                //                if !MainVM.Shared.inTheData.contains(year){
+                MainVM.Shared.fetchCalendarData(for: date)
+                //                }
             }
             VM.getThisMonthData(date: date.toString(format: "yyyy.MM"))
-           
+            
         }
         .store(in: &cancellables)
     }
@@ -59,6 +62,15 @@ class DiaryVC: UIViewController {
     
     @IBAction func nextMonthTapped(_ sender: Any) {
         VM.currentDateSubject.send(VM.currentDateSubject.value.addMonth(by: 1) ?? Date())
+    }
+    
+    private func setupUI() {
+        noData?.addShadow(
+            offset: CGSize(width: 0, height: 0),
+            color: UIColor(named: "black")!,
+            radius: 1,
+            opacity: 0.2)
+        noData?.addCornerRadius(radius: 16)
     }
 }
 

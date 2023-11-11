@@ -40,6 +40,10 @@ class MainVC: UIViewController {
         observe()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        currentDateSubject.send(VM.selectedDate?.date ?? Date())
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showWriteDiaryVC" {
             if let VC = segue.destination as? WriteDiaryVC {
