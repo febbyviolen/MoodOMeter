@@ -56,7 +56,7 @@ class CalendarDateView: JTAppleCell {
                 stickerImage.image = UIImage(named: (MainVM.Shared.calendarData[dateString]?.sticker.first)!)
                 stickerImage.isHidden = false
             } else {
-                stickerImage.isHidden = false
+                stickerImage.isHidden = true
             }
         }
     }

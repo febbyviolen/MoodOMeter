@@ -1,0 +1,69 @@
+/*
+  Localizable.strings
+  Moody
+
+  Created by Ebbyy on 2023/07/02.
+*/
+
+"무드오미터" = "Mood-o-meter";
+"오늘 하루도 기록해보세요!" = "Jangan lupa untuk menulis diary hari ini!";
+
+"오늘" = "Hari ini";
+
+"오늘 하루를 기록해보세요" = "Bagaimana harimu?";
+
+"공유" = "Bagikan";
+"삭제" = "Hapus";
+"done.writting" = "Selesai";
+
+"감정 순위" = "Mood-o-Meter";
+"데이터 없음" = "Tidak ada data";
+
+"비밀번호 입력해주세요" = "Silahkan masukkan kata sandi" ;
+
+"Face ID를 사용하여 인증해주세요" = "Otentikasi menggunakan FaceID";
+
+"faceId.localizedAuthenticationFailed" = "Autentikasi Face ID gagal";
+"faceId.localizedMismatch" = "Wajah tidak cocok. Silakan coba lagi.";
+"faceId.localizedFallbackTitle" = "Coba lagi dengan Face ID";
+"faceId.localizedCancelTitle" = "Batal";
+"biometricAuthentication.notAvailable" = "Autentikasi biometrik tidak tersedia";
+"password.wrong" = "Kata sandi salah";
+
+"네" = "Ya";
+"취소" = "Batal";
+"아니요" = "Tidak";
+
+"language.restartInstruction" = "Anda perlu me-restart aplikasi untuk melihat perubahan bahasa";
+"language.restartMessage" = "Apakah Anda ingin me-restart sekarang?";
+"language.restart" = "Restart";
+"language.later" = "Nanti";
+
+"connection.message" = "Terhubung";
+"merge_data_message" = "Akun telah terdaftar dalam aplikasi ini. Apakah Anda ingin menggabungkan data dari login sebelumnya?";
+
+"today.title" = "Hari ini";
+"widget.today.message" = "Menunjukan mood hari ini";
+
+"subscription.title" = "Langganan Premium";
+"buy.premium" = "Langganan premium";
+"retrieve.premium" = "pulihkan pembelian";
+
+"deleteaccount.title" = "Apakah Anda yakin ingin menghapus akun Anda?";
+"deleteaccount.message" = "Jika Anda menghapus akun, Anda tidak akan dapat memulihkan data kembali.";
+
+"실패했습니다" = "Gagal";
+"성공했습니다" = "Sukses";
+
+"review.title" = "Apakah anda menyukai aplikasi kami?";
+"review.subtitle" = "Berikan penilaian untuk membuat aplikasi kami lebih baik";
+
+"변경 사항 저장하시겠습니까?" = "Apakah Anda ingin menyimpan perubahan?";
+"오늘은 어떤 하루였나요?" = "Bagaimana harimu?";
+"저장 완료했습니다" = "Berhasil disimpan";
+"다이어리 삭제하시겠습니까?" = "Apakah Anda yakin ingin menghapus?";
+"삭제된 다이어리는 뒤찾을 수 없어요!" = "Diari yang dihapus tidak bisa dipulihkan";
+
+//Account
+"connectAccount.firstRule" = "계정을 연결하면 데이터가 동기화되고 백업 기능이 제공됨을 이해하였습니다.";
+"connectAccount.secondRule" = "데이터 병합 시 기존 계정의 중복된 항목은 덮어쓰여질 수 있다는 사실을 이해하였습니다.";

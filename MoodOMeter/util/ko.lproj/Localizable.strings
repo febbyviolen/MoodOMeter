@@ -1,0 +1,73 @@
+/*
+  Localizable.strings
+  Moody
+
+  Created by Ebbyy on 2023/07/02.
+  
+*/
+
+"무드오미터" = "무드오미터";
+"오늘 하루도 기록해보세요!" = "오늘 하루도 기록해보세요!";
+
+"오늘" = "오늘";
+
+"오늘 하루를 기록해보세요" = "오늘 하루를 기록해보세요";
+
+"공유" = "공유";
+"삭제" = "삭제";
+"done.writting" = "완료";
+
+"감정 순위" = "감정 순위";
+"데이터 없음" = "데이터 없음";
+
+"비밀번호 입력해주세요" = "비밀번호 입력해주세요" ;
+
+"Face ID를 사용하여 인증해주세요" = "Face ID를 사용하여 인증해주세요.";
+
+"faceId.localizedAuthenticationFailed" = "Face ID 인증 실패";
+"faceId.localizedMismatch" = "얼굴이 일치하지 않습니다. 다시 시도해주세요.";
+"faceId.localizedFallbackTitle" = "Face ID를 다시 시도";
+"faceId.localizedCancelTitle" = "취소";
+"biometricAuthentication.notAvailable" = "생체인증을 사용할 수 없습니다";
+"password.wrong" = "비밀번호가 잘못되었습니다";
+
+
+"네" = "네";
+"취소" = "취소";
+"아니요" = "아니요";
+
+"language.restartInstruction" = "언어 변경을 보려면 앱을 재시작하세요";
+"language.restartMessage" = "지금 재시작하시겠습니까?";
+"language.restart" = "재시작";
+"language.later" = "나중에";
+
+"connection.message" = "연결되었습니다";
+"merge_data_message" = "이 앱에 계정이 등록되어 있습니다. 이전 로그인에서 데이터를 병합하시겠습니까?";
+
+"today.title" = "오늘";
+"widget.today.message" = "오늘의 감정을 확인합니다";
+
+"subscription.title" = "프리미엄 이용권 구매";
+"buy.premium" = "프리미엄 패스 구매";
+"retrieve.premium" = "이전에 구매한 이용권 가져오기";
+
+"deleteaccount.title" = "계정을 삭제하시겠습니까?";
+"deleteaccount.message" = "계정 삭제 진행하시면 정보를 복구할 수 없습니다";
+
+"실패했습니다" = "실패했습니다";
+"성공했습니다" = "성공했습니다";
+
+"review.title" = "저희 앱 마음에 드시나요?";
+"review.subtitle" = "소중한 리뷰 남겨주세요";
+
+
+"변경 사항 저장하시겠습니까?" = "변경 사항 저장하시겠습니까?";
+"취소" = "취소";
+"오늘은 어떤 하루였나요?" = "오늘은 어떤 하루였나요?";
+"저장 완료했습니다" = "저장 완료했습니다";
+"다이어리 삭제하시겠습니까?" = "다이어리 삭제하시겠습니까?";
+"삭제된 다이어리는 뒤찾을 수 없어요!" = "삭제된 다이어리는 복구할 수 없어요!";
+
+//Account
+"connectAccount.firstRule" = "계정을 연결하면 데이터가 동기화되고 백업 기능이 제공됨을 이해하였습니다.";
+"connectAccount.secondRule" = "데이터 병합 시 기존 계정의 중복된 항목은 덮어쓰여질 수 있다는 사실을 이해하였습니다.";

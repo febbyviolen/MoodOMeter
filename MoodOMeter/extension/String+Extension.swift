@@ -12,6 +12,10 @@ extension String {
         Double(self)
     }
     
+    var localised: String {
+        String(format: NSLocalizedString(self, comment: ""))
+    }
+    
     func toDate(format: String) -> Date? {
         let formatter = DateFormatter()
         formatter.dateFormat = format

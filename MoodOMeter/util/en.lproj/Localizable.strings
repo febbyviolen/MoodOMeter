@@ -1,0 +1,68 @@
+/*
+  Localizable.strings
+  Moody
+
+  Created by Ebbyy on 2023/07/02.
+  
+*/
+
+"무드오미터" = "Mood-o-meter";
+"오늘 하루도 기록해보세요!" = "How's your day?";
+
+"오늘" = "Today";
+
+"오늘 하루를 기록해보세요" = "How's your day?";
+"공유" = "Share";
+"삭제" = "Delete";
+"done.writting" = "Done";
+
+"감정 순위" = "Rank";
+"데이터 없음" = "No data";
+
+"비밀번호 입력해주세요" = "Please enter your password";
+"Face ID를 사용하여 인증해주세요" = "Please authenticate using Face ID";
+"faceId.localizedAuthenticationFailed" = "Face ID authentication failed";
+"faceId.localizedMismatch" = "Face does not match. Please try again.";
+"faceId.localizedFallbackTitle" = "Try Face ID again";
+"faceId.localizedCancelTitle" = "Cancel";
+"biometricAuthentication.notAvailable" = "Biometric authentication is not available";
+"password.wrong" = "The password is incorrect";
+
+"네" = "Yes";
+"취소" = "Cancel";
+"아니요" = "No";
+
+"language.restartInstruction" = "You need to restart the app to see the language changes";
+"language.restartMessage" = "Do you want to restart now?";
+"language.restart" = "Restart";
+"language.later" = "Later";
+
+"connection.message" = "Connected";
+"merge_data_message" = "An account has been registered with this app. Do you want to merge data from your previous login?";
+
+
+"today.title" = "Today";
+"widget.today.message" = "Show your today's mood";
+
+"subscription.title" = "Premium Pass";
+"buy.premium" = "Buy Premium Pass";
+"retrieve.premium" = "restore purchase";
+
+"deleteaccount.title" = "Are you sure you want to delete your account?";
+"deleteaccount.message" = "If you proceed, you will not be able to recover your data.";
+
+"실패했습니다" = "Failed";
+"성공했습니다" = "Success";
+
+"review.title" = "Do you love our app?";
+"review.subtitle" = "Please rate our services to make our app better";
+
+"변경 사항 저장하시겠습니까?" = "Do you want to save your changes?";
+"오늘은 어떤 하루였나요?" = "How's your day?";
+"저장 완료했습니다" = "Successfully saved";
+"다이어리 삭제하시겠습니까?" = "Are you sure you want to delete?";
+"삭제된 다이어리는 뒤찾을 수 없어요!" = "Deleted diaries can't be recovered";
+
+//Account
+"connectAccount.firstRule" = "I understood that linking accounts synchronizes data and provides backup capabilities.";
+"connectAccount.secondRule" = "I understand that duplicated items in existing accounts can be overwritten when merging data.";

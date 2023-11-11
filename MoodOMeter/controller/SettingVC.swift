@@ -94,6 +94,10 @@ extension SettingVC {
         performSegue(withIdentifier: "showSubscriptionVC", sender: self)
     }
     
+    @objc private func googleAuth() {
+        performSegue(withIdentifier: "showConnectToSNSVC", sender: self)
+    }
+    
     private func setupUI(){
         buySubscribeBackground.layer.cornerRadius = 10
     }
@@ -170,41 +174,35 @@ extension SettingVC {
     }
 }
 
-//MARK: GOOGLE SETTINGS
-extension SettingVC {
-    @objc private func googleAuth() {
-        performSegue(withIdentifier: "showConnectToSNSVC", sender: self)
-    }
-}
-
 //MARK: DELETE ACCOUNT
 extension SettingVC {
     @objc private func deleteAccount() {
-        let alert = UIAlertController(title: String(format: NSLocalizedString("deleteaccount.title", comment: "")), message: String(format: NSLocalizedString("deleteaccount.message", comment: "")), preferredStyle: .alert)
-
-        let yesaction = UIAlertAction(title: String(format: NSLocalizedString("네", comment: "")), style: .default) { _ in
+        let yesaction = UIAlertAction(title: "네".localised, style: .default) { _ in
             let userr = Auth.auth().currentUser
             userr?.delete { error in
                 if let error = error {
-                    let alert = UIAlertController(title: String(format: NSLocalizedString("실패했습니다", comment: "")), message: "", preferredStyle: .alert)
-                    let action = UIAlertAction(title: String(format: NSLocalizedString("네", comment: "")), style: .default, handler: nil)
-                    alert.addAction(action)
+                    let action = UIAlertAction(
+                        title: "네".localised,
+                        style: .default,
+                        handler: nil)
+                    let alert = UIAlertFactory.buildOneAlert(
+                        title: "실패했습니다".localised,
+                        message: "",
+                        okAction: action)
 
                     self.present(alert, animated: true)
                 } else {
-                    Firebase.Shared.deleteUser(user: userr?.uid ?? "" , date: Date())
-                    self.userdefault.set(nil, forKey: "userID")
-                    self.userdefault.set(nil, forKey: "userEmail")
-                    self.userdefault.set("false", forKey: "premiumPass")
+                    self.VM.deleteUser(user: userr)
                     self.navigationController?.popViewController(animated: true)
                 }
             }
         }
+        let alert = UIAlertFactory.buildYesNoAlert(
+            title: "deleteaccount.title".localised,
+            message: "deleteaccount.message".localised,
+            okAction: yesaction,
+            noAction: UIAlertAction(title: "취소".localised, style: .default))
         
-        let noaction = UIAlertAction(title: String(format: NSLocalizedString("취소", comment: "")), style: .default)
-
-        alert.addAction(noaction)
-        alert.addAction(yesaction)
         self.present(alert, animated: true)
     }
 }
@@ -214,8 +212,8 @@ extension SettingVC {
 extension SettingVC {
     
     @objc private func rateApp() {
-        let alert = UIAlertController(title: String(format: NSLocalizedString("review.title", comment: "")), message: String(format: NSLocalizedString("review.subtitle", comment: "")), preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: String(format: NSLocalizedString("네", comment: "")), style: .default) { _ in
+        let yesAction = UIAlertAction(title: "네".localised, 
+                                      style: .default) { _ in
             self.activityIndicatorView.startAnimating()
             
             if let appStoreURL = URL(string: "https://apps.apple.com/app/id\(self.appStoreID)?action=write-review") {
@@ -223,11 +221,12 @@ extension SettingVC {
             }
             self.activityIndicatorView.stopAnimating()
         }
-        
-        let noAction = UIAlertAction(title: String(format: NSLocalizedString("아니요", comment: "")), style: .default)
-        
-        alert.addAction(yesAction)
-        alert.addAction(noAction)
+        let alert = UIAlertFactory.buildYesNoAlert(
+            title: "review.title".localised, 
+            message: "review.subtitle".localised,
+            okAction: yesAction,
+            noAction: UIAlertAction(title: "아니요".localised,
+                                    style: .default))
        
         self.present(alert, animated: true)
     }

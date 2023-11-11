@@ -68,10 +68,16 @@ class WriteDiaryVC: UIViewController {
                     self.navigationController?.popViewController(animated: true)
                 }
             }
-            let alert = UIAlertFactory.buildYesNoAlert(title: "변경 사항 저장하시겠습니까?",
-                                                       message: "",
-                                                       okAction: okAction,
-                                                       noAction: UIAlertAction(title: "취소", style: .default))
+            
+            let alert = UIAlertFactory.buildYesNoAlert(
+                title: "변경 사항 저장하시겠습니까?".localised,
+                message: "",
+                okAction: okAction,
+                noAction: UIAlertAction(
+                    title: "취소".localised,
+                    style: .default) {_ in
+                self.navigationController?.popViewController(animated: true)})
+            
             present(alert, animated: true)
         }
         else {
@@ -135,13 +141,13 @@ class WriteDiaryVC: UIViewController {
     @IBAction func saveButtonTapped(_ sender: Any) {
         //if there is no new item
         if VM.newDiary?.sticker.count == 0 {
-            if VM.newDiary?.story == "" || VM.newDiary?.story == "오늘은 어떤 하루였나요?" {
+            if VM.newDiary?.story == "" || VM.newDiary?.story == "오늘은 어떤 하루였나요?".localised {
                 Firebase.Shared.deleteDiary(date: MainVM.Shared.selectedDate!.date)
                 
             }
         } else { //save to firebase
             VM.saveToFirebase{
-                let alert = UIAlertFactory.buildOneAlert(title: "저장 완료했습니다", message: "", okAction: UIAlertAction(title: "OK", style: .default))
+                let alert = UIAlertFactory.buildOneAlert(title: "저장 완료했습니다".localised, message: "", okAction: UIAlertAction(title: "OK", style: .default))
                 self.present(alert, animated: true)
             }
         }
@@ -157,21 +163,21 @@ class WriteDiaryVC: UIViewController {
             self.navigationController?.popViewController(animated: true)
         }
         let alert = UIAlertFactory.buildYesNoAlert(
-            title: "다이어리 삭제하시겠습니까?",
-            message: "삭제된 다이어리는 뒤찾을 수 없어요!",
+            title: "다이어리 삭제하시겠습니까?".localised,
+            message: "삭제된 다이어리는 뒤찾을 수 없어요!".localised,
             okAction: okAction,
-            noAction: UIAlertAction(title: "Cancel", style: .default))
+            noAction: UIAlertAction(title: "취소".localised, style: .default))
         present(alert, animated: true)
     }
     
     //=== UI ===
     private func  setupInitData(date: Date, story: String?) {
         dateLabel.text = date.toString(format: "yyyy.MM.dd EEEE")
-        diaryTextField.text = story == "" || story == nil ? "오늘은 어떤 하루였나요?" : story 
+        diaryTextField.text = story == "" || story == nil ? "오늘은 어떤 하루였나요?".localised : story
     }
     
     private func checkDiaryTextUI(_ text: String?) {
-        if text == "오늘은 어떤 하루였나요?" {
+        if text == "오늘은 어떤 하루였나요?".localised {
             diaryTextField.textColor = .lightGray
         }
         else {
@@ -186,7 +192,7 @@ class WriteDiaryVC: UIViewController {
         let addTimeButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "clock"), style: .plain, target: self, action: #selector(addTimeStamp))
         addTimeButton.tintColor = UIColor(named: "black2")
         
-        let doneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(didTapDone))
+        let doneButton = UIBarButtonItem(title: "완료".localised, style: .done, target: self, action: #selector(didTapDone))
         doneButton.tintColor = UIColor(named: "black2")
         
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
@@ -270,13 +276,13 @@ extension WriteDiaryVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
 extension WriteDiaryVC: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "오늘은 어떤 하루였나요?" {textView.text = ""}
+        if textView.text == "오늘은 어떤 하루였나요?".localised {textView.text = ""}
         resetCellStates()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text == "" {textView.text = "오늘은 어떤 하루였나요?"}
-        else if textView.text != "오늘은 어떤 하루였나요?" && textView.text != "" {
+        if textView.text == "" {textView.text = "오늘은 어떤 하루였나요?".localised}
+        else if textView.text != "오늘은 어떤 하루였나요?".localised && textView.text != "" {
             VM.addNewStoryToData(textView.text, date: MainVM.Shared.selectedDate!.date.toString(format: "yyyy.MM.dd"))
         }
         resetCellStates()

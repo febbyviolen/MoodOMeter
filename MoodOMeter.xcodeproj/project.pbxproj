@@ -13,6 +13,7 @@
 		8033B8392AF74BD10032009A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8033B8372AF74BD10032009A /* Main.storyboard */; };
 		8033B83B2AF74BD40032009A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8033B83A2AF74BD40032009A /* Assets.xcassets */; };
 		8033B83E2AF74BD40032009A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8033B83C2AF74BD40032009A /* LaunchScreen.storyboard */; };
+		8058F9B92AFF7F2500868D58 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8058F9BB2AFF7F2500868D58 /* Localizable.strings */; };
 		805D7D982AF777FA00DC8CFC /* CalendarDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D7D972AF777FA00DC8CFC /* CalendarDateView.swift */; };
 		805D7D9B2AF778F100DC8CFC /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D7D9A2AF778F100DC8CFC /* UIView+Extension.swift */; };
 		805D7D9E2AF7796000DC8CFC /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D7D9D2AF7796000DC8CFC /* MainVM.swift */; };
@@ -68,6 +69,9 @@
 		8033B8352AF74BD10032009A /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		8033B83A2AF74BD40032009A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8033B83F2AF74BD40032009A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8058F9BA2AFF7F2500868D58 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8058F9BC2AFF7F2800868D58 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8058F9BD2AFF7F2A00868D58 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		805D7D972AF777FA00DC8CFC /* CalendarDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateView.swift; sourceTree = "<group>"; };
 		805D7D9A2AF778F100DC8CFC /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		805D7D9D2AF7796000DC8CFC /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
@@ -288,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				80BCF6282AFCA77000802B96 /* LanguageManager.swift */,
+				8058F9BB2AFF7F2500868D58 /* Localizable.strings */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -374,6 +379,7 @@
 				80BCF5FB2AFA887200802B96 /* user defaults.md in Resources */,
 				8033B83E2AF74BD40032009A /* LaunchScreen.storyboard in Resources */,
 				8033B83B2AF74BD40032009A /* Assets.xcassets in Resources */,
+				8058F9B92AFF7F2500868D58 /* Localizable.strings in Resources */,
 				80BCF5E62AF8AB6E00802B96 /* DiaryViewCell.xib in Resources */,
 				8033B8392AF74BD10032009A /* Main.storyboard in Resources */,
 				80BCF5FD2AFA8A7000802B96 /* GoogleService-Info.plist in Resources */,
@@ -493,6 +499,16 @@
 				80CE659E2AFE8A39007F4550 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		8058F9BB2AFF7F2500868D58 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8058F9BA2AFF7F2500868D58 /* ko */,
+				8058F9BC2AFF7F2800868D58 /* en */,
+				8058F9BD2AFF7F2A00868D58 /* id */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

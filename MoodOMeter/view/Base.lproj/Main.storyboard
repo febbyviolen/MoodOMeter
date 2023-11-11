@@ -194,12 +194,11 @@
                                     <attributedString key="attributedTitle">
                                         <fragment content="오늘">
                                             <attributes>
-                                                <color key="NSColor" red="0.25490194560000001" green="0.25490194560000001" blue="0.25490194560000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <font key="NSFont" metaFont="system" size="10"/>
-                                                <font key="NSOriginalFont" metaFont="system" size="10"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
+                                    <color key="baseForegroundColor" name="black3"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="todayButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Frw-CA-Du6"/>
@@ -237,7 +236,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addButton" destination="Juk-3K-zLb" id="Oqy-KO-9kE"/>
                         <outlet property="calendar" destination="lKL-3s-dIo" id="rQP-V9-4K2"/>
                         <outlet property="lastMonthButton" destination="k8l-fD-z7P" id="EuH-Ku-D0I"/>
                         <outlet property="monthLabel" destination="qtx-rJ-3gQ" id="U4x-Ql-Gp7"/>
@@ -302,7 +300,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qa9-3d-ueH">
                                 <rect key="frame" x="16" y="170.66666666666666" width="361" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No data to be shown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhc-rm-Egy">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="데이터가 없습니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhc-rm-Egy">
                                         <rect key="frame" x="0.0" y="0.0" width="361" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="yM9-W9-GQ5"/>
@@ -550,7 +548,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cU5-jk-q2w">
                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="50"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No data to be shown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vU9-R5-o0g">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="데이터가 없습니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vU9-R5-o0g">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="uva-K8-y4C"/>
@@ -2343,10 +2341,10 @@
                                 <rect key="frame" x="0.0" y="103" width="414" height="710"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YHe-6f-TG4">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="717"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="742"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ib8-Ap-mZi">
-                                                <rect key="frame" x="15" y="10" width="384" height="707"/>
+                                                <rect key="frame" x="15" y="10" width="384" height="732"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ruh-62-rNc">
                                                         <rect key="frame" x="0.0" y="0.0" width="384" height="85"/>
@@ -2630,7 +2628,7 @@
                                                         <color key="backgroundColor" name="white"/>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iOy-5E-7Lx">
-                                                        <rect key="frame" x="0.0" y="561" width="384" height="146"/>
+                                                        <rect key="frame" x="0.0" y="561" width="384" height="171"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="진행하기 전에 다음 내용을 체크해주세요:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hC8-xW-c6P">
                                                                 <rect key="frame" x="0.0" y="0.0" width="384" height="15.666666666666666"/>
@@ -2658,6 +2656,7 @@
                                                                                             </attributes>
                                                                                         </fragment>
                                                                                     </attributedString>
+                                                                                    <color key="baseForegroundColor" name="black3"/>
                                                                                 </buttonConfiguration>
                                                                                 <connections>
                                                                                     <action selector="firstRuleButton:" destination="Nzj-NL-5mh" eventType="touchUpInside" id="d7x-xE-2Jy"/>
@@ -2681,6 +2680,7 @@
                                                                                             </attributes>
                                                                                         </fragment>
                                                                                     </attributedString>
+                                                                                    <color key="baseForegroundColor" name="black3"/>
                                                                                 </buttonConfiguration>
                                                                                 <connections>
                                                                                     <action selector="secondRuleButton:" destination="Nzj-NL-5mh" eventType="touchUpInside" id="Gqs-NF-hSH"/>
@@ -2691,10 +2691,10 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="위의 항목에 체크하여 본인이 약관에 동의한 것으로 간주됩니다." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5I-Dp-iP0">
-                                                                <rect key="frame" x="0.0" y="121" width="384" height="25"/>
+                                                                <rect key="frame" x="0.0" y="121" width="384" height="50"/>
                                                                 <color key="tintColor" name="black"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="25" id="5H0-wy-Z8Z"/>
+                                                                    <constraint firstAttribute="height" constant="50" id="5H0-wy-Z8Z"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                 <nil key="textColor"/>
@@ -2741,9 +2741,15 @@
                                                 <color key="tintColor" name="white"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="연결 시작하기"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="btn_apple" imagePlacement="trailing" title=" " imagePadding="50" titleAlignment="trailing">
+                                                <buttonConfiguration key="configuration" style="plain" image="btn_apple" imagePlacement="trailing" imagePadding="50" titleAlignment="trailing">
                                                     <backgroundConfiguration key="background"/>
-                                                    <fontDescription key="titleFontDescription" name="omyu_pretty" family="omyu pretty" pointSize="20"/>
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content=" ">
+                                                            <attributes>
+                                                                <font key="NSFont" metaFont="system" size="20"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
                                                     <directionalEdgeInsets key="contentInsets" top="0.0" leading="50" bottom="0.0" trailing="0.0"/>
                                                 </buttonConfiguration>
                                                 <connections>
@@ -2758,9 +2764,15 @@
                                                 <fontDescription key="fontDescription" name="omyu_pretty" family="omyu pretty" pointSize="20"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="연결 시작하기"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="btn_google" imagePlacement="leading" title=" " imagePadding="50" titleAlignment="leading">
+                                                <buttonConfiguration key="configuration" style="plain" image="btn_google" imagePlacement="leading" imagePadding="50" titleAlignment="leading">
                                                     <backgroundConfiguration key="background"/>
-                                                    <fontDescription key="titleFontDescription" name="omyu_pretty" family="omyu pretty" pointSize="20"/>
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content=" ">
+                                                            <attributes>
+                                                                <font key="NSFont" metaFont="system" size="20"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
                                                     <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="50"/>
                                                 </buttonConfiguration>
                                                 <connections>
@@ -3078,14 +3090,8 @@
                                         <rect key="frame" x="0.0" y="60.000000000000007" width="384" height="28.333333333333336"/>
                                         <color key="tintColor" systemColor="systemGrayColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain">
-                                            <attributedString key="attributedTitle">
-                                                <fragment content="이전에 구매한 이용권 가져오기">
-                                                    <attributes>
-                                                        <font key="NSFont" metaFont="cellTitle"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
+                                        <buttonConfiguration key="configuration" style="plain" title="이전에 구매한 이용권 가져오기">
+                                            <fontDescription key="titleFontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="retrieveButton:" destination="fT2-02-hKw" eventType="touchUpInside" id="mLk-Iw-h8V"/>
@@ -3136,7 +3142,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Kio-fT-9tX"/>
-        <segue reference="yR0-bm-2Kt"/>
+        <segue reference="JyW-XD-oyy"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Setting" width="25" height="25"/>
@@ -3189,7 +3195,7 @@
             <color red="0.51800000667572021" green="0.49399998784065247" blue="0.61599999666213989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="soft">
-            <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.58399999141693115" green="0.55299997329711914" blue="0.64300000667572021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="white">
             <color red="0.98039215686274506" green="0.97647058823529409" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

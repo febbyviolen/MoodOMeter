@@ -17,7 +17,7 @@ class MainVC: UIViewController {
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var nextMonthButton: UIButton!
     @IBOutlet weak var lastMonthButton: UIButton!
-    @IBOutlet weak var addButton: UIButton?
+//    @IBOutlet weak var addButton: UIButton?
     @IBOutlet weak var calendar: JTAppleCalendarView!
     
     private var cancellables = Set<AnyCancellable>()
@@ -36,6 +36,7 @@ class MainVC: UIViewController {
         VM.checkInterruptedReceipt()
         
         currentDateSubject.send(VM.selectedDate?.date ?? Date())
+        setupUI()
         calendarSetup()
         bind()
         observe()
@@ -132,6 +133,13 @@ class MainVC: UIViewController {
     
     @IBAction func nextMonthTapped(_ sender: Any) {
         currentDateSubject.send(currentDateSubject.value.addMonth(by: 1) ?? Date())
+    }
+    
+    private func setupUI() {
+        let str = NSAttributedString(string: "오늘".localised, attributes: [
+            .font: UIFont.systemFont(ofSize: 10)
+        ])
+        todayButton.setAttributedTitle(str, for: .normal)
     }
 
 }

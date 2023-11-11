@@ -128,9 +128,13 @@ class SubscriptionVC: UIViewController, SKPaymentTransactionObserver, SKProducts
                     print("failed")
                     self.VM.purchased = "false"
                     
-                    let alert = UIAlertController(title: String(format: NSLocalizedString("실패했습니다", comment: "")), message: "", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: String(NSLocalizedString("네", comment: "")), style: .default, handler: nil)
-                    alert.addAction(okAction)
+                    let alert = UIAlertFactory.buildOneAlert(
+                        title: "실패했습니다".localised, 
+                        message: "",
+                        okAction: UIAlertAction(title: "네".localised,
+                                                style: .default,
+                                                handler: nil))
+                  
                     present(alert, animated: true)
                     
                     queue.finishTransaction($0)

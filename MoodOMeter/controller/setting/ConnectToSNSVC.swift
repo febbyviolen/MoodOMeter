@@ -63,7 +63,7 @@ class ConnectToSNSVC: UIViewController, UIGestureRecognizerDelegate {
                     stackView1.isHidden = true
                     stackView2.isHidden = true
                     stackView3.isHidden = true
-                    label1.text = String(format: NSLocalizedString("connection.message", comment: ""))
+                    label1.text = "connection.message".localised
                     label1.textAlignment = .center
                     
                     unconnectButton.layer.cornerRadius = 10
@@ -159,30 +159,8 @@ class ConnectToSNSVC: UIViewController, UIGestureRecognizerDelegate {
                     self.activityIndicatorView.stopAnimating()
                     if str != "false" {
                         // Create a new UIAlertController
-                        let alertController = UIAlertController(title: "", message: String(format: NSLocalizedString("merge_data_message", comment: "")), preferredStyle: .alert)
+                        self.userExistedAlert(uid: uid, userEmail: user.profile?.email)
                         
-                        // Add actions
-                        let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
-                            self.VM.transferUserData(merge: true, uid: uid, userEmail: user.profile?.email) {
-                                self.navigationController?.popViewController(animated: true)
-                            }
-                        }
-                        
-                        yesAction.setValue(UIColor(named: "black"), forKey: "titleTextColor")
-                        
-                        let noAction = UIAlertAction(title: "No", style: .default) { _ in
-                            self.VM.transferUserData(merge: false, uid: uid, userEmail: user.profile?.email) {
-                                self.navigationController?.popViewController(animated: true)
-                            }
-                        }
-                        
-                        noAction.setValue(UIColor(named: "black"), forKey: "titleTextColor")
-                        
-                        alertController.addAction(noAction)
-                        alertController.addAction(yesAction)
-                        
-                        // Present the alert controller
-                        self.present(alertController, animated: true, completion: nil)
                     } else {
                         //if there is no google account exists
                         self.VM.transferUserData(merge: false, uid: uid, userEmail: user.profile?.email) {
@@ -238,30 +216,8 @@ extension ConnectToSNSVC: ASAuthorizationControllerDelegate {
                 self.activityIndicatorView.stopAnimating()
                 if str != "false" {
                     // Create a new UIAlertController
-                    let alertController = UIAlertController(title: "", message: String(format: NSLocalizedString("merge_data_message", comment: "")), preferredStyle: .alert)
-
-                    // Add actions
-                    let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
-                        self.VM.transferUserData(merge: true, uid: uid, userEmail: credentials.email ?? credentials.fullName?.givenName ?? "apple") {
-                            self.navigationController?.popViewController(animated: true)
-                        }
-                    }
+                    self.userExistedAlert(uid: uid, userEmail: credentials.email ?? credentials.fullName?.givenName ?? "apple")
                     
-                    yesAction.setValue(UIColor(named: "black"), forKey: "titleTextColor")
-                    
-                    let noAction = UIAlertAction(title: "No", style: .default) { _ in
-                        self.VM.transferUserData(merge: false, uid: uid, userEmail: credentials.email ?? credentials.fullName?.givenName ?? "apple") {
-                            self.navigationController?.popViewController(animated: true)
-                        }
-                    }
-                    
-                    noAction.setValue(UIColor(named: "black"), forKey: "titleTextColor")
-                    
-                    alertController.addAction(noAction)
-                    alertController.addAction(yesAction)
-
-                    // Present the alert controller
-                    self.present(alertController, animated: true, completion: nil)
                 } else {
                     //if there is no google account exists
                     self.VM.transferUserData(merge: false, uid: uid, userEmail: credentials.email ?? credentials.fullName?.givenName ?? "apple") {
@@ -287,6 +243,28 @@ extension ConnectToSNSVC: ASAuthorizationControllerPresentationContextProviding 
 }
 
 extension ConnectToSNSVC {
+    private func userExistedAlert(uid: String, userEmail: String?){
+        let yesAction = UIAlertAction(title: "네".localised, style: .default) { _ in
+            self.VM.transferUserData(merge: true, uid: uid, userEmail: userEmail) {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+        
+        let noAction = UIAlertAction(title: "No", style: .default) { _ in
+            self.VM.transferUserData(merge: false, uid: uid, userEmail: userEmail) {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+        
+        let alert = UIAlertFactory.buildYesNoAlert(
+            title: "merge_data_message".localised,
+            message: "",
+            okAction: yesAction,
+            noAction: noAction)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     private func setupUI() {
         stackView1.layer.backgroundColor = UIColor.white.cgColor
         stackView1.addShadow(offset: CGSize(width: 0, height: 0),
@@ -306,7 +284,15 @@ extension ConnectToSNSVC {
         
         
         unconnectButton.isHidden = true
+        let str = NSAttributedString(string: "connectAccount.firstRule".localised, attributes: [
+            .font: UIFont.systemFont(ofSize: 12)
+        ])
+        let str2 = NSAttributedString(string: "connectAccount.secondRule".localised, attributes: [
+            .font: UIFont.systemFont(ofSize: 12)
+        ])
         
+        firstRuleButton.setAttributedTitle(str, for: .normal)
+        secondRuleButton.setAttributedTitle(str, for: .normal)
         self.view.addSubview(activityIndicatorView)
     }
 }

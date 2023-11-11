@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import FirebaseAuth
 
 class SettingVM {
     
@@ -102,5 +103,13 @@ class SettingVM {
                 }
             }
         }
+    }
+    
+    // === delete user ===
+    func deleteUser(user: User?) {
+        Firebase.Shared.deleteUser(user: user?.uid ?? "" , date: Date())
+        self.userdefault.set(nil, forKey: "userID")
+        self.userdefault.set(nil, forKey: "userEmail")
+        self.userdefault.set("false", forKey: "premiumPass")
     }
 }

@@ -127,7 +127,7 @@ class PasswordPadVC: UIViewController, UIGestureRecognizerDelegate {
 
 extension PasswordPadVC {
     private func setupUI() {
-        titleLabel.text = String(format: NSLocalizedString("비밀번호 입력해주세요", comment: ""))
+        titleLabel.text = "비밀번호 입력해주세요".localised
     }
     
     private func passUI() {
@@ -187,7 +187,7 @@ extension PasswordPadVC {
             } else {
                 password = ""
                 passUI()
-                titleLabel.text = String(format: NSLocalizedString("password.wrong", comment: ""))
+                titleLabel.text = "password.wrong".localised
             }
         }
     }
@@ -200,71 +200,29 @@ extension PasswordPadVC {
 
             // Check if Face ID is available on the device
             if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-                let reason = String(format: NSLocalizedString("Face ID를 사용하여 인증해주세요", comment: ""))
+                let reason = "Face ID를 사용하여 인증해주세요".localised
 
-                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, error in
+                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, 
+                                       localizedReason: reason) { success, error in
                     DispatchQueue.main.async {
                         guard success, error == nil else {
                             // Face ID authentication failed
 //
                             if self.authMethod == "bio" {
-                                let alertController = UIAlertController(
-                                    title: String(format: NSLocalizedString("faceId.localizedAuthenticationFailed", comment: "")),
-                                    message: String(format: NSLocalizedString("faceId.localizedMismatch", comment: "")),
-                                    preferredStyle: .alert)
-
-                                let tryAgainAction = UIAlertAction(
-                                    title: String(format: NSLocalizedString("faceId.localizedFallbackTitle", comment: "")),
-                                    style: .default
-                                ) { _ in
-                                    self.authenticateWithFaceID() // Retry Face ID authentication
-                                }
-                                alertController.addAction(tryAgainAction)
-
-                                self.present(alertController, animated: true, completion: nil)
+                                self.bioAuthFailAlert()
                             }
                             
                             // if password is also registered as auth
                             if self.userdefaults.string(forKey: "password") != nil {
-                                let alertController = UIAlertController(
-                                    title: String(format: NSLocalizedString("faceId.localizedAuthenticationFailed", comment: "")),
-                                    message: String(format: NSLocalizedString("faceId.localizedMismatch", comment: "")),
-                                    preferredStyle: .alert)
-                                
-                                let tryAgainAction = UIAlertAction(
-                                    title: String(format: NSLocalizedString("faceId.localizedFallbackTitle", comment: "")),
-                                    style: .default
-                                ) { _ in
-                                    self.authenticateWithFaceID() // Retry Face ID authentication
-                                }
-                                
-                                alertController.addAction(tryAgainAction)
-                                
-                                let cancelAction = UIAlertAction(title: String(format: NSLocalizedString("faceId.localizedCancelTitle", comment: "")),
-                                                                 style: .cancel,
-                                                                 handler: nil)
-                                alertController.addAction(cancelAction)
-                                self.present(alertController, animated: true, completion: nil)
+                                self.passwordFailAlert()
                                 
                             } else { //if bioAuth is the only registered auth
-                                let alertController = UIAlertController(
-                                    title: String(format: NSLocalizedString("faceId.localizedAuthenticationFailed", comment: "")),
-                                    message: String(format: NSLocalizedString("faceId.localizedMismatch", comment: "")),
-                                    preferredStyle: .alert)
-                                
-                                let tryAgainAction = UIAlertAction(title: String(format: NSLocalizedString("faceId.localizedFallbackTitle", comment: "")),
-                                                                   style: .default
-                                ) { _ in
-                                    self.authenticateWithFaceID() // Retry Face ID authentication
-                                }
-                                alertController.addAction(tryAgainAction)
-                                
-                                self.present(alertController, animated: true, completion: nil)
+                                self.bioAuthFailAlert()
                             }
                             return
                         }
-
-                        // Face ID authentication succeeded
+                        
+                        // Face ID authentication SUCCESSED
                         if self.authMethod == "bio" {
                             self.userdefaults.set("true", forKey: "bioPassword")
                         } else {
@@ -278,6 +236,43 @@ extension PasswordPadVC {
                 // Handle the error accordingly
             }
         }
+    }
+    
+    func bioAuthFailAlert() {
+        let tryAgainAction = UIAlertAction(
+            title: "faceId.localizedFallbackTitle".localised,
+            style: .default
+        ) { _ in
+            self.authenticateWithFaceID() // Retry Face ID authentication
+        }
+        let alert = UIAlertFactory.buildOneAlert(
+            title: "faceId.localizedAuthenticationFailed".localised,
+            message: "faceId.localizedMismatch".localised,
+            okAction: tryAgainAction)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func passwordFailAlert() {
+        let tryAgainAction = UIAlertAction(
+            title: "faceId.localizedFallbackTitle".localised,
+            style: .default
+        ) { _ in
+            self.authenticateWithFaceID() // Retry Face ID authentication
+        }
+        
+        let cancelAction = UIAlertAction(
+            title: "faceId.localizedCancelTitle".localised,
+            style: .cancel,
+            handler: nil)
+        
+        let alert = UIAlertFactory.buildYesNoAlert(
+            title: "faceId.localizedAuthenticationFailed".localised,
+            message: "faceId.localizedMismatch".localised,
+            okAction: tryAgainAction,
+            noAction: cancelAction)
+      
+        self.present(alert, animated: true, completion: nil)
     }
 
 

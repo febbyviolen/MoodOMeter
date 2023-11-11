@@ -57,7 +57,7 @@
 "CT1-ap-lep.text" = "Securely back up your valuable data to your account so you can recover in the event of device loss, damage, or app reinstallation.";
 
 /* Class = "UILabel"; text = "알림 시간"; ObjectID = "CmP-Fo-MkB"; */
-"CmP-Fo-MkB.text" = "Notification time";
+"CmP-Fo-MkB.text" = "Notification Time";
 
 /* Class = "UIButton"; configuration.title = "7"; ObjectID = "Dzo-Wq-ay0"; */
 "Dzo-Wq-ay0.configuration.title" = "7";
@@ -78,7 +78,7 @@
 "GDa-2Z-F1f.text" = "If you already have an account, you can merge it with your current in app data. If the data is duplicated, the data in our app takes precedence.";
 
 /* Class = "UILabel"; text = "프리미엄 이용권 구매 "; ObjectID = "Gb2-Ch-Lqp"; */
-"Gb2-Ch-Lqp.text" = "Purchase Premium Pass";
+"Gb2-Ch-Lqp.text" = "Premium Pass";
 
 /* Class = "UILabel"; text = "프리미엄 구독을 구매한 후 이용 가능합니다."; ObjectID = "HAe-YT-xrO"; */
 "HAe-YT-xrO.text" = "Available after premium subscription.";
@@ -99,7 +99,8 @@
 "Jgr-Wf-WQl.configuration.title" = "Today";
 
 /* Class = "UIButton"; normalTitle = " "; ObjectID = "Jgr-Wf-WQl"; */
-"Jgr-Wf-WQl.normalTitle" = " ";
+"Jgr-Wf-WQl.normalTitle" = "Today";
+"Jgr-Wf-WQl.normalTitle" = "Today";
 
 /* Class = "UILabel"; text = "데이터 동기화"; ObjectID = "Jop-Z4-EsQ"; */
 "Jop-Z4-EsQ.text" = "Data Synchronization";
@@ -123,7 +124,7 @@
 "LmO-8B-IPY.text" = "with more various stickers";
 
 /* Class = "UINavigationItem"; title = "화면 잠금"; ObjectID = "MRz-nW-Xqs"; */
-"MRz-nW-Xqs.title" = "Screen lock";
+"MRz-nW-Xqs.title" = "Lock Screen";
 
 /* Class = "UILabel"; text = "1"; ObjectID = "MwB-wu-ug5"; */
 "MwB-wu-ug5.text" = "1";
@@ -174,7 +175,7 @@
 "TJr-o1-wIG.title" = "Item";
 
 /* Class = "UILabel"; text = "비밀번호 변경"; ObjectID = "TM4-wj-8db"; */
-"TM4-wj-8db.text" = "Change passcode";
+"TM4-wj-8db.text" = "Change Passcode";
 
 /* Class = "UILabel"; text = "1"; ObjectID = "TWV-6C-OTv"; */
 "TWV-6C-OTv.text" = "1";
@@ -189,7 +190,7 @@
 "UO9-Qj-pMm.normalTitle" = " ";
 
 /* Class = "UILabel"; text = "계정 삭제 "; ObjectID = "UqV-xd-nDU"; */
-"UqV-xd-nDU.text" = "Delete account";
+"UqV-xd-nDU.text" = "Delete Account";
 
 /* Class = "UISegmentedControl"; Uvl-0l-777.segmentTitles[0] = "기분"; ObjectID = "Uvl-0l-777"; */
 "Uvl-0l-777.segmentTitles[0]" = "Mood";
@@ -261,7 +262,7 @@
 "dNh-zW-3Jb.text" = "Precautions";
 
 /* Class = "UILabel"; text = "화면 잠금"; ObjectID = "dV8-ZT-JMj"; */
-"dV8-ZT-JMj.text" = "Lock screen";
+"dV8-ZT-JMj.text" = "Lock Screen";
 
 /* Class = "UIButton"; configuration.title = " "; ObjectID = "dxB-z5-51V"; */
 "dxB-z5-51V.configuration.title" = " ";
@@ -273,16 +274,16 @@
 "eKd-9D-2Uh.text" = "3";
 
 /* Class = "UILabel"; text = "비밀번호"; ObjectID = "f1L-6s-SfA"; */
-"f1L-6s-SfA.text" = "Lock screen";
+"f1L-6s-SfA.text" = "Lock Screen";
 
 /* Class = "UILabel"; text = "1"; ObjectID = "fQS-XO-taV"; */
 "fQS-XO-taV.text" = "1";
 
 /* Class = "UIButton"; configuration.title = "데이터 병합 시 기존 계정의 중복된 항목은 덮어쓰여질 수 있다는 사실을 이해하였습니다."; ObjectID = "feK-hF-nJ7"; */
-"feK-hF-nJ7.configuration.title" = "I understand that duplicated items in existing accounts can be overwritten when merging data.";
+//"feK-hF-nJ7.configuration.title" = "I understand that duplicated items in existing accounts can be overwritten when merging data.";
 
 /* Class = "UIButton"; normalTitle = " "; ObjectID = "feK-hF-nJ7"; */
-"feK-hF-nJ7.normalTitle" = " ";
+"feK-hF-nJ7.normalTitle" = "I understand that duplicated items in existing accounts can be overwritten when merging data.";
 
 /* Class = "UILabel"; text = "데이터 백업"; ObjectID = "gGg-oz-24q"; */
 "gGg-oz-24q.text" = "Data Backup";
@@ -300,13 +301,13 @@
 "hkp-NK-nKy.text" = "Connect Account";
 
 /* Class = "UILabel"; text = "생체인증"; ObjectID = "hmE-RS-3EQ"; */
-"hmE-RS-3EQ.text" = "Biometric authentication";
+"hmE-RS-3EQ.text" = "Biometric Authentication";
 
 /* Class = "UIButton"; configuration.title = "계정을 연결하면 데이터가 동기화되고 백업 기능이 제공됨을 이해하였습니다."; ObjectID = "iJw-IF-dQK"; */
 "iJw-IF-dQK.configuration.title" = "I understood that linking accounts synchronizes data and provides backup capabilities.";
 
 /* Class = "UIButton"; normalTitle = " "; ObjectID = "iJw-IF-dQK"; */
-"iJw-IF-dQK.normalTitle" = " ";
+"iJw-IF-dQK.normalTitle" = "I understood that linking accounts synchronizes data and provides backup capabilities.";
 
 /* Class = "UIButton"; configuration.title = "연결 해제"; ObjectID = "iaA-tJ-1uO"; */
 "iaA-tJ-1uO.configuration.title" = "Disconnect account";
@@ -406,3 +407,10 @@
 
 /* Class = "UILabel"; text = "더 많은 기능을 기대해주세요!"; ObjectID = "yrH-lS-W5d"; */
 "yrH-lS-W5d.text" = "Please look forward to more features!";
+
+//Report VC
+"jhc-rm-Egy.text" = "No data to be shown";
+
+
+//Main VC
+

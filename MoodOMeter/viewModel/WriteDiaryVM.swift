@@ -25,7 +25,7 @@ class WriteDiaryVM {
     func addNewStoryToData(_ new: String?, date: String) {
         print("WriteDiaryVM - story added to newDiary")
         if new != "" &&
-            new != "오늘은 어떤 하루였나요?" &&
+            new != "오늘은 어떤 하루였나요?".localised &&
             new != nil {
             if newDiary != nil {
                 newDiary?.story = new!
@@ -38,7 +38,7 @@ class WriteDiaryVM {
     func saveToFirebase(completion: @escaping () -> Void) {
         var newStory: String?
         if let story = newDiary?.story,
-           story != "오늘은 어떤 하루였나요?" {
+           story != "오늘은 어떤 하루였나요?".localised {
             newStory = story
         }
         Firebase.Shared.addDiary(date: MainVM.Shared.selectedDate!.date, sticker: newDiary?.sticker ?? [], story: newStory ?? "") {

@@ -43,7 +43,7 @@ class DiaryVM {
     
     func getAndTransformData(_ dict: [String: DiaryModel]) {
         print("dairyVM - get and transform data")
-        let dataArr = dict.map{$0.value}.sorted(by: {$0.date < $1.date})
+        let dataArr = dict.map{$0.value}.sorted(by: {$0.date > $1.date})
         diaryData = dataArr
     }
     
