@@ -319,7 +319,7 @@
 "ivj-R9-BPs.configuration.title" = "Purchase Premium pass";
 
 /* Class = "UIButton"; normalTitle = "연결 시작하기"; ObjectID = "ivj-R9-BPs"; */
-"ivj-R9-BPs.normalTitle" = "Start connection";
+"ivj-R9-BPs.normalTitle" = "Purchase Premium pass";
 
 /* Class = "UILabel"; text = "더 다양한 스티커로"; ObjectID = "k4X-Dh-XfI"; */
 "k4X-Dh-XfI.text" = "Record your day";

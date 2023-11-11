@@ -3090,8 +3090,14 @@
                                         <rect key="frame" x="0.0" y="60.000000000000007" width="384" height="28.333333333333336"/>
                                         <color key="tintColor" systemColor="systemGrayColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="이전에 구매한 이용권 가져오기">
-                                            <fontDescription key="titleFontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="이전에 구매한 이용권 가져오기">
+                                                    <attributes>
+                                                        <font key="NSFont" metaFont="cellTitle"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="retrieveButton:" destination="fT2-02-hKw" eventType="touchUpInside" id="mLk-Iw-h8V"/>
