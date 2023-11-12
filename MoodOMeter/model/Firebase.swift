@@ -17,8 +17,7 @@ class Firebase {
     let userDefault = UserDefaults.standard
     
     var userID: String {
-        //        return userDefault.string(forKey: "userID") ?? ""
-        return "pnRPQP5emOZX225drvaILvrmh7R2"
+        return userDefault.string(forKey: "userID") ?? ""
     }
     
     var userDocRef: DocumentReference {
