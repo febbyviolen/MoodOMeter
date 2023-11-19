@@ -48,11 +48,24 @@ class WriteDiaryVM {
             MainVM.Shared.selectedDate?.data = DiaryModel(sticker: self.newDiary?.sticker ?? [], story: newStory ?? "", date: MainVM.Shared.selectedDate!.date.toString(format: "yyyy.MM.dd"))
             
             print("Selected date is updated - : \(MainVM.Shared.selectedDate)")
-            UserDefaults(suiteName: "group.febby.moody.widgetcache")?.set(self.newDiary?.sticker.last, forKey: "img")
-            UserDefaults(suiteName: "group.febby.moody.widgetcache")?.set(MainVM.Shared.selectedDate!.date, forKey: "date")
-            WidgetCenter.shared.reloadTimelines(ofKind: "DayWidget")
+            
+            if MainVM.Shared.selectedDate!.date == Date() {
+                UserDefaults(suiteName: "group.febby.moody.widgetcache")?.set(self.newDiary?.sticker.last, forKey: "img")
+                UserDefaults(suiteName: "group.febby.moody.widgetcache")?.set(MainVM.Shared.selectedDate!.date, forKey: "date")
+                WidgetCenter.shared.reloadTimelines(ofKind: "DayWidget")
+            }
             
             completion()
+        }
+    }
+    
+    func deleteFromFirebase() {
+        Firebase.Shared.deleteDiary(date: MainVM.Shared.selectedDate!.date)
+        UserDefaults(suiteName: "group.febby.moody.widgetcache")?.set("", forKey: "img")
+        UserDefaults(suiteName: "group.febby.moody.widgetcache")?.set(MainVM.Shared.selectedDate!.date, forKey: "date")
+        
+        if MainVM.Shared.selectedDate!.date == Date() {
+            WidgetCenter.shared.reloadTimelines(ofKind: "DayWidget")
         }
     }
 }

@@ -151,12 +151,10 @@ class WriteDiaryVC: UIViewController {
         }
     }
     
-
-    
     @IBAction func deleteButtonTapped(_ sender: Any) {
         //delete on firebase
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-            Firebase.Shared.deleteDiary(date: MainVM.Shared.selectedDate!.date)
+            self.VM.deleteFromFirebase()
             MainVM.Shared.selectedDate = (Date(), nil)
             self.navigationController?.popViewController(animated: true)
         }
