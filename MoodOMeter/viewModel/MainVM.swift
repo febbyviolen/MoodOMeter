@@ -63,6 +63,7 @@ class MainVM {
             Firebase.Shared.getSubscriptionInfo()
             self.fetchCalendarData(for: Date())
         } else {
+            //익명
             Firebase.Shared.anonymSign {
                 print("new user sign in")
                 self.fetchCalendarData(for: Date())

@@ -34,6 +34,8 @@
 		805D7DAA2AF77B3000DC8CFC /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D7DA92AF77B2F00DC8CFC /* Firebase.swift */; };
 		805D7DAC2AF77C5700DC8CFC /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D7DAB2AF77C5700DC8CFC /* String+Extension.swift */; };
 		805D7DAE2AF77D3500DC8CFC /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D7DAD2AF77D3500DC8CFC /* Date+Extension.swift */; };
+		8067CF992B0A10EC00A2CE68 /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8067CF972B0A0F4200A2CE68 /* DataServices.swift */; };
+		8067CF9A2B0A1CC100A2CE68 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D7DAD2AF77D3500DC8CFC /* Date+Extension.swift */; };
 		80BCF5E52AF8AB6E00802B96 /* DiaryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF5E32AF8AB6E00802B96 /* DiaryViewCell.swift */; };
 		80BCF5E62AF8AB6E00802B96 /* DiaryViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80BCF5E42AF8AB6E00802B96 /* DiaryViewCell.xib */; };
 		80BCF5E82AF8B0AC00802B96 /* DiaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF5E72AF8B0AC00802B96 /* DiaryVC.swift */; };
@@ -126,6 +128,8 @@
 		805D7DA92AF77B2F00DC8CFC /* Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 		805D7DAB2AF77C5700DC8CFC /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		805D7DAD2AF77D3500DC8CFC /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		8067CF962B0A0B0400A2CE68 /* DayWidgetExtensionRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DayWidgetExtensionRelease.entitlements; sourceTree = "<group>"; };
+		8067CF972B0A0F4200A2CE68 /* DataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
 		80BCF5E32AF8AB6E00802B96 /* DiaryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewCell.swift; sourceTree = "<group>"; };
 		80BCF5E42AF8AB6E00802B96 /* DiaryViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiaryViewCell.xib; sourceTree = "<group>"; };
 		80BCF5E72AF8B0AC00802B96 /* DiaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryVC.swift; sourceTree = "<group>"; };
@@ -202,6 +206,7 @@
 		8033B8252AF74BD10032009A = {
 			isa = PBXGroup;
 			children = (
+				8067CF962B0A0B0400A2CE68 /* DayWidgetExtensionRelease.entitlements */,
 				8033B8302AF74BD10032009A /* MoodOMeter */,
 				8058F9C72AFFCC5F00868D58 /* DayWidget */,
 				8033B82F2AF74BD10032009A /* Products */,
@@ -246,6 +251,7 @@
 			children = (
 				8058F9C82AFFCC5F00868D58 /* DayWidgetBundle.swift */,
 				8058F9CA2AFFCC5F00868D58 /* DayWidget.swift */,
+				8067CF972B0A0F4200A2CE68 /* DataServices.swift */,
 				8058F9D62AFFCDAF00868D58 /* DayWidget.intentdefinition */,
 				8058F9CC2AFFCC6200868D58 /* Assets.xcassets */,
 				8058F9CE2AFFCC6200868D58 /* Info.plist */,
@@ -583,9 +589,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8067CF9A2B0A1CC100A2CE68 /* Date+Extension.swift in Sources */,
 				8058F9D82AFFCDB000868D58 /* DayWidget.intentdefinition in Sources */,
 				8058F9CB2AFFCC5F00868D58 /* DayWidget.swift in Sources */,
 				8058F9C92AFFCC5F00868D58 /* DayWidgetBundle.swift in Sources */,
+				8067CF992B0A10EC00A2CE68 /* DataServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -864,6 +872,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = DayWidgetExtensionRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HK9U3ZG9M5;

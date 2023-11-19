@@ -74,7 +74,6 @@ class MainVC: UIViewController {
                 }
             }
             .store(in: &cancellables)
-        
     }
     
     private func observe() {

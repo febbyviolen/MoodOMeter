@@ -16,3 +16,5 @@
 - needSendToServer : when in the middle of saving purchaseId to server get interrupted, the value is still true
 
 - reviewTime : how many times the review pop up is called this year
+
+- img: today's last mood, sharing data between the app and widget

@@ -63,7 +63,7 @@
                                                             <attributedString key="attributedTitle">
                                                                 <fragment content=" ">
                                                                     <attributes>
-                                                                        <font key="NSFont" metaFont="toolTip"/>
+                                                                        <font key="NSFont" usesAppearanceFont="YES"/>
                                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                     </attributes>
                                                                 </fragment>
@@ -88,7 +88,7 @@
                                                             <attributedString key="attributedTitle">
                                                                 <fragment content=" ">
                                                                     <attributes>
-                                                                        <font key="NSFont" metaFont="toolTip"/>
+                                                                        <font key="NSFont" usesAppearanceFont="YES"/>
                                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                     </attributes>
                                                                 </fragment>
@@ -1133,6 +1133,7 @@
                             <constraint firstItem="02J-Zl-vsC" firstAttribute="centerX" secondItem="S2Q-bg-gk9" secondAttribute="centerX" id="Km0-Wf-Qil"/>
                             <constraint firstItem="02J-Zl-vsC" firstAttribute="top" secondItem="2Zt-Gx-Xul" secondAttribute="top" id="PUb-Ta-t7c"/>
                             <constraint firstItem="BlO-IU-ABe" firstAttribute="bottom" secondItem="2Zt-Gx-Xul" secondAttribute="bottom" id="SjO-Sv-BRO"/>
+                            <constraint firstItem="BlO-IU-ABe" firstAttribute="centerX" secondItem="S2Q-bg-gk9" secondAttribute="centerX" id="XF0-di-zlk"/>
                             <constraint firstItem="2Zt-Gx-Xul" firstAttribute="trailing" secondItem="BlO-IU-ABe" secondAttribute="trailing" constant="16" id="yKB-DQ-436"/>
                         </constraints>
                     </view>
@@ -2941,6 +2942,7 @@
                                                                 <constraints>
                                                                     <constraint firstItem="rnu-u4-iXU" firstAttribute="top" secondItem="CHs-sR-pQN" secondAttribute="top" constant="10" id="NIu-L4-MbU"/>
                                                                     <constraint firstAttribute="bottom" secondItem="rnu-u4-iXU" secondAttribute="bottom" constant="10" id="SwZ-hA-mHG"/>
+                                                                    <constraint firstItem="rnu-u4-iXU" firstAttribute="centerX" secondItem="CHs-sR-pQN" secondAttribute="centerX" id="VJe-Wg-zr4"/>
                                                                     <constraint firstItem="rnu-u4-iXU" firstAttribute="leading" secondItem="CHs-sR-pQN" secondAttribute="leading" constant="15" id="ns4-V1-TvE"/>
                                                                     <constraint firstAttribute="trailing" secondItem="rnu-u4-iXU" secondAttribute="trailing" constant="15" id="uZO-2L-fWd"/>
                                                                 </constraints>
@@ -2983,6 +2985,7 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" name="soft"/>
                                                                 <constraints>
+                                                                    <constraint firstItem="eEz-51-LdH" firstAttribute="centerX" secondItem="TrW-Gu-vBi" secondAttribute="centerX" id="Ghy-cV-1J5"/>
                                                                     <constraint firstAttribute="trailing" secondItem="eEz-51-LdH" secondAttribute="trailing" constant="15" id="SY0-NK-Dqi"/>
                                                                     <constraint firstItem="eEz-51-LdH" firstAttribute="leading" secondItem="TrW-Gu-vBi" secondAttribute="leading" constant="15" id="k7Z-tJ-KSy"/>
                                                                     <constraint firstAttribute="bottom" secondItem="eEz-51-LdH" secondAttribute="bottom" constant="10" id="r0K-cg-qmL"/>
@@ -3213,16 +3216,16 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

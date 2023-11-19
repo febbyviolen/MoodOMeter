@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import WidgetKit
 
 class WriteDiaryVM {
     @Published var newDiary: DiaryModel?
     @Published var newAddedSticker: String?
+    private var userDefault = UserDefaults.standard
     
     func addNewStickerToData(_ new: String?, date: String) {
         if new != nil {
@@ -46,6 +48,10 @@ class WriteDiaryVM {
             MainVM.Shared.selectedDate?.data = DiaryModel(sticker: self.newDiary?.sticker ?? [], story: newStory ?? "", date: MainVM.Shared.selectedDate!.date.toString(format: "yyyy.MM.dd"))
             
             print("Selected date is updated - : \(MainVM.Shared.selectedDate)")
+            UserDefaults(suiteName: "group.febby.moody.widgetcache")?.set(self.newDiary?.sticker.last, forKey: "img")
+            UserDefaults(suiteName: "group.febby.moody.widgetcache")?.set(MainVM.Shared.selectedDate!.date, forKey: "date")
+            WidgetCenter.shared.reloadTimelines(ofKind: "DayWidget")
+            
             completion()
         }
     }

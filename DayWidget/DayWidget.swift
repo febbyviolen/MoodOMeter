@@ -10,6 +10,10 @@ import SwiftUI
 import Intents
 
 struct Provider: TimelineProvider {
+    
+    var dataServices = DataServices()
+    
+    //위젯 예제
     func getSnapshot(in context: Context, completion: @escaping (DayEntry) -> Void) {
         let entry = DayEntry(date: Date(), img: "happy")
         completion(entry)
@@ -18,45 +22,42 @@ struct Provider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<DayEntry>) -> Void) {
         var entries: [DayEntry] = []
         
-        let userDefaults = UserDefaults(suiteName: "group.febby.moody.widgetcache")
-        var img = userDefaults?.value(forKey: "img") as? String ?? ""
-        var date = userDefaults?.value(forKey: "date") as? Date ?? Date()
-        
         let currentDate = Date()
         for dayOffSet in 0...1 {
-            let entryDate = Calendar.current.date(byAdding: .day, value: dayOffSet ,to: currentDate)!
-            let startOfDate = Calendar.current.startOfDay(for: entryDate)
+            var entryDate = Date()
             
-            if startOfDate > date {
-                userDefaults?.set("", forKey: "img")
-                img = userDefaults?.value(forKey: "img") as? String ?? ""
-                userDefaults?.set(startOfDate, forKey: "date")
+            if dayOffSet == 1 {
+                entryDate = Calendar.current.date(byAdding: .day, value: 0 ,to: currentDate)!
+                entryDate = entryDate.setToMidnight()!
+                dataServices.checkIfNewDay(entryDate)
             }
+          
+            let (img, _) = dataServices.getData()
+            print("printing : \(img)")
             
-            userDefaults?.set(startOfDate, forKey: "date")
-            let entry = DayEntry(date: startOfDate,
+            let entry = DayEntry(date: entryDate,
                                  img: img)
             entries.append(entry)
         }
-
+        
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
     
     func placeholder(in context: Context) -> DayEntry {
-        DayEntry(date: Date(), img: "")
+        return DayEntry(date: Date(), img: "happy")
     }
 }
 
 struct DayEntry: TimelineEntry {
     let date: Date
-    let img: String
+    let img: String?
 }
 
 //MARK: UI
 struct DayWidgetEntryView : View {
     var entry: DayEntry
-
+    
     var body: some View {
         
         ZStack{
@@ -69,7 +70,7 @@ struct DayWidgetEntryView : View {
                     .foregroundColor(.black)
                     .bold()
                 
-                Image(entry.img)
+                Image(entry.img ?? "")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(minWidth: 30, idealWidth: 60, minHeight: 30, idealHeight: 60)

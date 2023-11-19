@@ -39,4 +39,24 @@ extension Date {
         return nil
     }
     
+    func setToMidnight() -> Date? {
+        var str = self.toString(format: "yyyy-MM-dd")
+        str += " 00:00:00"
+        print(str)
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.timeZone = TimeZone(identifier: "UTC")
+        
+        if let toDate = formatter.date(from: str) {
+            print(toDate)
+            return toDate
+        } else {
+            print("Failed to convert string to date.")
+            return nil
+        }
+    }
+
+
+    
 }
