@@ -11,22 +11,23 @@ import UserNotifications
 
 class MainVM {
     static let Shared = MainVM()
-
+    
     @Published var calendarData: [String: DiaryModel] = [:]
     @Published var selectedDate: (date: Date, data: DiaryModel?)? = (Date(), nil)
     @Published var appIsLocked = false
     
     var currentYear = Date().toString(format: "yyyy")
+    var currentUser = ""
     private var userDefault = UserDefaults.standard
     
     private var cancellables = Set<AnyCancellable>()
     
     //testData
-//    let testData = [
-//        "2022.12.02" : DiaryModel(sticker: ["happy", "cry"], story: "neh", date: "2022.12.02"),
-//        "2023.01.20" : DiaryModel(sticker: ["happy", "cry", "happy", "happy", "happy"], story: "nehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehneh", date: "2023.01.20"),
-//        "2023.11.22" : DiaryModel(sticker: ["happy"], story: "", date: "2023.11.22"),
-//    ]
+    //    let testData = [
+    //        "2022.12.02" : DiaryModel(sticker: ["happy", "cry"], story: "neh", date: "2022.12.02"),
+    //        "2023.01.20" : DiaryModel(sticker: ["happy", "cry", "happy", "happy", "happy"], story: "nehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehnehneh", date: "2023.01.20"),
+    //        "2023.11.22" : DiaryModel(sticker: ["happy"], story: "", date: "2023.11.22"),
+    //    ]
     
     func fetchCalendarData(for date: Date) {
         Firebase.Shared.getDiaryData(date: date)
@@ -34,7 +35,7 @@ class MainVM {
             .sink { completion in
                 switch completion {
                 case .finished:
-//                    print("MainVM - fetch calendar data success")
+                    //                    print("MainVM - fetch calendar data success")
                     break
                 case .failure(let error):
                     print("MainVM - fetch calendar data failed : \(error)")
@@ -60,6 +61,7 @@ class MainVM {
     func setupUser() {
         if userDefault.string(forKey: "userID") != nil {
             print("registered user sign in: \(userDefault.string(forKey: "userID"))")
+            currentUser = userDefault.string(forKey: "userID")!
             Firebase.Shared.getSubscriptionInfo()
             self.fetchCalendarData(for: Date())
         } else {
@@ -68,6 +70,13 @@ class MainVM {
                 print("new user sign in")
                 self.fetchCalendarData(for: Date())
             }
+        }
+    }
+    
+    func checkUserChanged() {
+        if userDefault.string(forKey: "userID") == nil 
+        || currentUser != userDefault.string(forKey: "userID"){
+            setupUser()
         }
     }
     

@@ -31,14 +31,14 @@ class ConnectToSNSVM {
         return userDefault.string(forKey: "userID")
     }
     
-    func setUserID(id: String) {
-        userDefault.set(id, forKey: "userID")
+    func setUserID(to: String?) {
+        userDefault.set(to, forKey: "userID")
     }
     
     func transferUserData(merge: Bool, uid: String, userEmail: String?, completion: @escaping () -> Void) {
         Firebase.Shared.transferUserData(idToken: uid, merge: merge) {
             Firebase.Shared.deleteUser(user: self.getUserID()!, date: Date())
-            self.setUserID(id: uid)
+            self.setUserID(to: uid)
             self.setUserEmail(to: userEmail)
             completion()
         }

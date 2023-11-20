@@ -114,9 +114,9 @@ class ConnectToSNSVC: UIViewController, UIGestureRecognizerDelegate {
     @IBAction func unconnect(_ sender: Any) {
         //add alert
         VM.setUserEmail(to: nil)
-        userDefault.set(nil, forKey: "userID")
+        VM.setUserID(to: nil)
         self.userDefault.set("false", forKey: "premiumPass")
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     private func application(_ app: UIApplication,
@@ -273,6 +273,7 @@ extension ConnectToSNSVC {
                              opacity: 0.1)
         stackView1.layer.cornerRadius = 16
         stackView1.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        stackView1.backgroundColor = UIColor(named: "whiteDefault")
         
         startConnectingButton.layer.cornerRadius = 10
         startConnectingButton.isEnabled = false
@@ -292,7 +293,7 @@ extension ConnectToSNSVC {
         ])
         
         firstRuleButton.setAttributedTitle(str, for: .normal)
-        secondRuleButton.setAttributedTitle(str, for: .normal)
+        secondRuleButton.setAttributedTitle(str2, for: .normal)
         self.view.addSubview(activityIndicatorView)
     }
 }

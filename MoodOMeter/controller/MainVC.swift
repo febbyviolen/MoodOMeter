@@ -44,6 +44,8 @@ class MainVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         print("MainVC - viewWillAppear called")
+        //check if the user is deleted or disconnected
+        VM.checkUserChanged()
         currentDateSubject.send(VM.selectedDate?.date ?? Date())
     }
     

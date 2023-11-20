@@ -168,7 +168,7 @@
 "T4A-Fm-jPw.text" = "2023.11.02 화요일";
 
 /* Class = "UILabel"; text = "위의 항목에 체크하여 본인이 약관에 동의한 것으로 간주됩니다."; ObjectID = "T5I-Dp-iP0"; */
-"T5I-Dp-iP0.text" = "Dengan mencentang item di bawah, Anda menyetujui syarat dan ketentuan.";
+"T5I-Dp-iP0.text" = "Dengan mencentang item di atas, Anda menyetujui syarat dan ketentuan.";
 
 /* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "TJr-o1-wIG"; */
 "TJr-o1-wIG.title" = "Item";
@@ -279,7 +279,7 @@
 "fQS-XO-taV.text" = "1";
 
 /* Class = "UIButton"; configuration.title = "데이터 병합 시 기존 계정의 중복된 항목은 덮어쓰여질 수 있다는 사실을 이해하였습니다."; ObjectID = "feK-hF-nJ7"; */
-"feK-hF-nJ7.configuration.title" = "데이터 병합 시 기존 계정의 중복된 항목은 덮어쓰여질 수 있다는 사실을 이해하였습니다.";
+"feK-hF-nJ7.configuration.title" = "Saya mengerti bahwa item duplikat dari akun yang ada dapat tertimpa oleh data sekarang menggabungkan data.";
 
 /* Class = "UIButton"; normalTitle = " "; ObjectID = "feK-hF-nJ7"; */
 "feK-hF-nJ7.normalTitle" = " ";
@@ -294,7 +294,7 @@
 "h6S-zO-kWo.title" = "Pengaturan Bahasa";
 
 /* Class = "UILabel"; text = "진행하기 전에 다음 내용을 체크해주세요:"; ObjectID = "hC8-xW-c6P"; */
-"hC8-xW-c6P.text" = "Silakan centang hal berikut sebelum melanjutkan::";
+"hC8-xW-c6P.text" = "Silakan centang hal berikut sebelum melanjutkan:";
 
 /* Class = "UILabel"; text = "계정 연동하기"; ObjectID = "hkp-NK-nKy"; */
 "hkp-NK-nKy.text" = "Sambungkan Akun";

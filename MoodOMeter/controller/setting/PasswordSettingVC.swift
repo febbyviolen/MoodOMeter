@@ -89,7 +89,7 @@ extension PasswordSettingVC {
                                    radius: 1,
                                    opacity: 0.2)
             $0?.addCornerRadius(radius: 16)
-            $0?.backgroundColor = .white
+            $0?.backgroundColor = UIColor(named: "whiteDefault")
         })
         
         if VM.getPasswordValid() {
