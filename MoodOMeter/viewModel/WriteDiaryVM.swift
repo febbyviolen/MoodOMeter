@@ -49,7 +49,7 @@ class WriteDiaryVM {
             
             print("Selected date is updated - : \(MainVM.Shared.selectedDate)")
             
-            if MainVM.Shared.selectedDate!.date == Date() {
+            if MainVM.Shared.selectedDate!.date.toString(format: "YYYY-MM-dd") == Date().toString(format: "YYYY-MM-dd") {
                 UserDefaults(suiteName: "group.febby.moody.widgetcache")?.set(self.newDiary?.sticker.last, forKey: "img")
                 UserDefaults(suiteName: "group.febby.moody.widgetcache")?.set(MainVM.Shared.selectedDate!.date, forKey: "date")
                 WidgetCenter.shared.reloadTimelines(ofKind: "DayWidget")
@@ -64,7 +64,7 @@ class WriteDiaryVM {
         UserDefaults(suiteName: "group.febby.moody.widgetcache")?.set("", forKey: "img")
         UserDefaults(suiteName: "group.febby.moody.widgetcache")?.set(MainVM.Shared.selectedDate!.date, forKey: "date")
         
-        if MainVM.Shared.selectedDate!.date == Date() {
+        if MainVM.Shared.selectedDate!.date.toString(format: "YYYY-MM-dd") == Date().toString(format: "YYYY-MM-dd") {
             WidgetCenter.shared.reloadTimelines(ofKind: "DayWidget")
         }
     }
