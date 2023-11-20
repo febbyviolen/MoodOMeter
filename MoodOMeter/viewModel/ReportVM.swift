@@ -14,7 +14,8 @@ class ReportVM {
     @Published var reportData = [DiaryModel]()
     @Published var thisMonthMoodData: [MoodGraph] = []
     
-    var thisMonthData = [DiaryModel]()    
+    var thisMonthData = [DiaryModel]()
+    var moodStickers = Mood.allCases.map{$0.imgName}
     private var cancellables = Set<AnyCancellable>()
     
     let currentDateSubject = CurrentValueSubject<Date, Never>(Date())
@@ -60,7 +61,9 @@ class ReportVM {
         var dict = [String: Int]()
         for i in thisMonthData {
             for j in i.sticker {
-                dict[j] = (dict[j] ?? 0) + 1
+                if moodStickers.contains(j) {
+                    dict[j] = (dict[j] ?? 0) + 1
+                }
             }
         }
         
