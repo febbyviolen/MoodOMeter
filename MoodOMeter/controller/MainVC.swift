@@ -209,7 +209,6 @@ extension MainVC: JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate {
     func configureCell(view: JTAppleCell?, cellState: CellState) {
         guard let cell = view as? CalendarDateView  else { return }
         cell.configure(state: cellState)
-        
     }
 
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
