@@ -34,6 +34,10 @@ class WriteDiaryVM {
             } else {
                 newDiary = DiaryModel(sticker: [], story: new!, date: date)
             }
+        } else {
+            if newDiary != nil {
+                newDiary?.story = ""
+            } 
         }
     }
     

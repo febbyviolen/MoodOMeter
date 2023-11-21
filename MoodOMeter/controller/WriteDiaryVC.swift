@@ -138,16 +138,17 @@ class WriteDiaryVC: UIViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        //if there is no new item
-        if VM.newDiary?.sticker.count == 0 || VM.newDiary == nil {
-            if VM.newDiary?.story == "" || VM.newDiary?.story == "오늘은 어떤 하루였나요?".localised {
-                Firebase.Shared.deleteDiary(date: MainVM.Shared.selectedDate!.date)
-            }
-        } else { //save to firebase
+        VM.addNewStoryToData(diaryTextField.text, date: MainVM.Shared.selectedDate!.date.toString(format: "yyyy.MM.dd"))
+        
+        if VM.newDiary?.sticker.count != 0 || VM.newDiary?.story != "" {
+            print(VM.newDiary?.story)
             VM.saveToFirebase{
                 let alert = UIAlertFactory.buildOneAlert(title: "저장 완료했습니다".localised, message: "", okAction: UIAlertAction(title: "OK", style: .default))
                 self.present(alert, animated: true)
             }
+        } else {
+            //if there is no new item
+            Firebase.Shared.deleteDiary(date: MainVM.Shared.selectedDate!.date)
         }
     }
     
