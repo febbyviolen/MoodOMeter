@@ -25,7 +25,7 @@ class Firebase {
     }
     
     //MARK: USERS INFO
-    func anonymSign(completion: @escaping () -> Void) {
+    func anonymSign(completion: @escaping (String) -> Void) {
         Auth.auth().signInAnonymously { (authResult, error) in
             if let error = error {
                 print("anonymSign - in error: \(error)")
@@ -37,7 +37,7 @@ class Firebase {
                 }
                 let userID = user.uid
                 self.userDefault.set(userID, forKey: "userID")
-                completion()
+                completion(userID)
             }
         }
     }

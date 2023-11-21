@@ -17,8 +17,8 @@ class MainVC: UIViewController {
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var nextMonthButton: UIButton!
     @IBOutlet weak var lastMonthButton: UIButton!
-//    @IBOutlet weak var addButton: UIButton?
     @IBOutlet weak var calendar: JTAppleCalendarView!
+    @IBOutlet weak var calendarLabelStack: UIStackView!
     
     private var cancellables = Set<AnyCancellable>()
     private let currentDateSubject = CurrentValueSubject<Date, Never>(Date())
@@ -29,13 +29,14 @@ class MainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        print("viewDidLoad called")
         VM.checkIsPasscodeActivated()
         VM.setupUser()
         VM.setNotification()
         
         VM.checkInterruptedReceipt()
         
-        currentDateSubject.send(VM.selectedDate?.date ?? Date())
+        calendar.scrollToDate(Date())
         setupUI()
         calendarSetup()
         bind()
@@ -46,7 +47,7 @@ class MainVC: UIViewController {
         print("MainVC - viewWillAppear called")
         //check if the user is deleted or disconnected
         VM.checkUserChanged()
-        currentDateSubject.send(VM.selectedDate?.date ?? Date())
+        calendar.scrollToDate(VM.selectedDate?.date ?? Date())
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -80,12 +81,14 @@ class MainVC: UIViewController {
     
     private func observe() {
         currentDateSubject.sink { [unowned self] date in
+            
             if let newDate = isMaybeFirstLineOfCalendar(date: date) {
                 calendar.scrollToDate(newDate , animateScroll: true)
             } else {
                 calendar.scrollToDate(Date(), animateScroll: true)
             }
             
+            print("current subject sink:", date)
             //month
             let month = date.toString(format: "MMMM").uppercased()
             monthLabel.text = month
@@ -94,9 +97,9 @@ class MainVC: UIViewController {
             let year = date.toString(format: "yyyy")
             if year != MainVM.Shared.currentYear {
                 MainVM.Shared.currentYear = year
-//                if !MainVM.Shared.inTheData.contains(year){
-                    MainVM.Shared.fetchCalendarData(for: date)
-//                }
+                //                if !MainVM.Shared.inTheData.contains(year){
+                MainVM.Shared.fetchCalendarData(for: date)
+                //                }
             }
             yearLabel.text = year
             
@@ -122,7 +125,7 @@ class MainVC: UIViewController {
         performSegue(withIdentifier: "showWriteDiaryVC", sender: self)
     }
     
-    @IBAction 
+    @IBAction
     func todayButtonTapped(_ sender: Any) {
         currentDateSubject.send(Date())
     }
@@ -141,10 +144,15 @@ class MainVC: UIViewController {
             .font: UIFont.systemFont(ofSize: 10)
         ])
         todayButton.setAttributedTitle(str, for: .normal)
-        
+        calendarLabelStack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showCalendarSelect)))
         if !VM.checkSubscription() {
             GoogleMobsFactory.build(at: self)
         }
+    }
+    
+    @objc
+    private func showCalendarSelect() {
+        self.performSegue(withIdentifier: "showSelectCalendarVC", sender: self)
     }
 
 }
@@ -154,13 +162,14 @@ extension MainVC {
     
     // REASON: library error! if the date is in the first line, the calendar showing last month
     func isMaybeFirstLineOfCalendar(date: Date) -> Date? {
+        print("isMaybe", date)
         let dateStr = date.toString(format: "dd")
         if dateStr == "01" || dateStr == "02" || dateStr == "03" || dateStr == "04" || dateStr == "05" || dateStr == "06" {
             let month = date.toString(format: "MM")
             let year = date.toString(format: "yyyy")
             return ("\(String(describing: year)).\(String(describing: month)).\(15)").toDate(format: "yyyy.MM.dd")
         }
-        else {return nil}
+        else {return date}
     }
 }
 
@@ -177,17 +186,6 @@ extension MainVC: JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate {
         calendar.showsHorizontalScrollIndicator = false
         
         calendar.addCornerRadius(radius: 16)
-        
-        //DATE LABEL
-        yearLabel.text = Date().toString(format: "yyyy")
-        monthLabel.text = Date().toString(format: "MMMM")
-        
-        if let newDate = isMaybeFirstLineOfCalendar(date: Date()) {
-            calendar.scrollToDate(newDate , animateScroll: false)
-        } else {
-            calendar.scrollToDate(Date(), animateScroll: false)
-        }
-        
     }
     
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {

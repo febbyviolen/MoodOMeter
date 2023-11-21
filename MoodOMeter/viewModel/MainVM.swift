@@ -54,13 +54,14 @@ class MainVM {
     func setupUser() {
         if userDefault.string(forKey: "userID") != nil {
             print("registered user sign in: \(userDefault.string(forKey: "userID"))")
-            currentUser = userDefault.string(forKey: "userID")!
+            self.currentUser = userDefault.string(forKey: "userID")!
             Firebase.Shared.getSubscriptionInfo()
             self.fetchCalendarData(for: Date())
         } else {
             //익명
-            Firebase.Shared.anonymSign {
+            Firebase.Shared.anonymSign { id in
                 print("new user sign in")
+                self.currentUser = id
                 self.fetchCalendarData(for: Date())
             }
         }

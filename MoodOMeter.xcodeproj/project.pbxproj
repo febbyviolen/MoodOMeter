@@ -72,6 +72,7 @@
 		80CE65762AFDE518007F4550 /* UIAlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE65752AFDE518007F4550 /* UIAlertFactory.swift */; };
 		80CE65782AFDE76E007F4550 /* UIAlertAction+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE65772AFDE76E007F4550 /* UIAlertAction+Extension.swift */; };
 		80DA7FE22B0C945800D566A5 /* GoogleMobsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA7FE12B0C945800D566A5 /* GoogleMobsFactory.swift */; };
+		80DA7FE42B0C9CA000D566A5 /* SelectCalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA7FE32B0C9CA000D566A5 /* SelectCalendarVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +171,7 @@
 		80CE659F2AFE8A45007F4550 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		80CE65A02AFE8A53007F4550 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Main.strings; sourceTree = "<group>"; };
 		80DA7FE12B0C945800D566A5 /* GoogleMobsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMobsFactory.swift; sourceTree = "<group>"; };
+		80DA7FE32B0C9CA000D566A5 /* SelectCalendarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCalendarVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +271,7 @@
 				80BCF5F22AF9470A00802B96 /* ReportVC.swift */,
 				80BCF5F62AFA337D00802B96 /* WriteDiaryVC.swift */,
 				80BCF5FE2AFA99B400802B96 /* StickerVC.swift */,
+				80DA7FE32B0C9CA000D566A5 /* SelectCalendarVC.swift */,
 				80BCF60C2AFB96E400802B96 /* SettingVC.swift */,
 				80BCF6192AFBB76D00802B96 /* setting */,
 			);
@@ -547,6 +550,7 @@
 				80BCF62B2AFCA7BC00802B96 /* LanguageVM.swift in Sources */,
 				80BCF5F32AF9470A00802B96 /* ReportVC.swift in Sources */,
 				80BCF60D2AFB96E400802B96 /* SettingVC.swift in Sources */,
+				80DA7FE42B0C9CA000D566A5 /* SelectCalendarVC.swift in Sources */,
 				80BCF6332AFCE65000802B96 /* ConnectToSNSVC.swift in Sources */,
 				80BCF6052AFAA2C700802B96 /* UIImage+Extension.swift in Sources */,
 				80BCF6222AFBDA4000802B96 /* PasswordViewSettingVM.swift in Sources */,

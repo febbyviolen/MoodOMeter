@@ -39,6 +39,30 @@ extension Date {
         return nil
     }
     
+    func addYear(by num: Int) -> Date? {
+        var calendar = Calendar.current
+        var dateComponents = DateComponents()
+        
+        dateComponents.year = +num
+        if let year = calendar.date(byAdding: dateComponents, to: self) {
+            return year
+        }
+        
+        return nil
+    }
+    
+    func decreaseYear(by num: Int) -> Date? {
+        var calendar = Calendar.current
+        var dateComponents = DateComponents()
+        
+        dateComponents.year = -num
+        if let year = calendar.date(byAdding: dateComponents, to: self) {
+            return year
+        }
+        
+        return nil
+    }
+    
     func setToMidnight() -> Date? {
         var str = self.toString(format: "yyyy-MM-dd")
         str += " 00:00:00"
