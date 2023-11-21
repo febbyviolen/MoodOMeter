@@ -141,6 +141,10 @@ class MainVC: UIViewController {
             .font: UIFont.systemFont(ofSize: 10)
         ])
         todayButton.setAttributedTitle(str, for: .normal)
+        
+        if !VM.checkSubscription() {
+            GoogleMobsFactory.build(at: self)
+        }
     }
 
 }

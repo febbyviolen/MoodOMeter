@@ -10,9 +10,6 @@ import NVActivityIndicatorView
 import Combine
 import CombineCocoa
 import FirebaseAuth
-//import FirebaseAuth
-//import FirebaseCore
-//import StoreKit
 
 class SettingVC: UIViewController {
     

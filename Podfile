@@ -18,7 +18,7 @@ target 'MoodOMeter' do
 	pod 'KTCenterFlowLayout'
 	pod 'GoogleSignIn'
 	pod 'NVActivityIndicatorView'
-	#pod 'Google-Mobile-Ads-SDK'
+	pod 'Google-Mobile-Ads-SDK'
 
 end
 
