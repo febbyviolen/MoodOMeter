@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseCore
 import FirebaseFirestore
+import GoogleMobileAds
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().topItem?.backButtonDisplayMode = .minimal
         
         FirebaseApp.configure()
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         print("App language: \(LanguageManager.shared.getAppLanguage())")
         

@@ -161,6 +161,9 @@ class ReportVC: UIViewController {
                 opacity: 0.2)
             $0.addCornerRadius(radius: 16)
         })
+        if !MainVM.Shared.checkSubscription() {
+            GoogleMobsFactory.build(at: self)
+        }
     }
 }
 

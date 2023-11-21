@@ -71,6 +71,7 @@
 		80BCF6352AFCE9AE00802B96 /* ConnectToSNSVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BCF6342AFCE9AE00802B96 /* ConnectToSNSVM.swift */; };
 		80CE65762AFDE518007F4550 /* UIAlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE65752AFDE518007F4550 /* UIAlertFactory.swift */; };
 		80CE65782AFDE76E007F4550 /* UIAlertAction+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE65772AFDE76E007F4550 /* UIAlertAction+Extension.swift */; };
+		80DA7FE22B0C945800D566A5 /* GoogleMobsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA7FE12B0C945800D566A5 /* GoogleMobsFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +169,7 @@
 		80CE659E2AFE8A39007F4550 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80CE659F2AFE8A45007F4550 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		80CE65A02AFE8A53007F4550 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Main.strings; sourceTree = "<group>"; };
+		80DA7FE12B0C945800D566A5 /* GoogleMobsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMobsFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,6 +332,7 @@
 			children = (
 				80BCF6152AFB9AEF00802B96 /* IndicatorViewFactory.swift */,
 				80CE65752AFDE518007F4550 /* UIAlertFactory.swift */,
+				80DA7FE12B0C945800D566A5 /* GoogleMobsFactory.swift */,
 			);
 			path = factory;
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 				8058F9D72AFFCDB000868D58 /* DayWidget.intentdefinition in Sources */,
 				80BCF6242AFBDED000802B96 /* PasswordPadVC.swift in Sources */,
 				80BCF5FF2AFA99B500802B96 /* StickerVC.swift in Sources */,
+				80DA7FE22B0C945800D566A5 /* GoogleMobsFactory.swift in Sources */,
 				80BCF5F12AF8CDAB00802B96 /* DairyVM.swift in Sources */,
 				80BCF61D2AFBBD3800802B96 /* Int+Extension.swift in Sources */,
 				80BCF6162AFB9AEF00802B96 /* IndicatorViewFactory.swift in Sources */,

@@ -71,6 +71,9 @@ class DiaryVC: UIViewController {
             radius: 1,
             opacity: 0.2)
         noData?.addCornerRadius(radius: 16)
+        if !MainVM.Shared.checkSubscription() {
+            GoogleMobsFactory.build(at: self)
+        }
     }
 }
 
