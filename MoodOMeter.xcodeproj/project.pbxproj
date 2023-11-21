@@ -19,7 +19,6 @@
 		8058F9C62AFFCC5F00868D58 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8058F9C52AFFCC5F00868D58 /* SwiftUI.framework */; };
 		8058F9C92AFFCC5F00868D58 /* DayWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8058F9C82AFFCC5F00868D58 /* DayWidgetBundle.swift */; };
 		8058F9CB2AFFCC5F00868D58 /* DayWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8058F9CA2AFFCC5F00868D58 /* DayWidget.swift */; };
-		8058F9CD2AFFCC6200868D58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8058F9CC2AFFCC6200868D58 /* Assets.xcassets */; };
 		8058F9D12AFFCC6200868D58 /* DayWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8058F9C22AFFCC5F00868D58 /* DayWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8058F9D72AFFCDB000868D58 /* DayWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8058F9D62AFFCDAF00868D58 /* DayWidget.intentdefinition */; };
 		8058F9D82AFFCDB000868D58 /* DayWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8058F9D62AFFCDAF00868D58 /* DayWidget.intentdefinition */; };
@@ -73,6 +72,8 @@
 		80CE65782AFDE76E007F4550 /* UIAlertAction+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE65772AFDE76E007F4550 /* UIAlertAction+Extension.swift */; };
 		80DA7FE22B0C945800D566A5 /* GoogleMobsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA7FE12B0C945800D566A5 /* GoogleMobsFactory.swift */; };
 		80DA7FE42B0C9CA000D566A5 /* SelectCalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA7FE32B0C9CA000D566A5 /* SelectCalendarVC.swift */; };
+		80DA7FE52B0CBE0F00D566A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8058F9CC2AFFCC6200868D58 /* Assets.xcassets */; };
+		80DA7FE62B0CBE1000D566A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8058F9CC2AFFCC6200868D58 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -483,6 +484,7 @@
 				8058F9B92AFF7F2500868D58 /* Localizable.strings in Resources */,
 				80BCF5E62AF8AB6E00802B96 /* DiaryViewCell.xib in Resources */,
 				8033B8392AF74BD10032009A /* Main.storyboard in Resources */,
+				80DA7FE52B0CBE0F00D566A5 /* Assets.xcassets in Resources */,
 				80BCF5FD2AFA8A7000802B96 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,7 +493,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8058F9CD2AFFCC6200868D58 /* Assets.xcassets in Resources */,
+				80DA7FE62B0CBE1000D566A5 /* Assets.xcassets in Resources */,
 				8058F9DA2AFFD00A00868D58 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

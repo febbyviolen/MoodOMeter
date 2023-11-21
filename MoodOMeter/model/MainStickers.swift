@@ -102,7 +102,7 @@ enum mainDaily: CaseIterable {
         case .popcorn:
             return "popcorn"
         case .piggyBank:
-            return "piggyBank"
+            return "piggy"
         }
     }
 }
