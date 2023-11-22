@@ -75,7 +75,7 @@ class MainVM {
     }
     
     func checkSubscription() -> Bool {
-        if UserDefaults.standard.string(forKey: "premiumPass") != "true"  {
+        if UserDefaults.standard.string(forKey: "premiumPass") == "true"  {
             return true
         }
         return false
