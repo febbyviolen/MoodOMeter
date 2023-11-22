@@ -64,9 +64,8 @@ class WriteDiaryVC: UIViewController {
         VM.addNewStoryToData(diaryTextField.text, date: MainVM.Shared.selectedDate!.date.toString(format: "yyyy.MM.dd"))
         if VM.newDiary != MainVM.Shared.selectedDate?.data {
             let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-                self.VM.saveToFirebase{
-                    self.navigationController?.popViewController(animated: true)
-                }
+                self.saveTapped()
+                self.navigationController?.popViewController(animated: true)
             }
             let alert = UIAlertFactory.buildYesNoAlert(
                 title: "변경 사항 저장하시겠습니까?".localised,
@@ -139,7 +138,10 @@ class WriteDiaryVC: UIViewController {
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         VM.addNewStoryToData(diaryTextField.text, date: MainVM.Shared.selectedDate!.date.toString(format: "yyyy.MM.dd"))
-        
+        saveTapped()
+    }
+    
+    private func saveTapped() {
         if VM.newDiary?.sticker.count != 0 || VM.newDiary?.story != "" {
             print(VM.newDiary?.story)
             VM.saveToFirebase{
